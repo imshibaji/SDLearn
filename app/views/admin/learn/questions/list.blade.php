@@ -22,9 +22,9 @@
                 <td>2hours</td>
                 <td>active</td>
                 <td>
-                    <a href="{{url('/')}}/admin/learn/topic/view" class="btn btn-info">View</a>
-                    <a href="{{url('/')}}/admin/learn/topic/edit" class="btn btn-warning">Edit</a>
-                    <a href="{{url('/')}}/admin/learn/topic/delete" class="btn btn-danger">Delete</a>
+                    <a href="{{url('/')}}/admin/learn/question/view" class="btn btn-info">View</a>
+                    <a href="{{url('/')}}/admin/learn/question/edit" class="btn btn-warning">Edit</a>
+                    <a href="{{url('/')}}/admin/learn/question/delete" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         </tbody>

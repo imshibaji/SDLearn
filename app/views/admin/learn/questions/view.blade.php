@@ -1,4 +1,4 @@
-@extends('admin.learn.topics.layout')
+@extends('admin.learn.questions.layout')
 
 
 @section('quickbtn')

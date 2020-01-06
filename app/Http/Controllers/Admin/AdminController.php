@@ -20,29 +20,6 @@ class AdminController extends Controller
     public function profile(){
         return view('admin.profile');
     }
-    
-
-    // Questions Section
-    public function question_list(){
-        return view('admin.learn.questions.list', ['title' => 'Questions List']);
-    }
-
-    public function question_add(){
-        return view('admin.learn.questions.add', ['title' => 'Question Add']);
-    }
-
-    public function question_edit(){
-        return view('admin.learn.questions.edit', ['title' => 'Question Edit']);
-    }
-
-    public function question_view(){
-        return view('admin.learn.questions.view', ['title' => 'Question View']);
-    }
-
-    public function question_delete(){
-        return ['title'=>'Question Delete Section'];
-    }
-
 
     // Comments List
     public function comment_list(){

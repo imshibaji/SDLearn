@@ -1,4 +1,4 @@
-@extends('admin.learn.topics.layout')
+@extends('admin.learn.questions.layout')
 
 @section('quickbtn')
     <div class="col text-right">
@@ -10,14 +10,76 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md">
+            <form action="{{route('adminquestioncreate')}}" method="POST">
+                @csrf
                 <table class="table">
                     <tr>
-                        <td>Name</td>
-                        <td><input type="text" name="name" class="form-control"></td>
+                        <td>Course Name</td>
+                        <td>
+                            <select id="cid" name="course_id" class="form-control">
+                                @foreach ($courses as $course)
+                                    <option value="{{$course->id}}">{{$course->title}}</option>
+                                @endforeach
+                            </select>
+                        </td>
                     </tr>
                     <tr>
-                        <td>Description</td>
+                        <td>Topic Name</td>
+                        <td>
+                            <select id="tid" name="topic_id" class="form-control">
+                                <option value="0">None</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Question</td>
                         <td><textarea name="desc" id="editor" class="form-control"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>Type</td>
+                        <td>
+                            <select name="qtype" id="qtype" class="form-control">
+                                <option value="1">Single Choice</option>
+                                <option value="2">Multiple Choice</option>
+                                <option value="3">Answered</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr id="options">
+                        <td>Answer Options</td>
+                        <td>
+                            <div id="opt_area">
+                            <div class="input-group py-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                      <input type="radio" class="ans" name="ans[]" value="1">
+                                    </div>
+                                </div>
+                                <input type="text" name="opt_1" class="form-control" placeholder="Option 1" />
+                            </div>
+                            <div class="input-group py-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                      <input type="radio" class="ans" name="ans[]" value="2">
+                                    </div>
+                                </div>
+                                <input type="text" name="opt_2" class="form-control" placeholder="Option 2" />
+                            </div>
+                            </div>
+                            <div class="input-group py-2">
+                                <button id="addOpt" class="btn btn-info">Add New Option</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Correct Answer</td>
+                        <td>
+                            <textarea id="correctans" class="form-control" name="correctans" placeholder="Input The Correct Answer"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Marks</td>
+                        <td><input type="text" name="marks" class="form-control" placeholder="Marks" /></td>
                     </tr>
                     <tr>
                         <td>Duration</td>
@@ -37,24 +99,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Course Name</td>
-                        <td>
-                            <select name="cname" class="form-control">
-                                <option value="1">Website Design</option>
-                                <option value="2">JavaScript</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Topic Name</td>
-                        <td>
-                            <select name="tname" class="form-control">
-                                <option value="1">Introduction</option>
-                                <option value="2">Setup Environment</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
                         <td>Status</td>
                         <td>
                             <select name="status" class="form-control">
@@ -68,6 +112,7 @@
                         <td><input type="submit" class="btn btn-success" value="Submit"></td>
                     </tr>
                 </table>
+            </form>
             </div>
         </div>
     </div>
@@ -77,6 +122,7 @@
 <script>
 window.onload = function(){
     CKEDITOR.replace('editor');
+    CKEDITOR.replace('correctans');
 }
 $('#hours, #minutes, #seconds').keyup(()=>{
     var hours = $('#hours').val();
@@ -85,6 +131,77 @@ $('#hours, #minutes, #seconds').keyup(()=>{
 
     var totsec = (hours*3600)+(minutes*60)+(seconds*1) || '';
     $('#totsec').val(totsec);
+});
+
+
+
+$('#cid').change(function(){
+    getTopics();
+});
+getTopics();
+function getTopics(){
+    var cid = $('#cid').val();
+    $.get("{{url('/')}}/admin/learn/question/topic/"+cid).then((data)=>{
+        $('#tid').empty();
+        data.forEach(el => {
+            $('#tid').append(`<option value="${el.id}">${el.title}</option>`);
+        });
+    });
+}
+
+
+$('#options').show();
+$('#qtype').change(() => {
+    const type = $('#qtype').val();
+    console.log(type);
+    if(type == 1){
+        $('#options').show();
+        $('.ans').each(function(){
+            $(this).attr('type', 'radio');
+        });
+    }
+
+    else if(type == 2){
+        $('#options').show();
+        $('.ans').each(function(){
+            $(this).attr('type', 'checkbox');
+        });
+    }
+    else if(type == 3){
+        $('#options').hide();
+    }  
+});
+
+var oval = 2;
+$('#addOpt').click(function(e){
+    e.preventDefault();
+    oval++;
+
+    const type = $('#qtype').val();
+
+    if(type == 1){
+        $('#opt_area').append(`
+        <div class="input-group py-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <input type="radio" class="ans" name="ans[]" value="${oval}">
+                </div>
+            </div>
+            <input type="text" name="opt_${oval}" class="form-control" placeholder="Option ${oval}" />
+        </div>
+        `);
+    }else if(type == 2){
+        $('#opt_area').append(`
+        <div class="input-group py-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <input type="checkbox" class="ans" name="ans[]" value="${oval}">
+                </div>
+            </div>
+            <input type="text" name="opt_${oval}" class="form-control" placeholder="Option ${oval}" />
+        </div>
+        `);
+    }
 });
 </script>
 @endsection

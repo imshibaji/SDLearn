@@ -33,23 +33,27 @@ Route::prefix('learn')->group(function(){
 
 
     // Topics Section
-    Route::get('topic/list', 'Learn\TopicController@list')->name('admintopiclist');
-    Route::get('topic/add', 'Learn\TopicController@add')->name('admintopicadd');
-    Route::post('topic/create', 'Learn\TopicController@create')->name('admintopiccreate');
-    Route::get('topic/edit/{topic}', 'Learn\TopicController@edit')->name('admintopicedit');
-    Route::post('topic/update', 'Learn\TopicController@update')->name('admintopicupdate');
-    Route::get('topic/view/{topic}', 'Learn\TopicController@view')->name('admintopicview');
-    Route::post('topic/delete/{topic}', 'Learn\TopicController@delete')->name('admintopicdelete');
-    Route::post('topic/short', 'Learn\TopicController@short')->name('admintopicshort');
+    Route::prefix('topic')->group(function(){
+        Route::get('list', 'Learn\TopicController@list')->name('admintopiclist');
+        Route::get('add', 'Learn\TopicController@add')->name('admintopicadd');
+        Route::post('create', 'Learn\TopicController@create')->name('admintopiccreate');
+        Route::get('edit/{topic}', 'Learn\TopicController@edit')->name('admintopicedit');
+        Route::post('update', 'Learn\TopicController@update')->name('admintopicupdate');
+        Route::get('view/{topic}', 'Learn\TopicController@view')->name('admintopicview');
+        Route::post('delete/{topic}', 'Learn\TopicController@delete')->name('admintopicdelete');
+        Route::post('short', 'Learn\TopicController@short')->name('admintopicshort');
+    });
 
 
     // Question Section
     Route::prefix('question')->group(function(){
-        Route::get('list', 'AdminController@question_list')->name('adminquestionlist');
-        Route::get('add', 'AdminController@question_add')->name('adminquestionadd');
-        Route::get('edit', 'AdminController@question_edit')->name('adminquestionedit');
-        Route::get('view', 'AdminController@question_view')->name('adminquestionview');
-        Route::get('delete', 'AdminController@question_delete')->name('adminquestiondelete');
+        Route::get('topic/{id}', 'Learn\QuestionController@topic_by_course')->name('admingettopics');
+        Route::get('list', 'Learn\QuestionController@list')->name('adminquestionlist');
+        Route::get('add', 'Learn\QuestionController@add')->name('adminquestionadd');
+        Route::post('create', 'Learn\QuestionController@create')->name('adminquestioncreate');
+        Route::get('edit', 'Learn\QuestionController@edit')->name('adminquestionedit');
+        Route::get('view', 'Learn\QuestionController@view')->name('adminquestionview');
+        Route::get('delete', 'Learn\QuestionController@delete')->name('adminquestiondelete');
     });
 
 
