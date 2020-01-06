@@ -79,7 +79,17 @@
                     </tr>
                     <tr>
                         <td>Marks</td>
-                        <td><input type="text" name="marks" class="form-control" placeholder="Marks" /></td>
+                        <td class="row">
+                            <div class="col">
+                                <input type="number" name="design_points" class="form-control" placeholder="Design Points" />
+                            </div>
+                            <div class="col">
+                                <input type="number" name="development_points" class="form-control" placeholder="Development Points" />
+                            </div>
+                            <div class="col">
+                                <input type="number" name="debugging_points" class="form-control" placeholder="Debugging Points" />
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td>Duration</td>
