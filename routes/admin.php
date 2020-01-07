@@ -51,9 +51,10 @@ Route::prefix('learn')->group(function(){
         Route::get('list', 'Learn\QuestionController@list')->name('adminquestionlist');
         Route::get('add', 'Learn\QuestionController@add')->name('adminquestionadd');
         Route::post('create', 'Learn\QuestionController@create')->name('adminquestioncreate');
-        Route::get('edit', 'Learn\QuestionController@edit')->name('adminquestionedit');
-        Route::get('view', 'Learn\QuestionController@view')->name('adminquestionview');
-        Route::get('delete', 'Learn\QuestionController@delete')->name('adminquestiondelete');
+        Route::get('edit/{id}', 'Learn\QuestionController@edit')->name('adminquestionedit');
+        Route::get('view/{id}', 'Learn\QuestionController@view')->name('adminquestionview');
+        Route::post('delete/{id}', 'Learn\QuestionController@delete')->name('adminquestiondelete');
+        Route::post('short', 'Learn\QuestionController@short')->name('adminquestionshort');
     });
 
 

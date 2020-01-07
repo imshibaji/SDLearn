@@ -33,7 +33,7 @@
                     </tr>
                     <tr>
                         <td>Question</td>
-                        <td><textarea name="desc" id="editor" class="form-control"></textarea></td>
+                        <td><textarea name="question" id="editor" class="form-control"></textarea></td>
                     </tr>
                     <tr>
                         <td>Type</td>
@@ -55,7 +55,7 @@
                                       <input type="radio" class="ans" name="ans[]" value="1">
                                     </div>
                                 </div>
-                                <input type="text" name="opt_1" class="form-control" placeholder="Option 1" />
+                                <input type="text" name="opt[]" class="form-control" placeholder="Option 1" />
                             </div>
                             <div class="input-group py-2">
                                 <div class="input-group-prepend">
@@ -63,7 +63,7 @@
                                       <input type="radio" class="ans" name="ans[]" value="2">
                                     </div>
                                 </div>
-                                <input type="text" name="opt_2" class="form-control" placeholder="Option 2" />
+                                <input type="text" name="opt[]" class="form-control" placeholder="Option 2" />
                             </div>
                             </div>
                             <div class="input-group py-2">
@@ -74,7 +74,7 @@
                     <tr>
                         <td>Correct Answer</td>
                         <td>
-                            <textarea id="correctans" class="form-control" name="correctans" placeholder="Input The Correct Answer"></textarea>
+                            <textarea id="answer" class="form-control" name="answer" placeholder="Input The Correct Answer"></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -95,16 +95,16 @@
                         <td>Duration</td>
                         <td class="row">
                             <div class="col">
-                                <input type="number" id="hours" name="hours" class="form-control" placeholder="hours">
+                                <input type="number" id="hours" name="duration[hours]" class="form-control" placeholder="hours">
                             </div>
                             <div class="col">
-                                <input type="number" id="minutes" name="minutes" class="form-control" placeholder="minutes">
+                                <input type="number" id="minutes" name="duration[minutes]" class="form-control" placeholder="minutes">
                             </div>
                             <div class="col">
-                                <input type="number" id="seconds" name="seconds" class="form-control" placeholder="seconds">
+                                <input type="number" id="seconds" name="duration[seconds]" class="form-control" placeholder="seconds">
                             </div>
                             <div class="col">
-                                <input type="number" id="totsec" name="totsec" readonly class="form-control" placeholder="total seconds">
+                                <input type="number" id="totsec" name="duration[totsec]" readonly class="form-control" placeholder="total seconds">
                             </div>
                         </td>
                     </tr>
@@ -132,7 +132,7 @@
 <script>
 window.onload = function(){
     CKEDITOR.replace('editor');
-    CKEDITOR.replace('correctans');
+    CKEDITOR.replace('answer');
 }
 $('#hours, #minutes, #seconds').keyup(()=>{
     var hours = $('#hours').val();
@@ -197,7 +197,7 @@ $('#addOpt').click(function(e){
                     <input type="radio" class="ans" name="ans[]" value="${oval}">
                 </div>
             </div>
-            <input type="text" name="opt_${oval}" class="form-control" placeholder="Option ${oval}" />
+            <input type="text" name="opt[]" class="form-control" placeholder="Option ${oval}" />
         </div>
         `);
     }else if(type == 2){
@@ -208,7 +208,7 @@ $('#addOpt').click(function(e){
                     <input type="checkbox" class="ans" name="ans[]" value="${oval}">
                 </div>
             </div>
-            <input type="text" name="opt_${oval}" class="form-control" placeholder="Option ${oval}" />
+            <input type="text" name="opt[]" class="form-control" placeholder="Option ${oval}" />
         </div>
         `);
     }

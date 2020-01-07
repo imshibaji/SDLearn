@@ -10,4 +10,8 @@ class Topic extends Model
     public function course(){
         return $this->belongsTo('App\Models\Course');
     }
+    
+    public function questions(){
+        return $this->hasMany('App\Models\Question');
+    }
 }
