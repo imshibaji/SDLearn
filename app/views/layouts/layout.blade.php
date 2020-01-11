@@ -100,7 +100,7 @@
                 </div>
                 <div class="col-md text-center">
                     <p class="text-light">&copy; Copyright By <a class="text-light" href="https://www.shibajidebnath.com">Shibaji Debnath</a>. 
-                        <br />Since 2014 - 2019</p>
+                        <br />Since 2014 - {{ date('Y') }}</p>
                 </div>
                 <div class="col-md text-right">
                     <p class="text-light">Developed By <a class="text-light" href="https://www.medust.com">Medust Technology Pvt. Ltd.</a>

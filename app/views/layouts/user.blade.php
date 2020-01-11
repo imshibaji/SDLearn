@@ -117,7 +117,7 @@
                 <div class="col-md text-center">
                     <p class="text-light">
                         &copy; Copyright By <a class="text-light" href="https://www.shibajidebnath.com">Shibaji Debnath</a>.
-                        <br /> Since 2014 - 2019
+                        <br /> Since 2014 - {{ date('Y') }}
                     </p>
                 </div>
                 <div class="col-md text-right">

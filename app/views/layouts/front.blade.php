@@ -122,7 +122,7 @@
     <!-- Copyright -->
     <div class="copyright">
         <p class="text-center">
-            &copy; Copyright By Shibaji Debnath, Since 2014-2019.
+            &copy; Copyright By Shibaji Debnath, Since 2014-{{ date('Y') }}.
         </p>
     </div>
     <!-- Copyright -->
