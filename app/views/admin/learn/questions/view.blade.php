@@ -3,7 +3,7 @@
 
 @section('quickbtn')
     <div class="col text-right">
-        <a href="{{ url('admin/learn/question/list') }}" class="btn btn-primary">Question List</a>
+        <a href="{{ url('admin/learn/topic/view/'.$question->topic->id) }}" class="btn btn-primary">Question List</a>
     </div>
 @endsection
 

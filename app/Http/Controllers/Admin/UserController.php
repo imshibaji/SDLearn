@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\models\Course;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -66,7 +67,8 @@ class UserController extends Controller
     }
 
     public function view(User $user){
-        return view('admin.users.view', ['title' => 'View User', 'user' => $user]);
+        $courses = Course::where('status', 'active')->get();
+        return view('admin.users.view', ['title' => 'View User', 'user' => $user, 'courses' => $courses]);
     }
 
     public function delete(User $user){

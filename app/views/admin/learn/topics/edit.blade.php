@@ -47,7 +47,7 @@
                         <td>
                             <select name="course_id" class="form-control">
                                 @foreach ($courses as $course)
-                                <option value="{{$course->id}}" >{{$course->title}}</option>
+                                    <option value="{{$course->id}}" @if($course->id === $topic->course->id) selected @endif>{{$course->title}}</option>
                                 @endforeach
                             </select>
                         </td>

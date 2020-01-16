@@ -66,6 +66,9 @@
                                     </div>
                                 </div>
                                 <input type="text" name="opt[]" class="form-control" value="{{ $opt }}" />
+                                <div class="input-group-append">
+                                    <input type="button" class="input-group-text text-danger" name="close" value="X">
+                                </div>
                             </div>
                         @endforeach
                         </div>
@@ -225,6 +228,9 @@ $('#addOpt').click(function(e){
                 </div>
             </div>
             <input type="text" name="opt[]" class="form-control" placeholder="Option ${oval}" />
+            <div class="input-group-append">
+                <input type="button" class="input-group-text text-danger" name="close" value="X">
+            </div>
         </div>
         `);
     }else if(type == 2){
@@ -236,9 +242,23 @@ $('#addOpt').click(function(e){
                 </div>
             </div>
             <input type="text" name="opt[]" class="form-control" placeholder="Option ${oval}" />
+            <div class="input-group-append">
+                <input type="button" class="input-group-text text-danger" name="close" value="X">
+            </div>
         </div>
         `);
     }
+    reload();
 });
+
+reload();
+function reload(){
+    $('input[name="close"]').each(function(){ 
+        $(this).click(function(){
+            $(this).parent().parent().remove();
+        });
+        // console.log($(this).parent().parent());
+    });
+}
 </script>
 @endsection

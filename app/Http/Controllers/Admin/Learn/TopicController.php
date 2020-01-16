@@ -69,8 +69,9 @@ class TopicController extends Controller
         }
     }
 
-    public function view(){
-        return view('admin.learn.topics.view', ['title' => 'Topic View']);
+    public function view($id){
+        $topic = Topic::find($id);
+        return view('admin.learn.topics.view', ['title' => 'Topic View', 'topic' => $topic]);
     }
 
     public function delete(Topic $topic){

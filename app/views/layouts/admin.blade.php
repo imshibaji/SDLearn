@@ -41,9 +41,21 @@
                     <li class="nav-item active">
                         <a class="nav-link hover-nav" href="{{route('admin')}}">Dashboard <span class="sr-only">(current)</span></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link hover-nav" href="{{route('admincourselist')}}">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link hover-nav" href="#">Jobs Section</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link hover-nav" href="#">Notifications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link hover-nav" href="{{route('adminuserlist')}}">Users</a>
+                    </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Learnings
+                        <a class="nav-link hover-nav dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          All Learnings
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('admincourselist')}}">Courses</a>
@@ -52,18 +64,6 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{route('admincommentlist')}}">Comments</a>
                         </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link hover-nav" href="#">Jobs Section</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link hover-nav" href="#">Emails</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link hover-nav" href="#">SMS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link hover-nav" href="{{route('adminuserlist')}}">Users</a>
                     </li>
                 @endguest
             </ul>

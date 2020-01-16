@@ -18,7 +18,7 @@
             @foreach ($courses as $course)
                 @php
                     $dur = json_decode($course->duration, true);
-                    var_dump($dur['hours']);
+                    // var_dump($dur['hours']);
                 @endphp
                 <tr id="{{ $course->short }}">
                     <td class="index">{{ $course->short ?? '#' }}</td>
