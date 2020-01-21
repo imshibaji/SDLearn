@@ -41,7 +41,7 @@ class HomeController extends Controller
             'mobile' => $req->mobile,
             'email' => $req->email,
             'password' => Hash::make($req->password),
-            'skype' => $req->skype,
+            'whatsapp' => $req->whatsapp,
             'address' => $req->address,
             'city' => $req->city,
             'pincode' => $req->pincode,

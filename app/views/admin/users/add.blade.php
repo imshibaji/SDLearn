@@ -33,21 +33,21 @@
         </div>
         <div class="row">
           <div class="col form-group">
-            <label for="mobile">Mobile</label>
+            <label for="mobile"><i class="fa fa-mobile" aria-hidden="true"></i> Mobile</label>
             <input type="text" name="mobile" class="form-control" id="mobile">
           </div>
           <div class="col form-group">
-            <label for="skype">Skype</label>
-            <input type="text" name="skype" class="form-control" id="skype">
+            <label for="whatsapp"><i class="fa fa-whatsapp" aria-hidden="true"></i> WhatsApp</label>
+            <input type="text" name="whatsapp" class="form-control" id="WhatsApp">
           </div>
         </div>
         <div class="form-group">
-          <label for="address">Address</label>
+          <label for="address"><i class="fa fa-address-card" aria-hidden="true"></i> Address</label>
           <input type="text" name="address" class="form-control" id="address">
         </div>
         <div class="row">
           <div class="col form-group">
-            <label for="city">City</label>
+            <label for="city"><i class="fa fa-circle-thin" aria-hidden="true"></i> City</label>
             <input type="text" name="city" class="form-control" id="city">
           </div>
           <div class="col form-group">

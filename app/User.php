@@ -24,7 +24,7 @@ class User extends Authenticatable
         'mobile', 
         'email', 
         'password',
-        'skype',
+        'whatsapp',
         'address',
         'city',
         'pincode',

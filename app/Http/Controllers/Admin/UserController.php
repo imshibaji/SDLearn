@@ -29,7 +29,7 @@ class UserController extends Controller
             'mobile' => $req->mobile,
             'email' => $req->email,
             'password' => Hash::make($req->password),
-            'skype' => $req->skype,
+            'whatsapp' => $req->whatsapp,
             'address' => $req->address,
             'city' => $req->city,
             'pincode' => $req->pincode,
@@ -47,13 +47,19 @@ class UserController extends Controller
 
     public function update(Request $req){
         $inp = $req->input();
+        $pass = User::find($inp['id'])->password;
+        if($inp['new_password']!= null){ 
+            $pass = Hash::make($inp['new_password']);
+        }
+
         $user = User::where('id', $inp['id'])
         ->update([
-            'name'=> $inp['name'], 
+            // 'name'=> $inp['name'], 
+            'password'=> $pass,
             'fname'=>$inp['fname'], 
             'lname' => $inp['lname'],
             'mobile' => $inp['mobile'],
-            'skype' => $inp['skype'],
+            'whatsapp' => $inp['whatsapp'],
             'address' => $inp['address'],
             'city' => $inp['city'],
             'pincode' => $inp['pincode'],

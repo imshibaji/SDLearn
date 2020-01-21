@@ -7,7 +7,7 @@
                 <th scope="col" class="text-center">#</th>
                 <th scope="col">Short</th>
                 <th>Course Name</th>
-                <th>Description</th>
+                {{-- <th>Description</th> --}}
                 <th>Duration</th>
                 <th>Status</th>
                 <th>Premium</th>
@@ -27,7 +27,7 @@
                         <input size="2" type="text" name="short" id="index" value="{{ $course->short }}">
                     </td>
                     <td>{{ $course->title }}</td>
-                    <td>{{ $course->meta_desc }}</td>
+                    {{-- <td>{{ $course->meta_desc }}</td> --}}
                     <td>{{ $dur['hours'] }}:{{ $dur['minutes'] }}:{{ $dur['seconds'] }} = {{ $dur['totsec'] }}</td>
                     <td>{{ $course->status }}</td>
                     <td>{{ $course->premium_status }}</td>

@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('fname');
             $table->string('lname');
             $table->string('mobile');
-            $table->string('skype')->nullable();
+            $table->string('whatsapp')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('pincode')->nullable();

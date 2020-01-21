@@ -50,24 +50,24 @@
             </div>
             <div class="row p-2">
                 <div class="col">
-                    <label>Mobile Number<span class="text-danger">*</span></label>
+                    <label><i class="fa fa-mobile" aria-hidden="true"></i> Mobile Number<span class="text-danger">*</span></label>
                     <input type="number" class="form-control" name="mobile" required>
                 </div>
                 <div class="col">
-                    <label>Skype</label>
-                    <input type="text" class="form-control" name="skype">
+                    <label><i class="fa fa-whatsapp" aria-hidden="true"></i> WhatsApp</label>
+                    <input type="text" class="form-control" name="whatsapp">
                 </div>
             </div>
             <div class="row p-2">
                 <div class="col">
-                    <label>Address</label>
+                    <label><i class="fa fa-address-book" aria-hidden="true"></i> Address</label>
                     <input type="text" class="form-control" name="address">
                 </div>
             </div>
             <div class="row p-2">
                 <div class="col">
                     <label>City<span class="text-danger">*</span></label>
-                    <select class="form-control" name="state">
+                    <select class="form-control" name="city">
                         @foreach ($cities as $city)
                             <option>{{ $city }}</option>
                         @endforeach

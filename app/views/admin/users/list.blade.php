@@ -6,6 +6,7 @@
         <th>Name</th>
         <th>Email</th>
         <th>Mobile</th>
+        <th>WhatsApp</th>
         <th>Pincode</th>
         <th>Utype</th>
         <th>Status</th>
@@ -16,6 +17,7 @@
             <td>{{ $user->fname }} {{ $user->lname }}</td>
             <td>{{ $user->email }}</td>
             <td>{{ $user->mobile }}</td>
+            <td>{{ $user->whatsapp }}</td>
             <td>{{ $user->pincode }}</td>
             <td>{{ $user->user_type }}</td>
             <td>@if($user->active == 1) Active @else InActive @endIf</td>

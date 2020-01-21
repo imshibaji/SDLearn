@@ -35,16 +35,16 @@
         </div>
         <div class="row">
             <div class="col form-group">
-              <label for="mobile">Mobile</label>
+              <label for="mobile"><i class="fa fa-mobile" aria-hidden="true"></i> Mobile</label>
               <input type="text" name="mobile" class="form-control" id="mobile" value="{{$user->mobile}}">
             </div>
             <div class="col form-group">
-              <label for="skype">Skype</label>
-              <input type="text" name="skype" class="form-control" id="skype" value="{{$user->skype}}">
+              <label for="whatsapp"><i class="fa fa-whatsapp" aria-hidden="true"></i> WhatsApp</label>
+              <input type="text" name="whatsapp" class="form-control" id="whatsapp" value="{{$user->whatsapp}}">
             </div>
         </div>
         <div class="form-group">
-          <label for="address">Address</label>
+          <label for="address"><i class="fa fa-address-book" aria-hidden="true"></i> Address</label>
           <input type="text" name="address" class="form-control" id="address" value="{{$user->address}}">
         </div>
         <div class="row">
