@@ -13,6 +13,9 @@
 <p>User Type: {{ $user->user_type }}, Active: {{ $user->active }}</p>
 <p>Join At: {{ $user->created_at }}, Last Updated: {{ $user->updated_at }}</p>
 
+<h3>{{ $user->reffered }}</h3>
+<div>{{ $user->reffers }}</div>
+
 <div class="row">
     <div class="col">
     <div class="accordion" id="courses">

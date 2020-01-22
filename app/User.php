@@ -31,7 +31,7 @@ class User extends Authenticatable
         'state',
         'country',
         'user_type', 
-        'active'
+        'active',
     ];
 
     /**
@@ -51,4 +51,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function reffered(){
+        return $this->belongsTo('App\User', 'reffer_by_user_id');
+    }
+
+    public function reffers(){
+        return $this->hasMany('App\User', 'reffer_by_user_id');
+    }
+
+    public function manager(){
+        return $this->belongsTo('App\User', 'manage_by_user_id');
+    }
+
+    public function manages(){
+        return $this->hasMany('App\User', 'manage_by_user_id');
+    }
 }

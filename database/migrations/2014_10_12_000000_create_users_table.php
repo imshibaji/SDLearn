@@ -22,6 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('fname');
             $table->string('lname');
             $table->string('mobile');
+            $table->date('dob')->nullable();
+            $table->string('profession')->nullable();
+            $table->string('orgname')->nullable();
             $table->string('whatsapp')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
@@ -30,6 +33,8 @@ class CreateUsersTable extends Migration
             $table->string('country')->nullable();
             $table->string('user_type',10);
             $table->boolean('active');
+            $table->bigInteger('reffer_by_user_id')->nullable();
+            $table->bigInteger('manage_by_user_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

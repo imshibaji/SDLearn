@@ -18,7 +18,8 @@ class UserController extends Controller
     }
 
     public function add(){
-        return view('admin.users.add', ['title' => 'Add New User']);
+        $users = User::all();
+        return view('admin.users.add', ['title' => 'Add New User', 'users' => $users]);
     }
 
     public function create(Request $req){
@@ -26,6 +27,9 @@ class UserController extends Controller
             'fname' => $req->fname,
             'lname' => $req->lname,
             // 'name' => $req->fname.' '.$req->lname,
+            'dob' => $req->dob,
+            'profession' => $req->profession,
+            'orgname' => $req->orgname,
             'mobile' => $req->mobile,
             'email' => $req->email,
             'password' => Hash::make($req->password),
@@ -36,13 +40,16 @@ class UserController extends Controller
             'state' => $req->state,
             'country' => $req->country,
             'user_type' => 'user',
+            'reffer_by_user_id' => $req->reffer_by_user_id,
+            'manage_by_user_id' => $req->manage_by_user_id,
             'active' => true
         ]);
         return redirect(route('adminuserlist'));;
     }
 
     public function edit(User $user){
-        return view('admin.users.edit', ['title' => 'Edit User', 'user'=> $user]);
+        $users = User::all();
+        return view('admin.users.edit', ['title' => 'Edit User', 'user'=> $user, 'users' => $users]);
     }
 
     public function update(Request $req){
@@ -58,6 +65,9 @@ class UserController extends Controller
             'password'=> $pass,
             'fname'=>$inp['fname'], 
             'lname' => $inp['lname'],
+            'dob' => $inp['dob'],
+            'profession' => $inp['profession'],
+            'orgname' => $inp['orgname'],
             'mobile' => $inp['mobile'],
             'whatsapp' => $inp['whatsapp'],
             'address' => $inp['address'],
@@ -66,6 +76,8 @@ class UserController extends Controller
             'state' => $inp['state'],
             'country' => $inp['country'],
             'user_type' => $inp['user_type'],
+            'reffer_by_user_id' => $inp['reffer_by_user_id'],
+            'manage_by_user_id' => $inp['manage_by_user_id'],
             'active' => $inp['active']
         ]);
 

@@ -33,6 +33,20 @@
         </div>
         <div class="row">
           <div class="col form-group">
+            <label for="dob">Date Of Birth</label>
+            <input type="date" name="dob" class="form-control" id="dob">
+          </div>
+          <div class="col form-group">
+            <label for="prof">Profession</label>
+            <input type="text" name="profession" class="form-control" id="prof">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="orgname"><i class="fa fa-building" aria-hidden="true"></i> Company / College Name</label>
+          <input type="text" name="orgname" class="form-control" id="orgname">
+        </div>
+        <div class="row">
+          <div class="col form-group">
             <label for="mobile"><i class="fa fa-mobile" aria-hidden="true"></i> Mobile</label>
             <input type="text" name="mobile" class="form-control" id="mobile">
           </div>
@@ -70,6 +84,7 @@
             <label for="utype">User Type</label>
             <select name="user_type" class="form-control" id="utype">
               <option value="user">User</option>
+              <option value="stuff">Stuff</option>
               <option value="admin">Admin</option>
             </select>
           </div>
@@ -78,6 +93,24 @@
             <select name="active" class="form-control" id="active">
               <option value="1">Active</option>
               <option value="0">InActive</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col form-group">
+            <label for="utype">Reffer By</label>
+            <select name="reffer_by_user_id" class="form-control" id="utype">
+              @foreach ($users as $u)
+                <option value="{{$u->id}}">{{$u->fname}} {{$u->lname}}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="col form-group">
+            <label for="status">Managed By</label>
+            <select name="manage_by_user_id" class="form-control" id="active">
+              @foreach ($users as $u)
+                <option value="{{$u->id}}">{{$u->fname}} {{$u->lname}}</option>
+              @endforeach
             </select>
           </div>
         </div>

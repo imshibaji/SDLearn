@@ -34,6 +34,20 @@
             </div>
         </div>
         <div class="row">
+          <div class="col form-group">
+            <label for="dob">Date Of Birth</label>
+            <input type="date" name="dob" class="form-control" id="dob" value="{{$user->dob}}">
+          </div>
+          <div class="col form-group">
+            <label for="prof">Profession</label>
+            <input type="text" name="profession" class="form-control" id="prof" value="{{$user->profession}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="orgname"><i class="fa fa-building" aria-hidden="true"></i> Company / College Name</label>
+          <input type="text" name="orgname" class="form-control" id="orgname" value="{{$user->orgname}}">
+        </div>
+        <div class="row">
             <div class="col form-group">
               <label for="mobile"><i class="fa fa-mobile" aria-hidden="true"></i> Mobile</label>
               <input type="text" name="mobile" class="form-control" id="mobile" value="{{$user->mobile}}">
@@ -72,6 +86,7 @@
               <label for="utype">User Type</label>
               <select name="user_type" class="form-control" id="utype">
                 <option value="user" @if($user->user_type == 'user') selected @endif>User</option>
+                <option value="stuff" @if($user->user_type == 'stuff') selected @endif>Stuff</option>
                 <option value="admin" @if($user->user_type == 'admin') selected @endif>Admin</option>
               </select>
             </div>
@@ -82,6 +97,24 @@
                 <option value="0" @if($user->active == 0) selected @endif>InActive</option>
               </select>
             </div>
+        </div>
+        <div class="row">
+          <div class="col form-group">
+            <label for="utype">Reffer By</label>
+            <select name="reffer_by_user_id" class="form-control" id="utype">
+              @foreach ($users as $u)
+                <option value="{{$u->id}}" @if($u->id == $user->reffer_by_user_id) selected @endif>{{$u->fname}} {{$u->lname}}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="col form-group">
+            <label for="status">Managed By</label>
+            <select name="manage_by_user_id" class="form-control" id="active">
+              @foreach ($users as $u)
+                <option value="{{$u->id}}" @if($u->id == $user->manage_by_user_id) selected @endif>{{$u->fname}} {{$u->lname}}</option>
+              @endforeach
+            </select>
+          </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

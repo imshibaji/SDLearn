@@ -103,19 +103,19 @@ class HomeController extends Controller
             'earning' => '100',
             // Course Name and Details Section
             'title' => 'Software Developer Skills Prograssion',
+            'message' => 'The Learning Strategy in 26 weeks',
             'skills' => 3,
             'tasks' => 9,
             'learn' => 1,
-            'message' => 'The Learning Strategy in 26 weeks',
             // Chart Section
-            'length' => 26,
-            'target' => [12,13,20,30],
-            'done' => [6,8,7,23],
-            'donot' => [6,5,13,7],
+            'length' => 25,
+            'design' => [12,13,20,30],
+            'develop' => [6,8,7,23],
+            'debug' => [6,5,13,7],
             // Report Section
-            'design' => 45,
-            'develop' => 60,
-            'debug' => 50
+            'total_design' => 45,
+            'total_develop' => 60,
+            'total_debug' => 50
         ];
     }
 }

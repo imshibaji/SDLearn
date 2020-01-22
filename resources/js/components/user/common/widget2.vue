@@ -1,8 +1,8 @@
 <template>
 <div>
 <h1 class="text-center">{{ getTitle() }}</h1>
-<h5 class="text-center">{{ getSkills()}} Skills + {{getTasks()}} Tasks = {{getLearnings()}} Learning Point</h5>
 <p class="text-center">{{ getMessage() }}</p>
+<h4 class="text-center">{{ getSkills()}} Skills + {{getTasks()}} Tasks = {{getLearnings()}} Learning Point</h4>
 
 <LearningChart />
 
@@ -36,7 +36,7 @@ export default {
         this.message = mdata.message;
     },
     methods:{
-        getTitle(){
+      getTitle(){
         return this.title;
       },
       getSkills(){

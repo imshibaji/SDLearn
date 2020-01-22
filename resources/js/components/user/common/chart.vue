@@ -15,7 +15,7 @@ export default {
     name: 'LearningChart',
     data: function(){
         return{
-            labels: [1,2,3],
+            labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],
             target: [20, 22, 13],
             done: [14, 16, 12],
             donot: [6, 7, 1],
@@ -26,11 +26,12 @@ export default {
         const udata = await axios.get('/api/info');
         const mdata = udata.data;
         this.length = mdata.length;
-        this.target = mdata.target;
-        this.done = mdata.done;
-        this.donot = mdata.donot;
+        this.design = mdata.design;
+        this.develop = mdata.develop;
+        this.debug = mdata.debug;
         
-        for(let i=0; i<(this.length+1); i++){
+        this.labels = [];
+        for(let i=1; i<(this.length+1); i++){
             this.labels.push(i);
         }
     },
@@ -38,19 +39,19 @@ export default {
         getDataSet(){
             return [
             {
-                data: this.target,
+                data: this.design,
+                backgroundColor: '#ff0000',
+                label: 'Design',
+            },
+            {
+                data: this.develop,
+                backgroundColor: '#0000ff',
+                label: 'Development',
+            },
+            {
+                data: this.debug,
                 backgroundColor: '#00ff00',
-                label: 'Target',
-            },
-            {
-                data: this.done,
-                backgroundColor: '#00ffff',
-                label: 'Done',
-            },
-            {
-                data: this.donot,
-                backgroundColor: '#ff5500',
-                label: 'Not Done',
+                label: 'Debugging',
             }
             ];
         }

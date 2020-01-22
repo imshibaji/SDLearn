@@ -52,9 +52,9 @@ export default {
     async mounted(){
         const udata = await axios.get('/api/info');
         const mdata = udata.data;
-        this.design = mdata.design;
-        this.develop = mdata.develop;
-        this.debug = mdata.debug;
+        this.design = mdata.total_design;
+        this.develop = mdata.total_develop;
+        this.debug = mdata.total_debug;
     },
     methods:{
         getDesign(){
