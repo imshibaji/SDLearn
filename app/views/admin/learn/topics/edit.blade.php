@@ -15,6 +15,16 @@
                     <input type="hidden" name="tid" class="form-control" value="{{ $topic->id }}">
                 <table class="table">
                     <tr>
+                        <td>Course Name</td>
+                        <td>
+                            <select name="course_id" class="form-control">
+                                @foreach ($courses as $course)
+                                    <option value="{{$course->id}}" @if($course->id === $topic->course->id) selected @endif>{{$course->title}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Title</td>
                     <td><input type="text" name="title" class="form-control" value="{{ $topic->title }}"></td>
                     </tr>
@@ -40,16 +50,6 @@
                             <div class="col">
                                 <input type="number" id="totsec" name="duration[totsec]" readonly class="form-control" placeholder="total seconds" value="{{ $dur['totsec'] }}">
                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Course Name</td>
-                        <td>
-                            <select name="course_id" class="form-control">
-                                @foreach ($courses as $course)
-                                    <option value="{{$course->id}}" @if($course->id === $topic->course->id) selected @endif>{{$course->title}}</option>
-                                @endforeach
-                            </select>
                         </td>
                     </tr>
                     <tr>

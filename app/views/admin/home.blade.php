@@ -15,7 +15,6 @@
                     @endif
         
                     <admin-dashboard></admin-dashboard>
-                    {{-- <textarea id="editor1"></textarea> --}}
                 </div>
             </div>
         </div>
@@ -24,9 +23,4 @@
 @endsection
 
 @section('scripts')
-<script>
-    window.onload = function() {
-        CKEDITOR.replace( 'editor1' );
-    };
-</script>
 @endsection

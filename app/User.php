@@ -67,4 +67,32 @@ class User extends Authenticatable
     public function manages(){
         return $this->hasMany('App\User', 'manage_by_user_id');
     }
+
+    public function assignments(){
+        return $this->hasMany('App\Models\Assignment');
+    }
+
+    public function courseAssignments(){
+        return $this->hasMany('App\Models\CourseAssignment');
+    }
+
+    public function topicAssignments(){
+        return $this->hasMany('App\Models\TopicAssignment');
+    }
+
+    public function courses(){
+        return $this->hasManyThrough('App\Models\Assignment', 'App\Models\Course');
+    }
+
+    public function learning(){
+        return $this->hasOne('App\Models\Learning');
+    }
+
+    public function gems(){
+        return $this->hasMany('App\Models\Gem');
+    }
+
+    public function money(){
+        return $this->hasMany('App\Models\Money');
+    }
 }

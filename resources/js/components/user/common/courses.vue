@@ -2,58 +2,94 @@
 <div>
 <div class="card-columns">
 
-  <div class="card p-3">
+  <div class="card">
     <blockquote class="blockquote mb-0 card-body">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+      <p>1. Welcome to our memory boosting course. If you want to really boosting your career. this course sections really helping you.</p>
       <footer class="blockquote-footer">
         <small class="text-muted">
-          Someone famous in <cite title="Source Title">Source Title</cite>
+          Curiosity Path
         </small>
       </footer>
     </blockquote>
   </div>
 
-  <div class="card bg-primary text-white text-center p-3">
-    <blockquote class="blockquote mb-0">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
-      <footer class="blockquote-footer text-white">
-        <small>
-          Someone famous in <cite title="Source Title">Source Title</cite>
-        </small>
-      </footer>
-    </blockquote>
-  </div>
-  <div class="card text-center">
-    <div class="card-body">
-      <h5 class="card-title">News Update Card</h5>
-      <p class="card-text">This card has a regular title and short paragraphy of text below it.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
-  <div class="card p-3 text-right">
-    <blockquote class="blockquote mb-0">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+  <div class="card">
+    <blockquote class="blockquote mb-0 card-body">
+      <p>2. Step By Step learning gives you continues progration in your life.</p>
       <footer class="blockquote-footer">
         <small class="text-muted">
-          Someone famous in <cite title="Source Title">Source Title</cite>
+          Prograssive Learning Path
         </small>
       </footer>
     </blockquote>
   </div>
+
   <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Notification Card</h5>
-      <p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
+    <blockquote class="blockquote mb-0 card-body">
+      <p>3. Every week Monday, You will be getting A Learning Video and Assignment.</p>
+      <footer class="blockquote-footer">
+        <small class="text-muted">
+          Activity Path
+        </small>
+      </footer>
+    </blockquote>
   </div>
+
   <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Message Card</h5>
-      <p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
+    <blockquote class="blockquote mb-0 card-body">
+      <p>4. Assignment completion is must for next session.</p>
+      <footer class="blockquote-footer">
+        <small class="text-muted">
+          Evaluation Path.
+        </small>
+      </footer>
+    </blockquote>
   </div>
+
+  <div class="card">
+    <blockquote class="blockquote mb-0 card-body">
+      <p>5. Do more and Learn More</p>
+      <footer class="blockquote-footer">
+        <small class="text-muted">
+          Skills Building Path
+        </small>
+      </footer>
+    </blockquote>
+  </div>
+
+  <div class="card">
+    <blockquote class="blockquote mb-0 card-body">
+      <p>6. Put your question? Why you are not complete the assignment</p>
+      <footer class="blockquote-footer">
+        <small class="text-muted">
+          Fill Knowledge Gap
+        </small>
+      </footer>
+    </blockquote>
+  </div>
+
+  <div class="card">
+    <blockquote class="blockquote mb-0 card-body">
+      <p>7. Join Our Live Webiner Session Every Week Saturday.</p>
+      <footer class="blockquote-footer">
+        <small class="text-muted">
+          Problem Solving Day
+        </small>
+      </footer>
+    </blockquote>
+  </div>
+
+  <div class="card">
+    <blockquote class="blockquote mb-0 card-body">
+      <p>8. Do you have any other question?</p>
+      <footer class="blockquote-footer">
+        <small class="text-muted">
+          Call Us: +91 - 8013138886
+        </small>
+      </footer>
+    </blockquote>
+  </div>
+
 </div>
 </div>
 </template>

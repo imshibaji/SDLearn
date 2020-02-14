@@ -16,7 +16,7 @@
                     <tr>
                         <td>Name</td>
                         <td><input type="text" id="title" name="title" class="form-control"></td>
-                        <td>CID</td>
+                        <td class="text-left text-md-right">CID</td>
                         <td><input type="text" id="courseid" name="courseid" class="form-control"></td>
                     </tr>
                     <tr>
@@ -37,18 +37,20 @@
                     </tr>
                     <tr>
                         <td>Duration</td>
-                        <td colspan="3" class="row">
-                            <div class="col">
-                                <input type="number" id="hours" name="duration[hours]" class="form-control" placeholder="hours">
-                            </div>
-                            <div class="col">
-                                <input type="number" id="minutes" name="duration[minutes]" class="form-control" placeholder="minutes">
-                            </div>
-                            <div class="col">
-                                <input type="number" id="seconds" name="duration[seconds]" class="form-control" placeholder="seconds">
-                            </div>
-                            <div class="col">
-                                <input type="number" id="totsec" name="duration[totsec]" readonly class="form-control" placeholder="total seconds">
+                        <td colspan="3">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="number" id="hours" name="duration[hours]" class="form-control" placeholder="hours">
+                                </div>
+                                <div class="col">
+                                    <input type="number" id="minutes" name="duration[minutes]" class="form-control" placeholder="minutes">
+                                </div>
+                                <div class="col">
+                                    <input type="number" id="seconds" name="duration[seconds]" class="form-control" placeholder="seconds">
+                                </div>
+                                <div class="col">
+                                    <input type="number" id="totsec" name="duration[totsec]" readonly class="form-control" placeholder="total seconds">
+                                </div>
                             </div>
                         </td>
                     </tr>
@@ -60,7 +62,7 @@
                                 <option value="inactive">InActive</option>
                             </select>
                         </td>
-                        <td>Premium Status</td>
+                        <td class="text-left text-md-right">Premium Status</td>
                         <td>
                             <select name="premium_status" class="form-control">
                                 <option value="free">Free</option>

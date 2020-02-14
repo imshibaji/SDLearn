@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Learning;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +35,11 @@ class HomeController extends Controller
     }
 
     public function signup(Request $req){
+        $ref = 1;
+        if($req->ref){
+            $ref = base64_decode($req->ref);
+        }
+
         $user = User::create([
             'fname' => $req->fname,
             'lname' => $req->lname,
@@ -48,6 +54,8 @@ class HomeController extends Controller
             'state' => $req->state,
             'country' => $req->country,
             'user_type' => 'user',
+            'reffer_by_user_id' => $ref,
+            'manage_by_user_id' => 1,
             'active' => true
         ]);
 
@@ -71,9 +79,17 @@ class HomeController extends Controller
         return view('fronts.plans');
     }
 
-    public function data()
+    public function data(Request $req)
     {
-        return Auth::user();
+
+        // return Auth::user();
+        return base64_encode($req->ref);
+    }
+
+    public function refer_code()
+    {
+        $user = Auth::user();
+        return base64_encode($user->id);
     }
 
     public function getCities(){
@@ -89,12 +105,12 @@ class HomeController extends Controller
     }
 
     public function adminActivityInfo(){
-        return [
-            
-        ];
+        $user = Auth::user();
+        return $user;
     }
 
     public function userActivityInfo(){
+        $learn = Auth::user()->learning;
         return [
             // User Activity Information
             'totalAmt' => '0',
@@ -102,20 +118,20 @@ class HomeController extends Controller
             'learning' => 'Total 10',
             'earning' => '100',
             // Course Name and Details Section
-            'title' => 'Software Developer Skills Prograssion',
-            'message' => 'The Learning Strategy in 26 weeks',
-            'skills' => 3,
-            'tasks' => 9,
-            'learn' => 1,
+            'title' => $learn->title,
+            'message' => $learn->message,
+            'skills' => $learn->skills,
+            'tasks' => $learn->tasks,
+            'learn' => $learn->learning_points,
             // Chart Section
-            'length' => 25,
+            'length' => $learn->total_learning_length,
             'design' => [12,13,20,30],
             'develop' => [6,8,7,23],
             'debug' => [6,5,13,7],
             // Report Section
-            'total_design' => 45,
-            'total_develop' => 60,
-            'total_debug' => 50
+            'total_design' => $learn->design_points,
+            'total_develop' => $learn->developing_points,
+            'total_debug' => $learn->debugging_points
         ];
     }
 }

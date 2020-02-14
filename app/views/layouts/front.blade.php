@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{ url('/') }}/css/font-awesome.min.css">
     {{--<link href="{{ url('/') }}/css/style.css" rel="stylesheet"> --}}
     <link href="{{ url('/') }}/css/app.css" rel="stylesheet">
+@section('headers')
+@show
 </head>
 
 <body>
@@ -134,6 +136,8 @@
         </a>
     </div>
 
+@section('footers')
+@show
 
     {{-- <script src="{{url('/')}}/js/jquery.min.js"></script>
     <script src="{{url('/')}}/js/bootstrap.min.js"></script> --}}
@@ -153,5 +157,7 @@
     <script>
         $('.alert').alert();
     </script>
+@section('scripts')
+@show
 </body>
 </html>

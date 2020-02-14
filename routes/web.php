@@ -11,7 +11,6 @@
 |
 */
 
-use App\Models\Business;
 use App\User;
 
 // Front Parts
@@ -21,6 +20,11 @@ Route::get('/next', 'HomeController@success')->name('next');
 
 Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/plans', 'HomeController@plans')->name('plans');
+
+Route::get('/data', 'HomeController@data');
+Route::get('/ref-code', 'HomeController@refer_code');
+
+
 
 
 
@@ -57,6 +61,12 @@ Route::get('/migration', 'ManageController@migration');
 
 Auth::routes();
 
+
+// API
+Route::prefix('api')->group(function(){
+    Route::get('info', 'HomeController@userActivityInfo');
+    Route::get('admininfo','HomeController@adminActivityInfo');
+});
 
 // Admin Routes
 Route::middleware(['auth', 'checkadmin'])->prefix('admin')

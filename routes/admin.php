@@ -18,6 +18,21 @@ Route::prefix('user')->group(function(){
     Route::post('delete/{user}', 'UserController@delete')->name('adminuserdelete');
 });
 
+Route::prefix('assign')->group(function(){
+    Route::get('course', 'UserController@course_assign')->name('courseassign');
+    Route::get('courseunset', 'UserController@course_unassign')->name('courseassignunset');
+
+    Route::get('topic', 'UserController@topic_assign')->name('topicassign');
+    Route::get('topicunset', 'UserController@topic_unassign')->name('topicassignunset');
+
+    Route::get('noset', 'UserController@noassign')->name('noassign');
+    Route::get('check', 'UserController@checkCourseAssignment')->name('assigncheck');
+    Route::get('data', 'UserController@data')->name('assigndata');
+
+
+    Route::post('learning', 'UserController@learning_update')->name('assignlearning');
+});
+
 Route::prefix('learn')->group(function(){
     // Course Section
     Route::prefix('course')->group(function(){

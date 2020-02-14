@@ -14,6 +14,16 @@
                     @csrf
                 <table class="table">
                     <tr>
+                        <td>Course Name</td>
+                        <td>
+                            <select name="course_id" class="form-control">
+                                @foreach ($courses as $course)
+                                <option value="{{$course->id}}">{{$course->title}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Title</td>
                         <td><input type="text" name="title" class="form-control"></td>
                     </tr>
@@ -36,16 +46,6 @@
                             <div class="col">
                                 <input type="number" id="totsec" name="duration[totsec]" readonly class="form-control" placeholder="total seconds">
                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Course Name</td>
-                        <td>
-                            <select name="course_id" class="form-control">
-                                @foreach ($courses as $course)
-                                <option value="{{$course->id}}">{{$course->title}}</option>
-                                @endforeach
-                            </select>
                         </td>
                     </tr>
                     <tr>

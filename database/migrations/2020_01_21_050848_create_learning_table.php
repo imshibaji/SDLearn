@@ -13,7 +13,7 @@ class CreateLearningTable extends Migration
      */
     public function up()
     {
-        Schema::create('learning', function (Blueprint $table) {
+        Schema::create('learnings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->string('title');

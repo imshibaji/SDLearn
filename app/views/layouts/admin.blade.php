@@ -44,12 +44,12 @@
                     <li class="nav-item">
                         <a class="nav-link hover-nav" href="{{route('admincourselist')}}">Courses</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link hover-nav" href="#">Jobs Section</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link hover-nav" href="#">Notifications</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link hover-nav" href="{{route('adminuserlist')}}">Users</a>
                     </li>

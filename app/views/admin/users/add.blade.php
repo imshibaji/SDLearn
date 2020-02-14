@@ -100,6 +100,7 @@
           <div class="col form-group">
             <label for="utype">Reffer By</label>
             <select name="reffer_by_user_id" class="form-control" id="utype">
+              <option value="0">None</option>
               @foreach ($users as $u)
                 <option value="{{$u->id}}">{{$u->fname}} {{$u->lname}}</option>
               @endforeach
@@ -108,6 +109,7 @@
           <div class="col form-group">
             <label for="status">Managed By</label>
             <select name="manage_by_user_id" class="form-control" id="active">
+              <option value="0">None</option>
               @foreach ($users as $u)
                 <option value="{{$u->id}}">{{$u->fname}} {{$u->lname}}</option>
               @endforeach
