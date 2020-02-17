@@ -4,12 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\models\Course;
-use App\Models\CourseAssignment;
 use App\Models\Learning;
-use App\Models\TopicAssignment;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
 
 class UserController extends Controller
 {
@@ -95,7 +94,8 @@ class UserController extends Controller
             'title' => 'User Details', 
             'user' => $user, 
             'courses' => $courses,
-            'learn' => $learning
+            'learn' => $learning,
+            'charts' => json_decode($learning->reports_chart)
         ]);
     }
 
@@ -106,72 +106,16 @@ class UserController extends Controller
             'out' => $out 
         ];
     }
-
-
-
-    public function data(Request $req){
-        $user = User::find($req->uid ?? 1);
-        $assign = $user->assignments;
-
-        return $assign;
-    }
-
-    public function checkCourseAssignment(Request $req){
-        $assign = CourseAssignment::where('user_id', $req->uid)->get();
-        return $assign;
-    }
-
-    public function checkTopicAssignment(Request $req){
-        $assign = TopicAssignment::where('user_id', $req->uid)->get();
-        return $assign;
-    }
-
-    public function course_assign(Request $req){
-        $ca = CourseAssignment::firstOrCreate([
-            'user_id'=> $req->uid, 
-            'course_id' => $req->cid
-        ]);
-        $ca->save();
-        return $ca->id;
-    }
-
-    public function course_unassign(Request $req){
-        $assign = CourseAssignment::where('user_id', $req->uid)->where('course_id', $req->cid)->first();
-        $assign->delete(); 
-    }
-
-    public function topic_assign(Request $req){
-        $ta = TopicAssignment::firstOrCreate([
-            'user_id'=> $req->uid,
-            'topic_id' => $req->tid
-        ]);
-        $ta->save();
-        return $ta->id;
-    }
-
-    public function topic_unassign(Request $req){
-        $assign = TopicAssignment::where('user_id', $req->uid)->where('topic_id', $req->tid)->first();
-        $assign->delete();
-    }
-
-
-    public function learning_update(Request $req){
-        $learning = Learning::updateOrCreate(
-            ['user_id' => $req->user_id, 'id' => $req->lid],
-            [
-                'user_id' => $req->user_id,
-                'title' => $req->title,
-                'message' => $req->message,
-                'total_learning_length' => $req->total_learning_length,
-                'skills' => $req->skills,
-                'tasks' => $req->tasks,
-                'learning_points' => $req->learning_points,
-                'design_points' => $req->design_points,
-                'developing_points' => $req->developing_points,
-                'debugging_points' => $req->debugging_points
-            ]
-        );
-        $learning->save();
-        return back();
+    
+    public static function routes(){
+        Route::prefix('user')->group(function(){
+            Route::get('list', 'UserController@list')->name('adminuserlist');
+            Route::get('add', 'UserController@add')->name('adminuseradd');
+            Route::post('create', 'UserController@create')->name('adminusercreate');
+            Route::get('edit/{user}', 'UserController@edit')->name('adminuseredit');
+            Route::post('update', 'UserController@update')->name('adminuserupdate');
+            Route::get('view/{user}', 'UserController@view')->name('adminuserview');
+            Route::post('delete/{user}', 'UserController@delete')->name('adminuserdelete');
+        });
     }
 }

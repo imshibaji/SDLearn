@@ -44,16 +44,16 @@
 <div>
     <div class="row p-2">
         <div class="col-6 col-md-3">
-            <input type="text" name="reports_chart['task_name']" class="form-control" placeholder="Task Name">
+            <input type="text" name="reports_chart[task_name]" class="form-control" placeholder="Task Name">
         </div>
         <div class="col-6 col-md-3">
-            <input type="text" name="reports_chart['design_point']" class="form-control" placeholder="Developing Points">
+            <input type="text" name="reports_chart[design_point]" class="form-control" placeholder="Designing Points">
         </div>
         <div class="col-6 col-md-3">
-            <input type="text" name="reports_chart['develop_points']" class="form-control" placeholder="Debugging Points">
+            <input type="text" name="reports_chart[develop_points]" class="form-control" placeholder="Development Points">
         </div>
         <div class="col-6 col-md-3">
-            <input type="text" name="reports_chart['debug_points']" class="form-control" placeholder="Debugging Points">
+            <input type="text" name="reports_chart[debug_points]" class="form-control" placeholder="Debugging Points">
         </div>
         <div class="col p-3">
             <input type="submit"  class="btn btn-success btn-block" value="Submit">
@@ -69,20 +69,19 @@
     <table class="table">
         <tr>
             <th>Tasks Name:</th>
-            <th>Design Points</th>
-            <th>Developing Points</th>
-            <th>Debugging Points</th>
+            <th>Design</th>
+            <th>Developing</th>
+            <th>Debugging</th>
             <th>Total Points</th>
         </tr>
+        @foreach ($charts as $chart)
         <tr>
-            <td>Week 1: Course Intro</td>
-            <td>5</td>
-            <td>2</td>
-            <td>1</td>
-            <td>10</td>
+            <td>{{ $chart->task_name }}</td>
+            <td>{{ $chart->design_point }}</td>
+            <td>{{ $chart->develop_points }}</td>
+            <td>{{ $chart->debug_points }}</td>
+            <td>{{$chart->design_point + $chart->develop_points + $chart->debug_points }}</td>
         </tr>
+        @endforeach
     </table>
-    <div class="col">
-        {{ $user->learning->title ?? 'No Learning'}}
-    </div>
 </div>

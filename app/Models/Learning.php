@@ -16,6 +16,7 @@ class Learning extends Model
         'learning_points',
         'design_points',
         'developing_points',
-        'debugging_points'
+        'debugging_points',
+        'reports_chart',
     ];
 }

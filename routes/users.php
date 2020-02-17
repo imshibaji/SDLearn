@@ -1,6 +1,9 @@
 <?php
 
 // User Section
+
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'UserController@index')->name('user');
 Route::get('learn', 'UserController@learn')->name('userlearn');
 Route::get('jobs', 'UserController@jobs')->name('userjobs');

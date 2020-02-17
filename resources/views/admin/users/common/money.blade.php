@@ -9,7 +9,7 @@
         <div class="col">
             <select name="type" class="form-control">
                 <option value="credit">Add Fund</option>
-                <option value="debit">Withdraw Fund</option>
+                <option value="debit">Redeem Fund</option>
                 <option value="balance">Balance Fund</option>
             </select>
         </div>

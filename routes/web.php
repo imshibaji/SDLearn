@@ -12,6 +12,8 @@
 */
 
 use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 // Front Parts
 Route::get('/', 'HomeController@index')->name('home');

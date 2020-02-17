@@ -9,7 +9,7 @@
         <div class="col">
             <select name="type" class="form-control">
                 <option value="credit">Add Gems</option>
-                <option value="debit">Withdraw Gems</option>
+                <option value="debit">Redeem Gems</option>
                 <option value="balance">Balance Gems</option>
             </select>
         </div>
