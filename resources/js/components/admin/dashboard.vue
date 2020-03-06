@@ -38,13 +38,17 @@
     </CCol>
   </CRow>
 
-<h1 class="text-center">Users Activity</h1>
+
+<CRow>
+  <CCol>
+    <ChartWidget />
+  </CCol>
+</CRow>
 <CRow>
   <CCol>
     <UserTable />
   </CCol>
   <CCol>
-    <ChartWidget />
     <QuickNotify />
   </CCol>
 </CRow>

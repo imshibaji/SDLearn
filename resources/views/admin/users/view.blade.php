@@ -76,5 +76,8 @@
 #courses .card .card-body{
     padding: 0px;
 }
+.input-sm{
+    font-size: 12px;
+}
 </style>   
 @endsection

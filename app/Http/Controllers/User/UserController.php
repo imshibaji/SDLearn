@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\models\Course;
+use App\models\Topic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -11,172 +15,108 @@ class UserController extends Controller
         $this->middleware(['auth']);
     }
     public function index(){
-        return view('users.home');
+        Artisan::call('inspire');
+        $inspaire = Artisan::output();
+        return view('users.home', compact('inspaire'));
     }
 
-    public function learn(){
-        $learnings = [
-            [
-                'id' => 0,
-                'title' => 'Website Layout Design', 
-                'details' => 'This is Very Essential Course', 
-                'highlight' => 'show',
-            ],
-            [
-                'id' => 1,
-                'title' => 'Website Design with HTML5, CSS3, JS', 
-                'details' => 'This is Very Essential Course', 
-                'highlight' => 'show',
-            ],
-            [
-                'id' => 2,
-                'title' => 'Advanced JavaScript, JQuery', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 3,
-                'title' => 'Core PHP', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 4,
-                'title' => 'SQL/MySQL Development', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 5,
-                'title' => 'Codeigniter Framework Development', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 6,
-                'title' => 'Laravel Framework Development', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 7,
-                'title' => 'Wordpress Theme Development', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 8,
-                'title' => 'Wordpress Pluggins Development', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 9,
-                'title' => 'NodeJS Development', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 10,
-                'title' => 'ExpressJS Development', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 11,
-                'title' => 'NoSQL Development', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 12,
-                'title' => 'Angular Development', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 13,
-                'title' => 'ReactJS Development', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 14,
-                'title' => 'VueJS Development', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 15,
-                'title' => 'Core Python Training', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 16,
-                'title' => 'Flask Python', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 17,
-                'title' => 'Python Datascience', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 18,
-                'title' => 'JavaScript AI Development', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 19,
-                'title' => 'Blockchain Development', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 20,
-                'title' => 'Java Development', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 21,
-                'title' => 'Android App Development', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 22,
-                'title' => 'Mobile App Development', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 23,
-                'title' => 'Linux Server Management', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 24,
-                'title' => 'Docker Instance Management', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 25,
-                'title' => 'Software Design Pattern', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 26,
-                'title' => 'Software Algorithm', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 27,
-                'title' => 'C, C++, Programming', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 28,
-                'title' => 'Assembly Language', 
-                'details' => 'This is Very Essential Course', 
-            ],
-            [
-                'id' => 29,
-                'title' => 'Embeded Systems Development', 
-                'details' => 'This is Very Essential Course', 
-            ]
-        ];
-        return view('users.learn', ['title' => 'Learning Section','learning' => $learnings]);
+    public function courses(){
+        $courses = Course::where('status', 'active')->orderBy('short')->get();
+        return view('users.courses', ['courses' => $courses]);
+    }
+
+    public function course_details(Request $req){
+        $course = Course::where('id', $req->id)->where('status', 'active')->first();
+        return view('users.course-details', [ 'course' => $course ]);
+    }
+
+    public function learn(Request $req){
+        $courses = Auth::user()->courseAssignments;
+        $topics = Auth::user()->topicAssignments;
+        $topic = Topic::find($req->tid);
+
+        return view('users.learn', [
+            'title' => 'Learning Section',
+            'courses' => $courses, 
+            'topics' => $topics, 
+            'topic' => $topic
+        ]);
         // return $learnings;
+    }
+
+    public function assesment(Request $req){
+        $topic = Topic::find($req->topic_id);
+        $questions = $topic->questions;
+        $report = [];
+        $design_points = 0;
+        $development_points = 0;
+        $debugging_points = 0;
+        $marks = 0;
+
+        // Questions Set
+        foreach($questions as $q){
+            $ans = json_decode($q->ans);
+            $inputAns = $req->input('ans'.$q->id);
+
+            if($q->qtype == 1 || $q->qtype == 2){
+                $inputAns = json_encode($inputAns);
+                $ans = json_encode($ans);
+
+                $rep['id'] = $q->id;
+                $rep['title'] = $q->question;
+                $rep['answer'] = $q->answer;
+
+                if($inputAns == $ans){
+                    $design_points += $q->design_points;
+                    $development_points += $q->development_points;
+                    $debugging_points += $q->debugging_points;
+
+                    $marks = $design_points + $development_points + $debugging_points;
+                    $rep['remark'] = 'Correct';
+                }else{
+                    $rep['remark'] = 'InCorrect';
+                };
+
+                array_push($report, $rep);
+
+            } else if($q->qtype == 3){
+                $rep['id'] = $q->id;
+                $rep['title'] = $q->question;
+                $rep['answer'] = $q->answer;
+
+                if($inputAns == $ans){
+                    $design_points += $q->design_points;
+                    $development_points += $q->development_points;
+                    $debugging_points += $q->debugging_points;
+
+                    $marks = $design_points + $development_points + $debugging_points;
+
+                    $rep['remark'] = 'Correct';
+                }else {
+                    $rep['remark'] = 'InCorrect';
+                };
+
+                array_push($report, $rep);
+            }
+        }
+
+        $assesment = [ 
+            'topic' => $topic->title,
+            'design' => $design_points, 
+            'development' => $development_points, 
+            'debug' => $debugging_points, 
+            'total' => $marks
+        ];
+
+        return ['request'=>$req->input(), 'assesment' => $assesment, 'report' => $report];
+    }
+
+
+    public function reports(){
+        return view('users.report');
     }
 
     public function jobs(){
         return view('users.jobs');
-    }
-    public function reports(){
-        return view('users.report');
     }
 }

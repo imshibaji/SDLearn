@@ -36,7 +36,8 @@ class TopicController extends Controller
         $result = $topic->save();
 
         if($result){
-            return redirect(route('admintopiclist'));
+            // return redirect(route('admintopiclist'));
+            return back();
         }else{
             return redirect(route('admintopicadd'));
         }
@@ -63,7 +64,8 @@ class TopicController extends Controller
         $result = $topic->save();
 
         if($result){
-            return redirect(route('admintopiclist'));
+            // return redirect(route('admintopiclist'));
+            return back();
         }else{
             return redirect(route('admintopicedit'));
         }

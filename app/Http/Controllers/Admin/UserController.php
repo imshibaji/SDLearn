@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\models\Course;
+use App\Models\Gem;
 use App\Models\Learning;
+use App\Models\Money;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -89,13 +92,19 @@ class UserController extends Controller
     public function view(User $user){
         $courses = Course::where('status', 'active')->get();
         $learning = Learning::where('user_id', $user->id)->first();
+        $money = Money::where('user_id', $user->id)->get()->last();
+        $gem = Gem::where('user_id', $user->id)->get()->last();
+        $comments = Comment::where('user_id', $user->id)->get();
 
         return view('admin.users.view', [
             'title' => 'User Details', 
             'user' => $user, 
             'courses' => $courses,
             'learn' => $learning,
-            'charts' => json_decode($learning->reports_chart)
+            'charts' => json_decode($learning->reports_chart ?? '[]'),
+            'money' => $money,
+            'gem' => $gem,
+            'comments' => $comments
         ]);
     }
 

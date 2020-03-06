@@ -3,7 +3,7 @@
 <h5 class="text-center my-2">Learning and Acheivements</h5>
 <CRow>
     <CCol sm="12" lg="4">
-      <CWidgetSimple header="Design" text="100 Points">
+      <CWidgetSimple header="Design" text="Thinking Ability">
         <CProgress
           animated
           color="danger"
@@ -14,7 +14,7 @@
       </CWidgetSimple>
     </CCol>
     <CCol sm="12" lg="4">
-      <CWidgetSimple header="Development" text="100 Points">
+      <CWidgetSimple header="Development" text="Coding Understanding">
         <CProgress
           animated
           color="primary"
@@ -25,7 +25,7 @@
       </CWidgetSimple>
     </CCol>
     <CCol sm="12" lg="4">
-      <CWidgetSimple header="Debugging" text="100 Points">
+      <CWidgetSimple header="Debugging" text="Problem Solving">
         <CProgress
           animated
           color="success"

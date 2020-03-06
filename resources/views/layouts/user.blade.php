@@ -39,6 +39,9 @@
                     <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('user')}}">Dashboard <span class="sr-only">(current)</span></a>
                     </li>
+                    <li class="nav-item {{ Request::is('user/courses') ? 'active' : '' }}">
+                        <a class="nav-link hover-nav" href="{{route('usercourses')}}">Courses</a>
+                    </li>
                     <li class="nav-item {{ Request::is('user/learn') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('userlearn')}}">Learnings</a>
                     </li>

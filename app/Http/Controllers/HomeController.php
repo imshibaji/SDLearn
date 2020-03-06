@@ -111,12 +111,35 @@ class HomeController extends Controller
 
     public function userActivityInfo(){
         $learn = Auth::user()->learning;
+        $chart = json_decode($learn->reports_chart);
+        $money = Auth::user()->money()->get()->last();
+        $gems = Auth::user()->gems()->get()->last();
+
+        $taskName = array_map(function($obj){
+            return $obj->task_name;
+        }, $chart);
+
+        $design = array_map(function($obj){
+            return $obj->design_point;
+        }, $chart);
+
+        $develop = array_map(function($obj){
+            return $obj->develop_points;
+        }, $chart);
+
+        $debug = array_map(function($obj){
+            return $obj->debug_points;
+        }, $chart);
+
+        // dd($chart);
+
+        
         return [
             // User Activity Information
-            'totalAmt' => '0',
-            'dueAmt' => '1000',
-            'learning' => 'Total 10',
-            'earning' => '100',
+            'totalAmt' => $money->sum('addition_amt'),
+            'dueAmt' => $money->balance_amt,
+            'learning' => 'Total '.$learn->learning_points,
+            'earning' => $gems->balance_gems,
             // Course Name and Details Section
             'title' => $learn->title,
             'message' => $learn->message,
@@ -125,13 +148,14 @@ class HomeController extends Controller
             'learn' => $learn->learning_points,
             // Chart Section
             'length' => $learn->total_learning_length,
-            'design' => [12,13,20,30],
-            'develop' => [6,8,7,23],
-            'debug' => [6,5,13,7],
+            'taskName' => $taskName,
+            'design' => $design,
+            'develop' => $develop,
+            'debug' => $debug,
             // Report Section
             'total_design' => $learn->design_points,
             'total_develop' => $learn->developing_points,
-            'total_debug' => $learn->debugging_points
+            'total_debug' => $learn->debugging_points,
         ];
     }
 }

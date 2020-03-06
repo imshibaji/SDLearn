@@ -15,9 +15,10 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('catagory_id');
             $table->string('title', 191);
             $table->string('slag', 191);
-            $table->string('courseid', 10)->nullable();
+            // $table->string('courseid', 10)->nullable();
             $table->text('details')->nullable();
             $table->string('meta_keys')->nullable();
             $table->string('meta_desc')->nullable();
@@ -26,6 +27,7 @@ class CreateCoursesTable extends Migration
             $table->string('status', 10);
             $table->string('premium_status', 10);
             $table->float('price')->nullable();
+            $table->float('offer_price')->nullable();
             $table->integer('user_id');
             $table->timestamps();
         });

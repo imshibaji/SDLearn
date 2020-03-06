@@ -1,8 +1,7 @@
 <template>
 <div>
 <div class="py-3">
-<h5>Course Activies</h5>
-<CTabs variant="pills">
+<CTabs variant="tabs">
     <CTab title="Home" active>
        <table class="table">
             <tr>
@@ -10,7 +9,7 @@
                 <th>Activity</th>
                 <th>Message</th>
             </tr>
-            <tr v-for="data in datas">
+            <tr v-for="data in datas" :key="data.name">
                 <td>
                     {{data.name}}
                 </td>
@@ -23,7 +22,16 @@
             </tr>
         </table>
     </CTab>
-    <CTab title="Profile" >
+
+    <CTab title="Comments" >
+      2. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+      et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+      officia deserunt mollit anim id est laborum.
+    </CTab>
+
+    <CTab title="Feedbacks" >
       2. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
       et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
       aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum

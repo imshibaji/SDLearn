@@ -13,6 +13,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    
+                    <x-alert :message="$inspaire" />
 
                     <user-main-dashboard />
                 </div>

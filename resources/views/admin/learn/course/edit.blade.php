@@ -38,22 +38,21 @@
                         <td colspan="3"><textarea name="details" id="editor" class="form-control">{{$course->details}}</textarea></td>
                     </tr>
                     <tr>
+                        @php
+                            $dur = json_decode($course->duration, true);
+                        @endphp
                         <td>Duration</td>
-                        <td colspan="3" class="row">
-                            @php
-                                $dur = json_decode($course->duration, true);
-                            @endphp
-                            <div class="col">
-                                <input type="number" id="hours" name="duration[hours]" class="form-control" placeholder="hours" value="{{ $dur['hours'] }}">
-                            </div>
-                            <div class="col">
-                                <input type="number" id="minutes" name="duration[minutes]" class="form-control" placeholder="minutes" value="{{ $dur['minutes'] }}">
-                            </div>
-                            <div class="col">
-                                <input type="number" id="seconds" name="duration[seconds]" class="form-control" placeholder="seconds" value="{{ $dur['seconds'] }}">
-                            </div>
-                            <div class="col">
-                                <input type="number" id="totsec" name="duration[totsec]" readonly class="form-control" placeholder="total seconds" value="{{ $dur['totsec'] }}">
+                        <td colspan="3">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="number" id="hours" name="duration[hours]" class="form-control" placeholder="hours" value="{{ $dur['hours'] }}">
+                                </div>
+                                <div class="col">
+                                    <input type="number" id="minutes" name="duration[minutes]" class="form-control" placeholder="minutes" value="{{ $dur['minutes'] }}">
+                                </div>
+                                <div class="col">
+                                    <input type="number" id="seconds" name="duration[seconds]" class="form-control" placeholder="seconds" value="{{ $dur['seconds'] }}">
+                                </div>
                             </div>
                         </td>
                     </tr>
@@ -65,7 +64,7 @@
                                 <option value="inactive" @if($course->status =='inactive') selected @endIf>InActive</option>
                             </select>
                         </td>
-                        <td>Premium Status</td>
+                        <td class="text-left text-md-right">Premium Status</td>
                         <td>
                             <select name="premium_status" class="form-control">
                                 <option value="free" @if($course->premium_status=='free') selected @endIf>Free</option>
@@ -75,7 +74,13 @@
                     </tr>
                     <tr>
                         <td>Price</td>
-                        <td colspan="3"><input type="text" id="price" name="price" class="form-control" value="{{$course->price}}"></td>
+                        <td>
+                            <input type="text" id="price" name="price" class="form-control" placeholder="Actual Price" value="{{$course->price}}">
+                        </td>
+                        <td class="text-left text-md-right">Offer Price</td>
+                        <td colspan="3">
+                            <input type="text" id="offer_price" name="offer_price" class="form-control"  placeholder="Offer Price" value="{{$course->offer_price}}">
+                        </td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
@@ -93,15 +98,6 @@
 window.onload = function(){
     CKEDITOR.replace('editor');
 }
-
-$('#hours, #minutes, #seconds').keyup(()=>{
-    var hours = $('#hours').val();
-    var minutes = $('#minutes').val();
-    var seconds = $('#seconds').val();
-
-    var totsec = (hours*3600)+(minutes*60)+(seconds*1) || '';
-    $('#totsec').val(totsec);
-});
 
 $('#title').keyup(() => {
     var name = $("#title").val();

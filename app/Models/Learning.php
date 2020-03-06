@@ -19,4 +19,8 @@ class Learning extends Model
         'debugging_points',
         'reports_chart',
     ];
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }

@@ -1,4 +1,6 @@
-<form action="" method="POST">
+<form action="{{route('admingemsput')}}" method="POST">
+    @csrf
+    <input type="hidden" name="user_id" value="{{ $user->id }}">
     <div class="row py-2">
         <div class="col-6">
             <input type="text" name="details" class="form-control" placeholder="Trasection Details">
@@ -23,21 +25,19 @@
 {{-- Details Table --}}
 <table class="table">
 <tr>
+    <th>Trasection Date and Time</th>
     <th>Details</th>
     <th>Addition</th>
-    <th>Withdraw</th>
+    <th>Redeems</th>
     <th>Balance</th>
 </tr>
+@foreach ($user->gems()->orderBy('id', 'DESC')->get() as $gem)
 <tr>
-    <td>Initial Joining Gems</td>
-    <td>500</td>
-    <td>&nbsp;</td>
-    <td>500</td>
+    <td>{{ $gem->created_at }}</td>
+    <td>{{ $gem->details }}</td>
+    <td>{{ $gem->addition_gems }}</td>
+    <td>{{ $gem->withdraw_gems }}</td>
+    <td>{{ $gem->balance_gems }}</td>
 </tr>
-<tr>
-    <td>Redeem Gems</td>
-    <td>&nbsp;</td>
-    <td>200</td>
-    <td>300</td>
-</tr>
+@endforeach
 </table>

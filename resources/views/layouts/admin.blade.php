@@ -11,7 +11,7 @@
     {{-- <link href="{{ url('/') }}/css/bootstrap.min.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{ url('/') }}/css/font-awesome.min.css">
     {{-- <link href="{{ url('/') }}/css/style.css" rel="stylesheet"> --}}
-
+    <link rel="stylesheet" href="{{url('/')}}/css/prism_patched.min.css">
     <link href="{{ url('/') }}/css/app.css" rel="stylesheet">
 
 @section('headers')
@@ -147,8 +147,10 @@
 
 <script src="{{url('/')}}/js/app.js"></script>
 <script src="{{url('/')}}/vendors/ckeditor/ckeditor.js"></script>
-
+<script src="{{url('/')}}/js/prism_patched.min.js"></script>
 @section('scripts')
+@show
+@section('scripts2')
 @show
 </body>
 </html>

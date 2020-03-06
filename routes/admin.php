@@ -5,18 +5,27 @@
 //////////////////////
 
 use App\Http\Controllers\Admin\AssignController;
+use App\Http\Controllers\Admin\GemsController;
+use App\Http\Controllers\Admin\Learn\CommentController;
 use App\Http\Controllers\Admin\LearningController;
+use App\Http\Controllers\Admin\MoneyController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'AdminController@index')->name('admin');
 Route::get('profile', 'AdminController@profile')->name('admin-profile');
 
+Route::get('/api/users', 'AdminController@users')->name('adminusersapi');
+
 // Users Section
 
 UserController::routes();
 
 LearningController::routes();
+
+MoneyController::routes();
+
+GemsController::routes();
 
 // Route::prefix('user')->group(function(){
 //     Route::get('list', 'UserController@list')->name('adminuserlist');
@@ -85,6 +94,7 @@ Route::prefix('learn')->group(function(){
         Route::post('short', 'Learn\QuestionController@short')->name('adminquestionshort');
     });
 
+    CommentController::routes();
 
     // Comments Section
     Route::prefix('comment')->group(function(){

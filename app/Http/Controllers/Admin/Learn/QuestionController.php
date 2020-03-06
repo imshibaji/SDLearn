@@ -44,7 +44,8 @@ class QuestionController extends Controller
         $out = $q->saveOrFail();
 
         if($out)
-            return redirect(route('adminquestionlist'));
+            // return redirect(route('adminquestionlist'));
+            return back();
         else
             return redirect(route('adminquestionadd'));
     }
@@ -73,7 +74,8 @@ class QuestionController extends Controller
         $out = $q->saveOrFail();
 
         if($out)
-            return redirect(route('adminquestionlist'));
+            // return redirect(route('adminquestionlist'));
+            return back();
         else
             return redirect(route('adminquestionendit'));
     }

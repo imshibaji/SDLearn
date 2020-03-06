@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 
 
@@ -15,6 +16,10 @@ class AdminController extends Controller
 
     public function index(){
         return view('admin.home', ['title' => 'My Admin Dashboard']);
+    }
+
+    public function users(){
+        return User::orderBy('id', 'DESC')->get();
     }
 
     public function profile(){

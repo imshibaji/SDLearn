@@ -48,9 +48,6 @@
                                 <div class="col">
                                     <input type="number" id="seconds" name="duration[seconds]" class="form-control" placeholder="seconds">
                                 </div>
-                                <div class="col">
-                                    <input type="number" id="totsec" name="duration[totsec]" readonly class="form-control" placeholder="total seconds">
-                                </div>
                             </div>
                         </td>
                     </tr>
@@ -72,7 +69,13 @@
                     </tr>
                     <tr>
                         <td>Price</td>
-                        <td colspan="3"><input type="text" id="price" name="price" class="form-control"></td>
+                        <td>
+                            <input type="text" id="price" name="price" class="form-control"  placeholder="Actual Price">
+                        </td>
+                        <td class="text-left text-md-right">Offer Price</td>
+                        <td colspan="3">
+                            <input type="text" id="offer_price" name="offer_price" class="form-control"  placeholder="Offer Price">
+                        </td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
@@ -90,15 +93,6 @@
 window.onload = function(){
     CKEDITOR.replace('editor');
 }
-
-$('#hours, #minutes, #seconds').keyup(()=>{
-    var hours = $('#hours').val();
-    var minutes = $('#minutes').val();
-    var seconds = $('#seconds').val();
-
-    var totsec = (hours*3600)+(minutes*60)+(seconds*1) || '';
-    $('#totsec').val(totsec);
-});
 
 $('#title').keyup(() => {
     var name = $("#title").val();
