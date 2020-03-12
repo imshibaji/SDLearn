@@ -109,26 +109,69 @@ class HomeController extends Controller
         return $user;
     }
 
+    public function profile(Request $req){
+        if($req->uid){
+            $user = User::find($req->uid);
+            $user->email = $user->email;
+            $user->fname = $req->fname;
+            $user->lname = $req->lname;
+            $user->mobile = $req->mobile;
+            $user->email = $req->email;
+            $user->whatsapp = $req->whatsapp;
+            $user->address = $req->address;
+            $user->city = $req->city;
+            $user->pincode = $req->pincode;
+            $user->state = $req->state;
+            $user->country = $req->country;
+            $user->save();
+
+            session()->flash('status', 'Profile Updated.');
+        }else{
+            session()->flash('status', 'Profile not Updated.');
+        }
+        return back();
+    }
+
+    public function changePassword(Request $req){
+
+        if($req->input('new-password') == $req->input('confirm-password')){
+            $user = User::where('email', $req->email)
+            ->first();
+
+            if(Hash::check($req->input('current-password'), Auth::user()->password)){
+                $user->password =  Hash::make($req->input('new-password'));
+                $user->save();
+
+                session()->flash('status', 'Password Changed.');
+            }else{
+                session()->flash('status', 'Email and Password Not Match with Our Records.');
+            }
+        }else{
+            session()->flash('status', 'New Password and Confirm Password Not Matched.');
+        }
+        return back();
+    }
+
     public function userActivityInfo(){
         $learn = Auth::user()->learning;
-        $chart = json_decode($learn->reports_chart);
+        $chart = json_decode($learn->reports_chart ?? '[]');
         $money = Auth::user()->money()->get()->last();
         $gems = Auth::user()->gems()->get()->last();
 
         $taskName = array_map(function($obj){
-            return $obj->task_name;
+            return $obj->task_name ?? '';
         }, $chart);
 
         $design = array_map(function($obj){
-            return $obj->design_point;
+            return $obj->design_point ?? 0;
         }, $chart);
 
         $develop = array_map(function($obj){
-            return $obj->develop_points;
+            return $obj->develop_points ?? 0;
         }, $chart);
 
         $debug = array_map(function($obj){
-            return $obj->debug_points;
+            return $obj->debug_points ?? 0;
         }, $chart);
 
         // dd($chart);
@@ -137,9 +180,9 @@ class HomeController extends Controller
         return [
             // User Activity Information
             'totalAmt' => $money->sum('addition_amt'),
-            'dueAmt' => $money->balance_amt,
-            'learning' => 'Total '.$learn->learning_points,
-            'earning' => $gems->balance_gems,
+            'dueAmt' => $money->balance_amt ?? 0,
+            'learning' => 'Total '.$learn->learning_points ?? 0,
+            'earning' => $gems->balance_gems ?? 0,
             // Course Name and Details Section
             'title' => $learn->title,
             'message' => $learn->message,

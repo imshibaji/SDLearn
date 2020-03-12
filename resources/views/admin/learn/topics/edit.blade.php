@@ -29,6 +29,10 @@
                     <td><input type="text" name="title" class="form-control" value="{{ $topic->title }}"></td>
                     </tr>
                     <tr>
+                        <td>Embed Code</td>
+                        <td><textarea name="embed_code" class="form-control">{{ $topic->embed_code }}</textarea></td>
+                    </tr>
+                    <tr>
                         <td>Description</td>
                         <td><textarea name="details" id="editor" class="form-control">{{ $topic->details }}</textarea></td>
                     </tr>

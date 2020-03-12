@@ -18,23 +18,27 @@
                     <div class="container">
                         <div class="row">
                             @foreach ($courses as $course)
-                            @php
-                                $duration = json_decode($course->duration, true);
-                            @endphp
                             <div class="col-12 col-sm-6 col-md-3 block p-2">
                                 <h4 class="text-center m-0">{{ $course->title }}</h4>
                                 <div class="py-2">
                                     <div class="text-justify py-2">
                                         {{$course->meta_desc}}.
                                     </div>
-                                    <div class="text-center py-2">
-                                        Duration: {{$duration['hours']}} hours,  {{$duration['minutes'] ?? '0'}} Minutes<br/>
-                                        Price: <strong>₹{{$course->price ?? '0'}}/-</strong>, Premium: <strong><span class="text-success">{{ ucwords($course->premium_status) }}</span></strong>
+                                    <div class="text-justify p-2">
+                                        Duration: {{ $course->duration }}<br/>
+                                        Price: 
+                                        @if($course->offer_price != null) 
+                                            <strong class="text-danger"><del>₹{{ $course->actual_price }}/-</del></strong>
+                                            <strong class="text-success">₹{{ $course->offer_price }}/-</strong>
+                                        @else
+                                            <strong class="text-success">₹{{ $course->actual_price }}/-</strong>
+                                        @endif<br/>
+                                        Accessible: <strong class="text-success">{{ ucwords($course->accessible) }}</strong>
                                     </div>
                                 </div>
                                 <div class="text-center px-4">
                                     <a href="{{ route('usercdetails', $course->id) }}" class="btn btn-primary">Learn More</a>
-                                    <button class="btn btn-warning" onclick="checking('{{$course->title}}', {{$course->price}})">Enroll Now</button>
+                                    <button class="btn btn-warning" onclick="checking('{{$course->title}}', {{$course->actual_price}})">Enroll Now</button>
                                 </div>
                             </div>
                             @endforeach

@@ -27,6 +27,7 @@ class TopicController extends Controller
     public function create(Request $req){
         $topic = new Topic();
         $topic->title = $req->input('title');
+        $topic->embed_code = $req->input('embed_code');
         $topic->details = $req->input('details');
         $topic->duration = json_encode($req->input('duration'));
         $topic->status = $req->input('status');
@@ -55,6 +56,7 @@ class TopicController extends Controller
     public function update(Request $req){
         $topic = Topic::find($req->tid);
         $topic->title = $req->input('title');
+        $topic->embed_code = $req->input('embed_code');
         $topic->details = $req->input('details');
         $topic->duration = json_encode($req->input('duration'));
         $topic->status = $req->input('status');

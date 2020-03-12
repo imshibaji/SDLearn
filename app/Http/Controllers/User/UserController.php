@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Assignment;
 use App\models\Course;
 use App\models\Topic;
+use App\Models\UserAssesment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -32,14 +34,17 @@ class UserController extends Controller
 
     public function learn(Request $req){
         $courses = Auth::user()->courseAssignments;
+        $assesments = Auth::user()->userAssesments()->where('topic_id', $req->tid)->get();
         $topics = Auth::user()->topicAssignments;
         $topic = Topic::find($req->tid);
+        
 
         return view('users.learn', [
             'title' => 'Learning Section',
             'courses' => $courses, 
             'topics' => $topics, 
-            'topic' => $topic
+            'topic' => $topic,
+            'assesments' => $assesments
         ]);
         // return $learnings;
     }
@@ -62,7 +67,7 @@ class UserController extends Controller
                 $inputAns = json_encode($inputAns);
                 $ans = json_encode($ans);
 
-                $rep['id'] = $q->id;
+                $rep['qid'] = $q->id;
                 $rep['title'] = $q->question;
                 $rep['answer'] = $q->answer;
 
@@ -77,6 +82,8 @@ class UserController extends Controller
                     $rep['remark'] = 'InCorrect';
                 };
 
+                $rep['user_answer'] = 'You choose '.$inputAns.' option';
+
                 array_push($report, $rep);
 
             } else if($q->qtype == 3){
@@ -84,17 +91,14 @@ class UserController extends Controller
                 $rep['title'] = $q->question;
                 $rep['answer'] = $q->answer;
 
-                if($inputAns == $ans){
-                    $design_points += $q->design_points;
-                    $development_points += $q->development_points;
-                    $debugging_points += $q->debugging_points;
+                $design_points += $q->design_points;
+                $development_points += $q->development_points;
+                $debugging_points += $q->debugging_points;
 
-                    $marks = $design_points + $development_points + $debugging_points;
+                $marks = $design_points + $development_points + $debugging_points;
 
-                    $rep['remark'] = 'Correct';
-                }else {
-                    $rep['remark'] = 'InCorrect';
-                };
+                $rep['user_answer'] = $inputAns;
+                $rep['remark'] = 'Thoughtful';
 
                 array_push($report, $rep);
             }
@@ -102,13 +106,28 @@ class UserController extends Controller
 
         $assesment = [ 
             'topic' => $topic->title,
+            'report' => $report,
             'design' => $design_points, 
             'development' => $development_points, 
             'debug' => $debugging_points, 
             'total' => $marks
         ];
 
-        return ['request'=>$req->input(), 'assesment' => $assesment, 'report' => $report];
+        $asses = new UserAssesment();
+        $asses->user_id = Auth::id();
+        $asses->topic_id = $req->topic_id;
+        $asses->assesment = json_encode($assesment);
+        $asses->save();
+
+        // return ['request'=>$req->input(), 'assesment' => $asses ];
+        return back();
+    }
+
+    public function retry($tid){
+        $asses = UserAssesment::where('user_id', Auth::id())->where('topic_id', $tid)->first();
+        $asses->delete();
+
+        return back();
     }
 
 

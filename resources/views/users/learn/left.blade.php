@@ -1,5 +1,5 @@
 <div class="col-md-4">
-    <div class="">
+    <div id="course_menu">
     {{-- Learning Section --}}
     <div class="accordion" id="accordionExample">
         @foreach ($courses as $key => $learn )

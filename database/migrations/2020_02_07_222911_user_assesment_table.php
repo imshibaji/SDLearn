@@ -15,12 +15,9 @@ class UserAssesmentTable extends Migration
     {
         Schema::create('user_assesments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('topic_assignment_id');
             $table->integer('user_id');
-            $table->integer('course_id');
             $table->integer('topic_id');
-            $table->integer('question_id');
-            $table->string('answers');
+            $table->json('assesment');
             $table->timestamps();
         });
     }

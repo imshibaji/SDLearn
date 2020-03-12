@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Learn;
 
 use App\Http\Controllers\Controller;
+use App\Models\Catagory;
 use App\models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,8 @@ class CourseController extends Controller
     }
 
     public function add(){
-        return view('admin.learn.course.add', ['title' => 'Course Add']);
+        $catagories = Catagory::where('status', 'active')->get();
+        return view('admin.learn.course.add', ['title' => 'Course Add', 'catagories' => $catagories]);
     }
 
     public function create(Request $req){
@@ -26,10 +28,11 @@ class CourseController extends Controller
         $course->meta_keys = $req->input('meta_keys');
         $course->meta_desc = $req->input('meta_desc');
         $course->details = (string) $req->input('details');
-        $course->duration = json_encode($req->input('duration'));
+        $course->duration = $req->input('duration');
         $course->status = $req->input('status');
-        $course->premium_status = $req->input('premium_status');
-        $course->price = $req->input('price');
+        $course->accessible = $req->input('accessible');
+        $course->actual_price = $req->input('actual_price');
+        $course->offer_price = $req->input('offer_price');
         $course->user_id = Auth::id();
 
         $out = $course->save();
@@ -41,7 +44,8 @@ class CourseController extends Controller
 
     public function edit($id){
         $course = Course::find($id);
-        return view('admin.learn.course.edit', ['title' => 'Course Edit', 'course' => $course]);
+        $catagories = Catagory::where('status', 'active')->get();
+        return view('admin.learn.course.edit', ['title' => 'Course Edit', 'course' => $course, 'catagories' => $catagories]);
     }
 
     public function update(Request $req){
@@ -52,10 +56,11 @@ class CourseController extends Controller
         $course->meta_keys = $req->input('meta_keys');
         $course->meta_desc = $req->input('meta_desc');
         $course->details = (string) $req->input('details');
-        $course->duration = json_encode($req->input('duration'));
+        $course->duration = $req->input('duration');
         $course->status = $req->input('status');
-        $course->premium_status = $req->input('premium_status');
-        $course->price = $req->input('price');
+        $course->accessible = $req->input('accessible');
+        $course->actual_price = $req->input('actual_price');
+        $course->offer_price = $req->input('offer_price');
         $course->user_id = Auth::id();
 
         $out = $course->save();

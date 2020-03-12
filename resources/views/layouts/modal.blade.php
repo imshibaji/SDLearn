@@ -42,7 +42,7 @@ function modal(title, body, callback){
     });
 }
 function checking(title, amt){
-    var balAmt = parseFloat('{!! Auth::user()->money()->get()->last()->balance_amt !!}');
+    var balAmt = parseFloat('{!! Auth::user()->money()->get()->last()->balance_amt ?? 0 !!}');
     var courseAmt = amt;
     var pbody = '';
 

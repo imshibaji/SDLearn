@@ -16,6 +16,7 @@ class CreateTopicsTable extends Migration
         Schema::create('topics', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title', 191);
+            $table->text('embed_code')->nullable();
             $table->text('details')->nullable();
             $table->integer('short')->nullable();
             $table->json('duration')->nullable();

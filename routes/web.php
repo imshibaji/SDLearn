@@ -20,6 +20,9 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::post('/signup', 'HomeController@signup')->name('signup');
 Route::get('/next', 'HomeController@success')->name('next');
 
+Route::post('/profile', 'HomeController@profile')->name('profilePost');
+Route::post('/change', 'HomeController@changePassword')->name('changePassword');
+
 Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/plans', 'HomeController@plans')->name('plans');
 

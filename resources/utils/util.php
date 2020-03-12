@@ -39,6 +39,6 @@ return [
         'Andaman and Nicobar Islands'
     ],
     'countries' => [
-        'IN' => 'India'
+        'India'
     ]
 ];

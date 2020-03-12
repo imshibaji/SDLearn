@@ -20,7 +20,6 @@ class User extends Authenticatable
     protected $fillable = [
         'fname',
         'lname',
-        // 'name',
         'mobile', 
         'email', 
         'password',
@@ -78,6 +77,10 @@ class User extends Authenticatable
 
     public function topicAssignments(){
         return $this->hasMany('App\Models\TopicAssignment');
+    }
+
+    public function userAssesments(){
+        return $this->hasMany('App\Models\UserAssesment');
     }
 
     public function courses(){

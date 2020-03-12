@@ -131,7 +131,7 @@
         </div>
         <!-- Copyright By -->
 
-    </div>
+</div>
 
 @section('footers')
 @show

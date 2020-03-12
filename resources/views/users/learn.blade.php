@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">{{ $title ?? 'Dashboard' }}</div>
 
-                <div class="card-body" style="min-height: 600px">
+                <div id="card_body" class="card-body" style="min-height: 600px">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -48,9 +48,49 @@
     padding: 5px 15px;
     position: relative;
 }
+
+
+.sticky {
+  position: fixed;
+  top: 70px;
+  width: 326px;
+}
+
+.bottomHeaght{
+    max-height: 500px; 
+    overflow-y: auto;
+}
+
 </style>
 @endsection
 
 @section('scripts')
 <script src="{{url('/')}}/js/prism_patched.min.js"></script>
+<script>
+window.onscroll = function() {myFunction()};
+
+var menu = document.getElementById("course_menu");
+var card = document.getElementById('card_body');
+
+var card_height = card.offsetHeight - 690;
+
+var sticky = 40;
+
+function myFunction() {
+    // console.log(window.pageYOffset, sticky, card_height, window.innerWidth);
+    if(window.innerWidth > 500){
+        if (window.pageYOffset > sticky) {
+            menu.classList.add("sticky");
+        } else {
+            menu.classList.remove("sticky");
+        }
+
+        if(window.pageYOffset > card_height){
+            menu.classList.add("bottomHeaght");
+        }else{
+            menu.classList.remove("bottomHeaght");
+        }
+    }
+}
+</script>
 @endsection

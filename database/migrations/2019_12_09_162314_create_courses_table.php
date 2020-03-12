@@ -22,11 +22,11 @@ class CreateCoursesTable extends Migration
             $table->text('details')->nullable();
             $table->string('meta_keys')->nullable();
             $table->string('meta_desc')->nullable();
-            $table->json('duration')->nullable();
+            $table->string('duration')->nullable();
             $table->integer('short')->nullable();
             $table->string('status', 10);
-            $table->string('premium_status', 10);
-            $table->float('price')->nullable();
+            $table->string('accessible', 10);
+            $table->float('actual_price')->nullable();
             $table->float('offer_price')->nullable();
             $table->integer('user_id');
             $table->timestamps();

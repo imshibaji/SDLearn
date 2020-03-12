@@ -10,35 +10,25 @@
                 {{-- <th>Description</th> --}}
                 <th>Duration</th>
                 <th>Status</th>
-                <th>Premium</th>
+                <th>Accessible</th>
                 <th class="text-center">Action</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($courses as $course)
-                @php
-                    $dur = json_decode($course->duration, true);
-                    // var_dump($dur['hours']);
-                @endphp
                 <tr id="{{ $course->short }}">
                     <td class="index text-center">
                         {{ $course->short ?? '#' }}
                         <input type="hidden" name="cid" id="cid" value="{{ $course->id }}">
                         {{-- <input size="2" type="hidden" name="short" id="index" value="{{ $course->short }}"> --}}
                     </td>
-                    {{-- <td class="indexInput">
-                        <input type="hidden" name="cid" id="cid" value="{{ $course->id }}">
-                        <input size="2" type="hidden" name="short" id="index" value="{{ $course->short }}">
-                    </td> --}}
                     <td>{{ $course->title }}</td>
                     {{-- <td>{{ $course->meta_desc }}</td> --}}
                     <td>
-                        {{ $dur['hours'] ?? '0' }} Hours,
-                        {{ $dur['minutes'] ?? '0' }} Minutes, 
-                        {{ $dur['seconds'] ?? '0' }} Seconds
+                       {{ $course->duration }}
                     </td>
                     <td>{{ $course->status }}</td>
-                    <td>{{ $course->premium_status }}</td>
+                    <td>{{ $course->accessible }}</td>
                     <td class="text-center">
                         <a href="{{url('/')}}/admin/learn/course/view/{{ $course->id }}" class="btn btn-info">View</a>
                         <a href="{{url('/')}}/admin/learn/course/edit/{{ $course->id }}" class="btn btn-warning">Edit</a>

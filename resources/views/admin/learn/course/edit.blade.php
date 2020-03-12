@@ -18,8 +18,15 @@
                     <tr>
                         <td>Name</td>
                         <td><input type="text" id="title" name="title" class="form-control" value="{{$course->title}}"></td>
-                        <td>CID</td>
-                        <td><input type="text" id="courseid" name="courseid" class="form-control" value="{{$course->courseid}}"></td>
+                        <td>Catagory Name and ID</td>
+                        <td>
+                            <select id="catagory_id" name="catagory_id" class="form-control" >
+                                <option @if($course->catagory_id==0) selected @endIf value="0">None</option>
+                                @foreach ($catagories as $cat)
+                                    <option @if($course->catagory_id==$cat->id) selected @endIf value="{{$cat->id}}">{{$cat->title}}</option>
+                                @endforeach
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <td>Slag</td>
@@ -38,22 +45,9 @@
                         <td colspan="3"><textarea name="details" id="editor" class="form-control">{{$course->details}}</textarea></td>
                     </tr>
                     <tr>
-                        @php
-                            $dur = json_decode($course->duration, true);
-                        @endphp
                         <td>Duration</td>
                         <td colspan="3">
-                            <div class="row">
-                                <div class="col">
-                                    <input type="number" id="hours" name="duration[hours]" class="form-control" placeholder="hours" value="{{ $dur['hours'] }}">
-                                </div>
-                                <div class="col">
-                                    <input type="number" id="minutes" name="duration[minutes]" class="form-control" placeholder="minutes" value="{{ $dur['minutes'] }}">
-                                </div>
-                                <div class="col">
-                                    <input type="number" id="seconds" name="duration[seconds]" class="form-control" placeholder="seconds" value="{{ $dur['seconds'] }}">
-                                </div>
-                            </div>
+                            <input type="text" id="duration" name="duration" class="form-control" placeholder="Duration By Month" value="{{$course->duration}}">
                         </td>
                     </tr>
                     <tr>
@@ -66,16 +60,16 @@
                         </td>
                         <td class="text-left text-md-right">Premium Status</td>
                         <td>
-                            <select name="premium_status" class="form-control">
-                                <option value="free" @if($course->premium_status=='free') selected @endIf>Free</option>
-                                <option value="premium" @if($course->premium_status=='premium') selected @endIf>Premium</option>
+                            <select name="accessible" class="form-control">
+                                <option value="free" @if($course->accessible=='free') selected @endIf>Free</option>
+                                <option value="premium" @if($course->accessible=='premium') selected @endIf>Premium</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td>Price</td>
                         <td>
-                            <input type="text" id="price" name="price" class="form-control" placeholder="Actual Price" value="{{$course->price}}">
+                            <input type="text" id="actual_price" name="actual_price" class="form-control" placeholder="Actual Price" value="{{$course->actual_price}}">
                         </td>
                         <td class="text-left text-md-right">Offer Price</td>
                         <td colspan="3">

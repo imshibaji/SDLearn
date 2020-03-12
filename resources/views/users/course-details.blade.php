@@ -16,9 +16,16 @@
 
                     <h1 class="text-center pt-5">{{ $course->title }}</h1>
                     <div class="text-center">
-                        Price: <strong class="text-success">₹{{ $course->price }}/-</strong>
-                        Premium Status: <strong class="text-success">{{ ucwords($course->premium_status) }}</strong>
-                        <button class="btn btn-warning btn-sm" onclick="checking('{{ $course->title }}', {{$course->price}})">Enroll Now</button>
+                        Price:
+                        @if($course->offer_price != null) 
+                            <strong class="text-danger"><del>₹{{ $course->actual_price }}/-</del></strong>
+                            <strong class="text-success">₹{{ $course->offer_price }}/-</strong>,
+                        @else
+                        <strong class="text-success">₹{{ $course->actual_price }}/-</strong>,
+                        @endif
+                        Duration: <strong class="text-success">{{ $course->duration }}</strong>,
+                        Accessible: <strong class="text-success">{{ ucwords($course->accessible) }}</strong>
+                        <button class="btn btn-warning btn-sm" onclick="checking('{{ $course->title }}', {{$course->actual_price}})">Enroll Now</button>
                     </div>
                     <div class="row my-5 justify-content-center">
                         <div class="col-md-8 col-sm-10 col-12 text-justify">
