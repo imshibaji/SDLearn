@@ -29,7 +29,8 @@ class UserController extends Controller
 
     public function course_details(Request $req){
         $course = Course::where('id', $req->id)->where('status', 'active')->first();
-        return view('users.course-details', [ 'course' => $course ]);
+        $topics = $course->topics;
+        return view('users.course-details', [ 'course' => $course, 'topics' => $topics ]);
     }
 
     public function learn(Request $req){

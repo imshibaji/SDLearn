@@ -5,7 +5,7 @@
                 <div class="py-3">{!! $topic->embed_code !!}</div>
                 @include('users.learn.contents')
         @else
-            <h1>Please choose Topic from Left Side</h1>
+            <h1><- Please choose Topic from Left Side</h1>
         @endif
     </div>
 

@@ -19,11 +19,11 @@ export default {
     },
     data: function(){
       return{
-        title: 'Demo Class',
+        title: '',
         skills: 0,
         tasks: 0,
         learnings: 0,
-        message: 'The Demo Content',
+        message: '',
       }
     },
     async mounted(){

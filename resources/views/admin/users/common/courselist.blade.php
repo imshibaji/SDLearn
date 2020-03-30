@@ -78,23 +78,23 @@
 @section('scripts')
 <script>
 function courseAssign(uid, cid){
-    $.get('http://localhost:8000/admin/assign/course?cid='+cid+'&uid='+uid).then(function(){
+    $.get('{{url("/")}}/admin/assign/course?cid='+cid+'&uid='+uid).then(function(){
         window.location.reload();
     });
 }
 function courseUnAssign(uid, cid){
-    $.get('http://localhost:8000/admin/assign/courseunset?cid='+cid+'&uid='+uid).then(function(){
+    $.get('{{url("/")}}/admin/assign/courseunset?cid='+cid+'&uid='+uid).then(function(){
         window.location.reload();
     });
 }
 function topicAssign(uid, cid, tid){
-    $.get('http://localhost:8000/admin/assign/topic?cid='+cid+'&uid='+uid+'&tid='+tid).then(function(){
+    $.get('{{url("/")}}/admin/assign/topic?cid='+cid+'&uid='+uid+'&tid='+tid).then(function(){
         window.location.reload();
     });
 }
 
 function topicUnAssign(uid, cid, tid){
-    $.get('http://localhost:8000/admin/assign/topicunset?cid='+cid+'&uid='+uid+'&tid='+tid).then(function(){
+    $.get('{{url("/")}}/admin/assign/topicunset?cid='+cid+'&uid='+uid+'&tid='+tid).then(function(){
         window.location.reload();
     });
 }

@@ -39,18 +39,18 @@
                     <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('user')}}">Dashboard <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item {{ Request::is('user/courses') ? 'active' : '' }}">
+                    {{-- <li class="nav-item {{ Request::is('user/courses') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('usercourses')}}">Courses</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item {{ Request::is('user/learn') ? 'active' : '' }}">
-                        <a class="nav-link hover-nav" href="{{route('userlearn')}}">Learnings</a>
+                        <a class="nav-link hover-nav" href="{{route('userlearn')}}">My Learnings</a>
                     </li>
                     <li class="nav-item {{ Request::is('user/reports') ? 'active' : '' }}">
-                        <a class="nav-link hover-nav" href="{{route('userreports')}}">Reports</a>
+                        <a class="nav-link hover-nav" href="{{route('userreports')}}">Report Chart</a>
                     </li>
-                    <li class="nav-item {{ Request::is('user/jobs') ? 'active' : '' }}">
+                    {{-- <li class="nav-item {{ Request::is('user/jobs') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('userjobs')}}">Job Openings</a>
-                    </li>
+                    </li> --}}
                     
                     {{-- <li class="nav-item">
                         <a class="nav-link hover-nav" href="#">Professional Courses</a>
@@ -86,6 +86,12 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('usergems') }}">
+                                {{ __('Affiliate') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ route('transactions') }}">
+                                {{ __('Billing') }}
+                            </a>
                             <a class="dropdown-item" href="{{ route('profile') }}">
                                 {{ __('Profile') }}
                             </a>

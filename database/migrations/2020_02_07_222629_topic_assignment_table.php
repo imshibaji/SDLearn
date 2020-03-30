@@ -15,9 +15,7 @@ class TopicAssignmentTable extends Migration
     {
         Schema::create('topic_assignments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('course_assignment_id');
             $table->integer('user_id');
-            $table->integer('course_id');
             $table->integer('topic_id');
             $table->timestamps();
         });

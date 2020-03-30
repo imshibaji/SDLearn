@@ -43,22 +43,17 @@
     border: 1px solid rgb(8, 140, 216);
     overflow-y: scroll;
 }
-.block1{
+/* .block1{
     border: 1px solid rgb(8, 140, 216);
     padding: 5px 15px;
     position: relative;
-}
+} */
 
 
 .sticky {
   position: fixed;
-  top: 70px;
+  top: 80px;
   width: 326px;
-}
-
-.bottomHeaght{
-    max-height: 500px; 
-    overflow-y: auto;
 }
 
 </style>
@@ -69,27 +64,23 @@
 <script>
 window.onscroll = function() {myFunction()};
 
-var menu = document.getElementById("course_menu");
-var card = document.getElementById('card_body');
+var comment = document.getElementById("comment_section");
 
-var card_height = card.offsetHeight - 690;
-
-var sticky = 40;
+var sticky = comment.offsetTop;
 
 function myFunction() {
-    // console.log(window.pageYOffset, sticky, card_height, window.innerWidth);
     if(window.innerWidth > 500){
         if (window.pageYOffset > sticky) {
-            menu.classList.add("sticky");
+            comment.classList.add("sticky");
         } else {
-            menu.classList.remove("sticky");
+            comment.classList.remove("sticky");
         }
 
-        if(window.pageYOffset > card_height){
-            menu.classList.add("bottomHeaght");
-        }else{
-            menu.classList.remove("bottomHeaght");
-        }
+        // if(window.pageYOffset > card_height){
+        //     comment.classList.add("bottomHeaght");
+        // }else{
+        //     comment.classList.remove("bottomHeaght");
+        // }
     }
 }
 </script>

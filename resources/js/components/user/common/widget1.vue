@@ -68,10 +68,10 @@ export default {
             return '₹'+this.dueAmt;
         },
         getTotalLearningPoints(){
-            return this.learning;
+            return ''+this.learning;
         },
         getGems(){
-            return this.earning;
+            return ''+this.earning;
         },
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Learning;
+use App\Models\Money;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -158,6 +159,9 @@ class HomeController extends Controller
         $money = Auth::user()->money()->get()->last();
         $gems = Auth::user()->gems()->get()->last();
 
+        $userPay = Money::where('user_id',Auth::id())->get();
+        // dump($userPay->sum('addition_amt'));
+
         $taskName = array_map(function($obj){
             return $obj->task_name ?? '';
         }, $chart);
@@ -174,12 +178,10 @@ class HomeController extends Controller
             return $obj->debug_points ?? 0;
         }, $chart);
 
-        // dd($chart);
-
         
         return [
             // User Activity Information
-            'totalAmt' => $money->sum('addition_amt'),
+            'totalAmt' => $userPay->sum('addition_amt'),
             'dueAmt' => $money->balance_amt ?? 0,
             'learning' => 'Total '.$learn->learning_points ?? 0,
             'earning' => $gems->balance_gems ?? 0,

@@ -62,7 +62,7 @@ Route::get('/get', function () {
 
 
 Route::get('/make/{$name}', 'ManageController@make');
-Route::get('/migration', 'ManageController@migration');
+Route::get('/migration', 'ManageController@migrate');
 
 Auth::routes();
 

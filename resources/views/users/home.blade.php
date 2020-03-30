@@ -16,6 +16,8 @@
                     
                     <x-alert :message="$inspaire" />
 
+                  
+
                     <user-main-dashboard />
                 </div>
             </div>

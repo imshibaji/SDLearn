@@ -46,4 +46,4 @@ Vue.component('user-report-dashboard', require('./components/user/dashboard2.vue
 const app = new Vue({
     el: '#app',
     icons
-  })
+})

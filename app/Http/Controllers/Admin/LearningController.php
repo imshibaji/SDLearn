@@ -35,17 +35,20 @@ class LearningController extends Controller
     {
         $learn = Learning::find($req->lid);
         $chart = $learn->reports_chart ?? [];
-        $chart = json_decode($chart);
-        array_push($chart, $req->reports_chart);
 
-        if($req->reports_chart['task_name'] != null){
-            $learning = Learning::updateOrCreate(
-                ['user_id' => $req->user_id, 'id' => $req->lid],
-                [
-                    'reports_chart' => $chart
-                ]
-            );
-            $learning->save();
+        if(count($chart) > 0){
+            $chart = json_decode($chart);
+            array_push($chart, $req->reports_chart);
+
+            if($req->reports_chart['task_name'] != null){
+                $learning = Learning::updateOrCreate(
+                    ['user_id' => $req->user_id, 'id' => $req->lid],
+                    [
+                        'reports_chart' => $chart
+                    ]
+                );
+                $learning->save();
+            }
         }
         return $chart;
     }
