@@ -34,7 +34,9 @@
                 <td>
                     <a href="{{url('/')}}/admin/learn/topic/view/{{$topic->id}}" class="btn btn-info">View</a>
                     <a href="{{url('/')}}/admin/learn/topic/edit/{{$topic->id}}" class="btn btn-warning">Edit</a>
+                    @utype('admin')
                     <button class="btn btn-danger" onclick="remove('{{ $topic->id }}')">Delete</button>
+                    @endutype
                 </td>
             </tr>
             @endforeach

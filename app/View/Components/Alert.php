@@ -28,10 +28,15 @@ class Alert extends Component
      */
     public function render()
     {
-        return <<<'blade'
-    <div class="alert alert-{{$type}} text-center" role="alert">
-        Inspiring Quote:<br> <strong>{{ $message }}</strong>
-    </div>
-blade;
+//         return <<<'blade'
+//     <div class="alert alert-{{$type}} text-center" role="alert">
+//         Inspiring Quote:<br> <strong>{{ $message }}</strong>
+//     </div>
+// blade;
+
+        return view('components.alert', [
+                'type' => $this->type, 
+                'message' => $this->message
+            ]);
     }
 }

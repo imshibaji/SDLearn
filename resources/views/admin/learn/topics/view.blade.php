@@ -33,12 +33,12 @@
         <thead>
             <tr>
                 <th scope="col" class="text-center">#</th>
-                <th scope="col">Short</th>
+                {{-- <th scope="col">Short</th> --}}
                 <th>Question</th>
                 <th>Topic Name</th>
                 <th>Duration</th>
                 <th>Status</th>
-                <th>Action</th>
+                <th class="text-center">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -48,19 +48,26 @@
                 // var_dump($dur['hours']);
             @endphp
             <tr id="1">
-                <td class="index">{{$question->short ?? '#'}}</td>
-                <td class="indexInput">
+                <td class="index">{{$question->short ?? '#'}}
+                    <input type="hidden" name="tid" id="tid" value="{{ $question->id }}">
+                </td>
+                {{-- Not Required
+                    <td class="indexInput">
                     <input type="hidden" name="tid" id="tid" value="{{ $question->id }}">
                     <input size="2" readonly type="text" name="short" id="index" value="{{ $question->short }}">
-                </td>
-                <td>{{ $question->question }}</td>
+                </td> --}}
+                <td style="width:50%">{{ $question->question }}</td>
                 <td>{{ $question->topic->title }}</td>
                 <td>{{ $dur['totsec'] }}</td>
                 <td>{{ $question->status }}</td>
-                <td>
-                    <a href="{{url('/')}}/admin/learn/question/view/{{$question->id}}" class="btn btn-info">View</a>
-                    <a href="{{url('/')}}/admin/learn/question/edit/{{$question->id}}" class="btn btn-warning">Edit</a>
-                    <button class="btn btn-danger" onclick="remove('{{ $question->id }}')">Delete</button>
+                <td class="text-center">
+                    <div class="btn-group">
+                        <a href="{{url('/')}}/admin/learn/question/view/{{$question->id}}" class="btn btn-info">View</a>
+                        <a href="{{url('/')}}/admin/learn/question/edit/{{$question->id}}" class="btn btn-warning">Edit</a>
+                        @utype('admin')
+                        <button class="btn btn-danger" onclick="remove('{{ $question->id }}')">Delete</button>
+                        @endutype
+                    </div>
                 </td>
             </tr>
             @endforeach

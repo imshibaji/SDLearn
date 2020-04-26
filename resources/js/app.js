@@ -29,6 +29,7 @@ Vue.use(CoreuiVue);
 Vue.use(CoreuiVueCharts);
 
 Vue.component('admin-dashboard', require('./components/admin/dashboard.vue').default);
+Vue.component('admin-notify', require('./components/admin/notify.vue').default);
 Vue.component('user-dashboard', require('./components/user/dashboard.vue').default);
 Vue.component('user-main-dashboard', require('./components/user/dashboard1.vue').default);
 Vue.component('user-report-dashboard', require('./components/user/dashboard2.vue').default);

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\models\Course;
 use App\Models\Learning;
 use App\Models\Money;
 use App\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Instamojo\Instamojo;
 
 class HomeController extends Controller
 {
@@ -62,13 +65,10 @@ class HomeController extends Controller
 
         $id = $user->id;
         if($id>0){
-            return redirect('next');
+            session()->flash('status', 'You are succesefully register with us. login now.');
+            return redirect('login');
         }
         return redirect('home');
-    }
-
-    public function success(){
-        return view('fronts.next');
     }
 
     public function about()
@@ -117,6 +117,9 @@ class HomeController extends Controller
             $user->fname = $req->fname;
             $user->lname = $req->lname;
             $user->mobile = $req->mobile;
+            $user->dob = $req->dob;
+            $user->profession = $req->profession;
+            $user->orgname = $req->orgname;
             $user->email = $req->email;
             $user->whatsapp = $req->whatsapp;
             $user->address = $req->address;
@@ -155,28 +158,29 @@ class HomeController extends Controller
 
     public function userActivityInfo(){
         $learn = Auth::user()->learning;
-        $chart = json_decode($learn->reports_chart ?? '[]');
+        $chartData = Auth::user()->userChart;
         $money = Auth::user()->money()->get()->last();
         $gems = Auth::user()->gems()->get()->last();
 
         $userPay = Money::where('user_id',Auth::id())->get();
-        // dump($userPay->sum('addition_amt'));
+        
+        $chartData = $chartData->toArray();
 
-        $taskName = array_map(function($obj){
-            return $obj->task_name ?? '';
-        }, $chart);
+        $task_name = array_map(function($data){
+            return $data['task_name'];
+        }, $chartData);
 
-        $design = array_map(function($obj){
-            return $obj->design_point ?? 0;
-        }, $chart);
+        $designs = array_map(function($data){
+            return $data['design'];
+        }, $chartData);
 
-        $develop = array_map(function($obj){
-            return $obj->develop_points ?? 0;
-        }, $chart);
+        $develops = array_map(function($data){
+            return $data['develop'];
+        }, $chartData);
 
-        $debug = array_map(function($obj){
-            return $obj->debug_points ?? 0;
-        }, $chart);
+        $debugs = array_map(function($data){
+            return $data['debug'];
+        }, $chartData);
 
         
         return [
@@ -193,10 +197,10 @@ class HomeController extends Controller
             'learn' => $learn->learning_points,
             // Chart Section
             'length' => $learn->total_learning_length,
-            'taskName' => $taskName,
-            'design' => $design,
-            'develop' => $develop,
-            'debug' => $debug,
+            'taskName' => $task_name,
+            'design' => $designs,
+            'develop' => $develops,
+            'debug' => $debugs,
             // Report Section
             'total_design' => $learn->design_points,
             'total_develop' => $learn->developing_points,

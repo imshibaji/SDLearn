@@ -44,11 +44,18 @@ class LoginController extends Controller
 
         session()->flash('status', 'Login Successfull.');
 
-        if($user->user_type == 'admin' || $user->user_type == 'super'){
+        if($user->user_type == 'admin' || $user->user_type == 'stuff'){
             return '/admin';
         }else{
             return '/user';
         }
+
+        // Not Error
+        // if($user->isAdmin() || $user->isStuff()){
+        //     return '/admin';
+        // }else{
+        //     return '/user';
+        // }
     }
 
 }

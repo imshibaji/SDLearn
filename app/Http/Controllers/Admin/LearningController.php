@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Learning;
+use App\Models\UserChart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,32 +34,45 @@ class LearningController extends Controller
 
     public function put_learning(Request $req)
     {
-        $learn = Learning::find($req->lid);
-        $chart = $learn->reports_chart ?? [];
+        $chart = new UserChart();
+        $chart->task_name = $req->reports_chart['task_name'];
+        $chart->design = $req->reports_chart['design_point'];
+        $chart->develop = $req->reports_chart['develop_points'];
+        $chart->debug = $req->reports_chart['debug_points'];
 
-        if(count($chart) > 0){
-            $chart = json_decode($chart);
-            array_push($chart, $req->reports_chart);
+        
+        $chart->user_id = $req->user_id;
+        $chart->learning_id = $req->lid;
 
-            if($req->reports_chart['task_name'] != null){
-                $learning = Learning::updateOrCreate(
-                    ['user_id' => $req->user_id, 'id' => $req->lid],
-                    [
-                        'reports_chart' => $chart
-                    ]
-                );
-                $learning->save();
-            }
-        }
+        $chart->save();
+
         return $chart;
     }
 
     public function get_learning(Request $req){
-        $learn = Learning::find($req->lid);
-        $chart = $learn->reports_chart ?? [];
-        $chart = json_decode($chart);
+        $chartData = UserChart::where('learining_id', $req->lid)->get();
 
-        return $chart;
+
+        $chartData = $chartData->toArray();
+
+        $tasks = array_map(function($data){
+            return $data['task_name'];
+        }, $chartData);
+
+        $designs = array_map(function($data){
+            return $data['design'];
+        }, $chartData);
+
+        $develops = array_map(function($data){
+            return $data['develop'];
+        }, $chartData);
+
+        $debugs = array_map(function($data){
+            return $data['debug'];
+        }, $chartData);
+
+        // return [$tasks, $designs, $develops, $debugs];
+        return $chartData;
     }
 
     public static function routes(){

@@ -77,10 +77,10 @@
         @foreach ($charts as $chart)
         <tr>
             <td>{{ $chart->task_name }}</td>
-            <td>{{ $chart->design_point }}</td>
-            <td>{{ $chart->develop_points }}</td>
-            <td>{{ $chart->debug_points }}</td>
-            <td>{{$chart->design_point + $chart->develop_points + $chart->debug_points }}</td>
+            <td>{{ $chart->design }}</td>
+            <td>{{ $chart->develop }}</td>
+            <td>{{ $chart->debug }}</td>
+            <td>{{ $chart->design + $chart->develop + $chart->debug }}</td>
         </tr>
         @endforeach
     </table>

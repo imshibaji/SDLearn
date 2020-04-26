@@ -22,7 +22,7 @@
                         <input type="hidden" name="cid" id="cid" value="{{ $course->id }}">
                         {{-- <input size="2" type="hidden" name="short" id="index" value="{{ $course->short }}"> --}}
                     </td>
-                    <td>{{ $course->title }}</td>
+                    <td style="width:50%">{{ $course->title }}</td>
                     {{-- <td>{{ $course->meta_desc }}</td> --}}
                     <td>
                        {{ $course->duration }}
@@ -30,9 +30,13 @@
                     <td>{{ $course->status }}</td>
                     <td>{{ $course->accessible }}</td>
                     <td class="text-center">
-                        <a href="{{url('/')}}/admin/learn/course/view/{{ $course->id }}" class="btn btn-info">View</a>
-                        <a href="{{url('/')}}/admin/learn/course/edit/{{ $course->id }}" class="btn btn-warning">Edit</a>
-                        <button class="btn btn-danger" onclick="remove('{{ $course->id }}')">Delete</button>
+                        <div class="btn-group">
+                            <a href="{{url('/')}}/admin/learn/course/view/{{ $course->id }}" class="btn btn-info">View</a>
+                            <a href="{{url('/')}}/admin/learn/course/edit/{{ $course->id }}" class="btn btn-warning">Edit</a>
+                            @utype('admin')
+                            <button class="btn btn-danger" onclick="remove('{{ $course->id }}')">Delete</button>
+                            @endutype
+                        </div>
                     </td>
                 </tr>
             @endforeach

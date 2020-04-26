@@ -7,42 +7,38 @@
                 <th scope="col" class="text-center">#</th>
                 {{-- <th scope="col">Short</th> --}}
                 <th>Catagory Name</th>
-                {{-- <th>Description</th> --}}
-                <th>Duration</th>
+                {{-- <th>Details</th> --}}
                 <th>Status</th>
-                <th>Premium</th>
                 <th class="text-center">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($courses as $course)
+            @foreach ($catagories as $catagory)
                 @php
-                    $dur = json_decode($course->duration, true);
+                    $dur = json_decode($catagory->duration, true);
                     // var_dump($dur['hours']);
                 @endphp
-                <tr id="{{ $course->short }}">
+                <tr id="{{ $catagory->short }}">
                     <td class="index text-center">
-                        {{ $course->short ?? '#' }}
-                        <input type="hidden" name="cid" id="cid" value="{{ $course->id }}">
+                        {{ $catagory->short ?? '#' }}
+                        <input type="hidden" name="cid" id="cid" value="{{ $catagory->id }}">
                         {{-- <input size="2" type="hidden" name="short" id="index" value="{{ $course->short }}"> --}}
                     </td>
                     {{-- <td class="indexInput">
                         <input type="hidden" name="cid" id="cid" value="{{ $course->id }}">
                         <input size="2" type="hidden" name="short" id="index" value="{{ $course->short }}">
                     </td> --}}
-                    <td>{{ $course->title }}</td>
-                    {{-- <td>{{ $course->meta_desc }}</td> --}}
-                    <td>
-                        {{ $dur['hours'] ?? '0' }} Hours,
-                        {{ $dur['minutes'] ?? '0' }} Minutes, 
-                        {{ $dur['seconds'] ?? '0' }} Seconds
-                    </td>
-                    <td>{{ $course->status }}</td>
-                    <td>{{ $course->premium_status }}</td>
+                    <td style="width:50%">{{ $catagory->title }}</td>
+                    {{-- <td>{{ $catagory->details }}</td> --}}
+                    <td>{{ $catagory->status }}</td>
                     <td class="text-center">
-                        <a href="{{url('/')}}/admin/learn/course/view/{{ $course->id }}" class="btn btn-info">View</a>
-                        <a href="{{url('/')}}/admin/learn/course/edit/{{ $course->id }}" class="btn btn-warning">Edit</a>
-                        <button class="btn btn-danger" onclick="remove('{{ $course->id }}')">Delete</button>
+                        <div class="btn-group">
+                            <a href="{{url('/')}}/admin/learn/catagory/view/{{ $catagory->id }}" class="btn btn-info">View</a>
+                            <a href="{{url('/')}}/admin/learn/catagory/edit/{{ $catagory->id }}" class="btn btn-warning">Edit</a>
+                            @utype('admin')
+                            <button class="btn btn-danger" onclick="remove('{{ $catagory->id }}')">Delete</button>
+                            @endutype
+                        </div>
                     </td>
                 </tr>
             @endforeach
@@ -83,7 +79,7 @@ td:hover{
             var cid = $(this).val(); // Set Key
             // console.log(cid,index); // Get Value
 
-            $.post("{{url('/')}}/admin/learn/course/short", {_token: '<?php echo csrf_token() ?>',id: cid, short: index}, function(res){
+            $.post("{{url('/')}}/admin/learn/catagory/short", {_token: '<?php echo csrf_token() ?>',id: cid, short: index}, function(res){
                 // console.log('data shorted', res);
                 location.reload();
             });
@@ -105,8 +101,8 @@ td:hover{
 
 
     function remove(id){
-        if(confirm('Are you sure? Course Id:'+id)){
-            $.post('{{url('/')}}/admin/learn/course/delete/'+id, {_token: '<?php echo csrf_token() ?>'}, (res)=>{
+        if(confirm('Are you sure? Catagory Id:'+id)){
+            $.post('{{url('/')}}/admin/learn/catagory/delete/'+id, {_token: '<?php echo csrf_token() ?>'}, (res)=>{
                 // console.log(res);
                 if(res.out){
                     location.reload();

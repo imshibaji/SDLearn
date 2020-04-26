@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d0a08b3ba096fac124963f93a8099f74",
+    "content-hash": "d40ac3405e04a9a716b5dfa75046cfd1",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -335,6 +335,50 @@
             "time": "2020-02-22T01:51:47+00:00"
         },
         {
+            "name": "instamojo/instamojo-php",
+            "version": "0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Instamojo/instamojo-php.git",
+                "reference": "99dc50bf008be77be84f447607e416f73f319904"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Instamojo/instamojo-php/zipball/99dc50bf008be77be84f447607e416f73f319904",
+                "reference": "99dc50bf008be77be84f447607e416f73f319904",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Instamojo\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Instamojo and contributors",
+                    "email": "dev@instamojo.com",
+                    "homepage": "https://github.com/instamojo/instamojo-php/contributors"
+                }
+            ],
+            "description": "This is composer wrapper for instamojo-php",
+            "homepage": "https://github.com/instamojo/instamojo-php/",
+            "keywords": [
+                "api",
+                "instamojo",
+                "php",
+                "wrapper"
+            ],
+            "time": "2019-05-05T17:03:40+00:00"
+        },
+        {
             "name": "jakub-onderka/php-console-color",
             "version": "v0.2",
             "source": {
@@ -374,6 +418,7 @@
                     "email": "jakub.onderka@gmail.com"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-color",
             "time": "2018-09-29T17:23:10+00:00"
         },
         {
@@ -420,6 +465,7 @@
                 }
             ],
             "description": "Highlight PHP code in terminal",
+            "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2018-09-29T18:48:56+00:00"
         },
         {

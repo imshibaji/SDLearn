@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $title ?? 'Shibaji Debnath'}} | Jobs Center</title>
+    <title>{{ $title ?? 'Shibaji Debnath'}} | Technology Learning Center</title>
     <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- <link href="{{ url('/') }}/css/bootstrap.min.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{ url('/') }}/css/font-awesome.min.css">
@@ -38,10 +41,10 @@
                         <a class="nav-link hover-nav" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                 @else
-                    <li class="nav-item active">
+                    <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('admin')}}">Dashboard <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{ Request::is('admin/learn/course/list') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('admincourselist')}}">Courses</a>
                     </li>
                     {{-- <li class="nav-item">
@@ -50,14 +53,19 @@
                     <li class="nav-item">
                         <a class="nav-link hover-nav" href="#">Notifications</a>
                     </li> --}}
-                    <li class="nav-item">
+                    <li class="nav-item {{ Request::is('admin/user/list') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('adminuserlist')}}">Users</a>
                     </li>
+                    <li class="nav-item {{ Request::is('admin/notify/list') ? 'active' : '' }}">
+                        <a class="nav-link hover-nav" href="{{route('adminnotifylist')}}">Notifitions</a>
+                    </li>
+                    @utype('admin')
                     <li class="nav-item dropdown">
                         <a class="nav-link hover-nav dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           All Learnings
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{route('admincatagorylist')}}">Catagories</a>
                             <a class="dropdown-item" href="{{route('admincourselist')}}">Courses</a>
                             <a class="dropdown-item" href="{{route('admintopiclist')}}">Topics</a>
                             <a class="dropdown-item" href="{{route('adminquestionlist')}}">Questions</a>
@@ -65,6 +73,7 @@
                             <a class="dropdown-item" href="{{route('admincommentlist')}}">Comments</a>
                         </div>
                     </li>
+                    @endutype
                 @endguest
             </ul>
 
@@ -148,6 +157,7 @@
 <script src="{{url('/')}}/js/app.js"></script>
 <script src="{{url('/')}}/vendors/ckeditor/ckeditor.js"></script>
 <script src="{{url('/')}}/js/prism_patched.min.js"></script>
+<script src="{{url('/')}}/js/script.js"></script>
 @section('scripts')
 @show
 @section('scripts2')

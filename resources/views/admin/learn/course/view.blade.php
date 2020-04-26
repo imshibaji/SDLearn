@@ -33,24 +33,26 @@
         <thead>
             <tr>
                 <th scope="col" class="text-center">#</th>
-                <th scope="col">Short</th>
+                {{-- <th scope="col">Short</th> --}}
                 <th>Topic Name</th>
-                <th>Description</th>
+                {{-- <th>Description</th> --}}
                 <th>Duration</th>
                 <th>Status</th>
-                <th>Action</th>
+                <th class="text-center">Action</th>
             </tr>
         </thead>
         <tbody>
         @foreach($course->topics()->orderBy('short','ASC')->get() as $topic)
             <tr>
-                <td class="index">{{$topic->short ?? '#'}}</td>
-                <td class="indexInput">
+                <td class="index">{{$topic->short ?? '#'}}
                     <input type="hidden" name="tid" id="tid" value="{{ $topic->id }}">
-                    <input size="2" readonly type="text" name="short" id="index" value="{{ $topic->short }}">
                 </td>
-                <td>{{$topic->title}}</td>
-                <td>{{ substr($topic->details, 0, 60) }}</td>
+                {{-- <td class="indexInput">
+                    
+                    <input size="2" readonly type="text" name="short" id="index" value="{{ $topic->short }}">
+                </td> --}}
+                <td style="width:50%">{{$topic->title}}</td>
+                {{-- <td>{{ substr($topic->details, 0, 60) }}</td> --}}
                 <td>
                     @php
                         $dur = json_decode($topic->duration, true);
@@ -58,10 +60,14 @@
                     {{ $dur['totsec'] }}
                 </td>
                 <td>{{$topic->status}}</td>
-                <td>
-                    <a href="{{url('/')}}/admin/learn/topic/view/{{$topic->id}}" class="btn btn-info">View</a>
-                    <a href="{{url('/')}}/admin/learn/topic/edit/{{$topic->id}}" class="btn btn-warning">Edit</a>
-                    <button class="btn btn-danger" onclick="remove('{{ $topic->id }}')">Delete</button>
+                <td class="text-center">
+                    <div class="btn-group">
+                        <a href="{{url('/')}}/admin/learn/topic/view/{{$topic->id}}" class="btn btn-info">View</a>
+                        <a href="{{url('/')}}/admin/learn/topic/edit/{{$topic->id}}" class="btn btn-warning">Edit</a>
+                        @utype('admin')
+                        <button class="btn btn-danger" onclick="remove('{{ $topic->id }}')">Delete</button>
+                        @endutype
+                    </div>
                 </td>
             </tr>
         @endforeach

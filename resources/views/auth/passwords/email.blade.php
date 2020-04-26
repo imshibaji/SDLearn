@@ -11,11 +11,13 @@
             </div>
 
             <div class="row p-2">
+                <div class="col">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
+                </div>
             </div>
             <form method="POST" action="{{ route('password.email') }}">
                 @csrf

@@ -14,44 +14,37 @@
                         </div>
                     @endif
 
-
-                    <div class="container">
-                        <div class="row">
-                            @foreach ($courses as $course)
-                            <div class="col-12 col-sm-6 col-md-3 block p-2">
-                                <h4 class="text-center m-0">{{ $course->title }}</h4>
-                                <div class="py-2">
-                                    <div class="text-justify py-2">
-                                        {{$course->meta_desc}}.
+                    {{-- Course List --}}
+                        <div class="container-fluid">
+                            <div class="row">
+                                @foreach ($courses as $learn)
+                                {{-- @if($learn->course->status == 'active') --}}
+                                <div class="col-12 col-sm-6 col-md-3 block p-2">
+                                    <h4 class="text-center m-0">{{ $learn->course->title }}</h4>
+                                    <div class="py-2">
+                                        <div class="text-justify py-2">
+                                            {{$learn->course->meta_desc}}.
+                                        </div>
+                                        <div class="text-justify p-2">
+                                            Duration: {{ $learn->course->duration }}<br/>
+                                            Accessible: <strong class="text-success">{{ ucwords($learn->course->accessible) }}</strong>
+                                        </div>
                                     </div>
-                                    <div class="text-justify p-2">
-                                        Duration: {{ $course->duration }}<br/>
-                                        Price: 
-                                        @if($course->offer_price != null) 
-                                            <strong class="text-danger"><del>₹{{ $course->actual_price }}/-</del></strong>
-                                            <strong class="text-success">₹{{ $course->offer_price }}/-</strong>
-                                        @else
-                                            <strong class="text-success">₹{{ $course->actual_price }}/-</strong>
-                                        @endif<br/>
-                                        Accessible: <strong class="text-success">{{ ucwords($course->accessible) }}</strong>
+                                    <div class="text-center px-4">
+                                        <a href="{{ route('usercdetails', $learn->course->id) }}" class="btn btn-primary btn-block">Learn More</a>
                                     </div>
                                 </div>
-                                <div class="text-center px-4">
-                                    <a href="{{ route('usercdetails', $course->id) }}" class="btn btn-primary">Learn More</a>
-                                    <button class="btn btn-warning" onclick="checking('{{$course->title}}', {{$course->actual_price}})">Enroll Now</button>
-                                </div>
+                                {{-- @endif --}}
+                                @endforeach
                             </div>
-                            @endforeach
                         </div>
-                    </div>
-                    
+                        {{-- Course List --}}
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-@include('layouts.modal')
 @endsection
 
 @section('headers')

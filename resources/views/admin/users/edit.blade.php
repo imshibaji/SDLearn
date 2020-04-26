@@ -87,7 +87,9 @@
               <select name="user_type" class="form-control" id="utype">
                 <option value="user" @if($user->user_type == 'user') selected @endif>User</option>
                 <option value="stuff" @if($user->user_type == 'stuff') selected @endif>Stuff</option>
-                <option value="admin" @if($user->user_type == 'admin') selected @endif>Admin</option>
+                @utype('admin')
+                  <option value="admin" @if($user->user_type == 'admin') selected @endif>Admin</option>
+                @endutype
               </select>
             </div>
             <div class="col form-group">
@@ -113,7 +115,9 @@
             <select name="manage_by_user_id" class="form-control" id="active">
               <option value="0">None</option>
               @foreach ($users as $u)
-                <option value="{{$u->id}}" @if($u->id == $user->manage_by_user_id) selected @endif>{{$u->fname}} {{$u->lname}}</option>
+                @if($u->user_type == 'stuff')
+                  <option value="{{$u->id}}" @if($u->id == $user->manage_by_user_id) selected @endif>{{$u->fname}} {{$u->lname}}</option>
+                @endif
               @endforeach
             </select>
           </div>

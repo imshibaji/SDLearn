@@ -4,8 +4,10 @@
 /// Admin Sections ///
 //////////////////////
 
+use App\Http\Controllers\Admin\ApiController;
 use App\Http\Controllers\Admin\AssignController;
 use App\Http\Controllers\Admin\GemsController;
+use App\Http\Controllers\Admin\Learn\CatagoryController;
 use App\Http\Controllers\Admin\Learn\CommentController;
 use App\Http\Controllers\Admin\LearningController;
 use App\Http\Controllers\Admin\MoneyController;
@@ -15,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'AdminController@index')->name('admin');
 Route::get('profile', 'AdminController@profile')->name('admin-profile');
 
-Route::get('/api/users', 'AdminController@users')->name('adminusersapi');
+ApiController::routes();
 
 // Users Section
 
@@ -27,34 +29,12 @@ MoneyController::routes();
 
 GemsController::routes();
 
-// Route::prefix('user')->group(function(){
-//     Route::get('list', 'UserController@list')->name('adminuserlist');
-//     Route::get('add', 'UserController@add')->name('adminuseradd');
-//     Route::post('create', 'UserController@create')->name('adminusercreate');
-//     Route::get('edit/{user}', 'UserController@edit')->name('adminuseredit');
-//     Route::post('update', 'UserController@update')->name('adminuserupdate');
-//     Route::get('view/{user}', 'UserController@view')->name('adminuserview');
-//     Route::post('delete/{user}', 'UserController@delete')->name('adminuserdelete');
-// });
-
 AssignController::routes();
 
-// Route::prefix('assign')->group(function(){
-//     Route::get('course', 'UserController@course_assign')->name('courseassign');
-//     Route::get('courseunset', 'UserController@course_unassign')->name('courseassignunset');
-
-//     Route::get('topic', 'UserController@topic_assign')->name('topicassign');
-//     Route::get('topicunset', 'UserController@topic_unassign')->name('topicassignunset');
-
-//     Route::get('noset', 'UserController@noassign')->name('noassign');
-//     Route::get('check', 'UserController@checkCourseAssignment')->name('assigncheck');
-//     Route::get('data', 'UserController@data')->name('assigndata');
-
-
-//     Route::post('learning', 'UserController@learning_update')->name('assignlearning');
-// });
-
 Route::prefix('learn')->group(function(){
+    // Catagory Section
+    CatagoryController::routes();
+
     // Course Section
     Route::prefix('course')->group(function(){
         Route::get('list', 'Learn\CourseController@list')->name('admincourselist');

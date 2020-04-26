@@ -130,15 +130,23 @@
 
                 @if(isset($r['user_answer']))
                   <div class="pb-4">
-                      <span class="text-primary">Answer:</span> 
+                      <span class="text-primary">Your Answer:</span> 
                       {!! $r['user_answer'] !!}
                   </div>
                 @endif
+                
+                @if($r['remark'] == 'Correct')
+                  <h5 class="text-success">You Answer is Correct</h5> 
+                @elseIf($r['remark'] == 'InCorrect')
+                  <h5 class="text-danger">You Answer is Inorrect</h5>
+                @else
+                  <h5 class="text-primary">You Answer is Thoughful</h5>
+                @endif
 
-                <h5 class="text-success">Currect Answer:</h5> 
-                {!! $r['answer'] !!}
-                <div class="shadow-none p-3 bg-light rounded text-center">
-                    Remark: Your answer is {{$r['remark']}}.
+                
+                <div class="shadow-none p-3 bg-light rounded text-left">
+                  <strong>Correct Answer:</strong> 
+                  {!! $r['answer'] !!}
                 </div>
               </div>
             @endforeach

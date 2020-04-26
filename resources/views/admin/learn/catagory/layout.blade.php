@@ -12,7 +12,7 @@
                         </div>
                         @section('quickbtn')
                             <div class="col text-right">
-                                <a href="{{ url('admin/learn/course/add') }}" class="btn btn-primary">Add Course</a>
+                                <a href="{{ url('admin/learn/catagory/add') }}" class="btn btn-primary">Add Catagory</a>
                             </div>
                         @show
                     </div>

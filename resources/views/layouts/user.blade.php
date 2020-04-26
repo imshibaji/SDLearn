@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $title ?? 'Shibaji Debnath'}} | Jobs Center</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
+    <title>{{ $title ?? 'Shibaji Debnath'}} | Technology Learning Center</title>
     <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16">
     {{-- <link href="{{ url('/') }}/css/bootstrap.min.css" rel="stylesheet">--}}
     <link rel="stylesheet" href="{{ url('/') }}/css/font-awesome.min.css">
@@ -42,18 +44,19 @@
                     {{-- <li class="nav-item {{ Request::is('user/courses') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('usercourses')}}">Courses</a>
                     </li> --}}
-                    <li class="nav-item {{ Request::is('user/learn') ? 'active' : '' }}">
-                        <a class="nav-link hover-nav" href="{{route('userlearn')}}">My Learnings</a>
+                    <li class="nav-item {{ Request::is('user/my-courses') ? 'active' : '' }}">
+                        <a class="nav-link hover-nav" href="{{route('userMyCourses')}}">My Courses</a>
                     </li>
-                    <li class="nav-item {{ Request::is('user/reports') ? 'active' : '' }}">
+
+                    {{-- It Will be Used In feuture --}}
+                    {{-- <li class="nav-item {{ Request::is('user/learn') ? 'active' : '' }}">
+                        <a class="nav-link hover-nav" href="{{route('userlearn')}}">My Courses</a>
+                    </li> --}}
+                    {{-- <li class="nav-item {{ Request::is('user/reports') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('userreports')}}">Report Chart</a>
-                    </li>
+                    </li> --}}
                     {{-- <li class="nav-item {{ Request::is('user/jobs') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('userjobs')}}">Job Openings</a>
-                    </li> --}}
-                    
-                    {{-- <li class="nav-item">
-                        <a class="nav-link hover-nav" href="#">Professional Courses</a>
                     </li> --}}
                 @endguest
             </ul>
@@ -75,6 +78,11 @@
                             <a class="nav-link hover-nav" href="{{ route('admin') }}">Admin Dashboard</a>
                         </li>
                     @endutype
+                    @utype('stuff')
+                        <li class="nav-item">
+                            <a class="nav-link hover-nav" href="{{ route('admin') }}">Admin Dashboard</a>
+                        </li>
+                    @endutype
 
                     {{-- <li class="nav-item">
                         <a class="nav-link hover-nav" href="#">Notifications</a>
@@ -86,9 +94,9 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('usergems') }}">
+                            {{-- <a class="dropdown-item" href="{{ route('usergems') }}">
                                 {{ __('Affiliate') }}
-                            </a>
+                            </a> --}}
                             <a class="dropdown-item" href="{{ route('transactions') }}">
                                 {{ __('Billing') }}
                             </a>
@@ -120,7 +128,7 @@
           <!-- Copyright By -->
         <div class="container">
             <div class="row p-3 m-0">
-                <div class="col-md">
+                <div class="col-md text-center text-md-left">
                     <p class="text-light">SDJobs v0.0.1</p>
                 </div>
                 <div class="col-md text-center">
@@ -129,7 +137,7 @@
                         <br /> Since 2014 - {{ date('Y') }}
                     </p>
                 </div>
-                <div class="col-md text-right">
+                <div class="col-md text-center text-md-right">
                     <p class="text-light">Developed By <a class="text-light" href="https://www.medust.com">Medust Technology Pvt. Ltd.</a>
                     </p>
                 </div>
@@ -142,9 +150,8 @@
 @section('footers')
 @show
 
-{{-- <script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script> --}}
 <script src="{{url('/')}}/js/app.js"></script>
+<script src="{{url('/')}}/js/script.js"></script>
 @section('scripts')
 @show
 </body>

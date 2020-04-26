@@ -8,8 +8,10 @@ use App\models\Course;
 use App\Models\Gem;
 use App\Models\Learning;
 use App\Models\Money;
+use App\Models\UserChart;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +21,10 @@ class UserController extends Controller
     // Users Area
     public function list(){
         $users = User::all();
+
+        if(Auth::user()->user_type == 'stuff'){
+            $users = Auth::user()->manages;
+        }
         return view('admin.users.list', ['title' => 'User List', 'users' => $users]);
     }
 
@@ -95,13 +101,14 @@ class UserController extends Controller
         $money = Money::where('user_id', $user->id)->get()->last();
         $gem = Gem::where('user_id', $user->id)->get()->last();
         $comments = Comment::where('user_id', $user->id)->get();
+        $chart = UserChart::where('user_id', $user->id)->get();
 
         return view('admin.users.view', [
             'title' => 'User Details', 
             'user' => $user, 
             'courses' => $courses,
             'learn' => $learning,
-            'charts' => json_decode($learning->reports_chart ?? '[]'),
+            'charts' => $chart,
             'money' => $money,
             'gem' => $gem,
             'comments' => $comments

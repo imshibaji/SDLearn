@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Learn;
 use App\Http\Controllers\Controller;
 use App\Models\Catagory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class CatagoryController extends Controller
 {
@@ -69,5 +70,18 @@ class CatagoryController extends Controller
         ];
 
         return $out;
+    }
+
+    public static function routes(){
+        Route::prefix('catagory')->group(function(){
+            Route::get('list', 'Learn\CatagoryController@list')->name('admincatagorylist');
+            Route::get('add', 'Learn\CatagoryController@add')->name('admincatagoryadd');
+            Route::post('create', 'Learn\CatagoryController@create')->name('admincatagorycreate');
+            Route::get('edit/{id}', 'Learn\CatagoryController@edit')->name('admincatagoryedit');
+            Route::post('update', 'Learn\CatagoryController@update')->name('admincatagoryupdate');
+            Route::get('view/{id}', 'Learn\CatagoryController@view')->name('admincatagoryview');
+            Route::post('delete/{id}', 'Learn\CatagoryController@delete')->name('admincatagorydelete');
+            Route::post('short', 'Learn\CatagoryController@short')->name('admincatagoryshort');
+        });
     }
 }

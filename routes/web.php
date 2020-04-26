@@ -11,14 +11,16 @@
 |
 */
 
+use App\Http\Controllers\Admin\NotificationController;
+use App\Models\Activity;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Front Parts
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/signup', 'HomeController@signup')->name('signup');
-Route::get('/next', 'HomeController@success')->name('next');
 
 Route::post('/profile', 'HomeController@profile')->name('profilePost');
 Route::post('/change', 'HomeController@changePassword')->name('changePassword');
@@ -29,9 +31,23 @@ Route::get('/plans', 'HomeController@plans')->name('plans');
 Route::get('/data', 'HomeController@data');
 Route::get('/ref-code', 'HomeController@refer_code');
 
+// Payment Controller
+Route::get('/bill', 'PaymentController@bill')->name('bill');
+Route::any('/payment', 'PaymentController@pay')->name('billpay');
+Route::get('/payreport', 'PaymentController@report');
+Route::get('/payreportlist', 'PaymentController@reportList');
 
 
 
+// Admin Chart Create
+Route::get('/ahoy/events', 'Admin\ActivityController@chartDataCreate');
+// Admin Chart 
+Route::get('/ahoy/chart', 'Admin\ActivityController@chartPrepaire');
+
+// Activities Data Create
+Route::post('/ahoy/visits', 'Admin\ActivityController@create');
+// Activities Data cleaning
+Route::get('/del_activity', 'Admin\ActivityController@delete');
 
 Route::get('/jobs', function () {
     return view('fronts.jobs');
@@ -61,11 +77,14 @@ Route::get('/get', function () {
 });
 
 
+Route::get('/make', 'ManageController@index');
 Route::get('/make/{$name}', 'ManageController@make');
 Route::get('/migration', 'ManageController@migrate');
 
-Auth::routes();
 
+Auth::routes(['verify' => true]);
+
+NotificationController::routes();
 
 // API
 Route::prefix('api')->group(function(){
@@ -81,5 +100,11 @@ Route::middleware(['auth', 'checkadmin'])->prefix('admin')
 Route::middleware(['auth'])->prefix('user')
 ->namespace('User')->group(base_path('routes/users.php'));
 
+
+
+
+Route::fallback(function () {
+    return view('errors.404');
+});
 
 

@@ -18,7 +18,6 @@ class CreateCoursesTable extends Migration
             $table->integer('catagory_id');
             $table->string('title', 191);
             $table->string('slag', 191);
-            // $table->string('courseid', 10)->nullable();
             $table->text('details')->nullable();
             $table->string('meta_keys')->nullable();
             $table->string('meta_desc')->nullable();
@@ -29,6 +28,7 @@ class CreateCoursesTable extends Migration
             $table->float('actual_price')->nullable();
             $table->float('offer_price')->nullable();
             $table->integer('user_id');
+            $table->integer('manager_user_id')->nullable();
             $table->timestamps();
         });
     }

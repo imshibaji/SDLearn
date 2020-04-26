@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md">
-            <form action="{{route('admincoursecreate')}}" method="POST">
+            <form action="{{route('admincatagorycreate')}}" method="POST">
                 @csrf
                 <table class="table">
                     <tr>
@@ -20,6 +20,15 @@
                     <tr>
                         <td>Details</td>
                         <td colspan="3"><input type="text" id="details" name="details" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td colspan="3">
+                            <select id="status" name="status" class="form-control">
+                                <option value="active">Active</option>
+                                <option value="inactive">InActive</option>
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>

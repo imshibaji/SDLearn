@@ -12,56 +12,63 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1>{{$course->title}}</h1>
-            <div>{!! $course->details !!}</div>
+            <h1>{{$catagory->title}}</h1>
+            <div>{{ $catagory->details }}</div>
         </div>
     </div>
     <hr />
     <div class="row">
         <div class="col-md-5">
-            <h3>Topics List</h3>
+            <h3>Course List</h3>
         </div>
         <div class="col-md-5">
-            <h4 class="text-md-right text-center">Do you want to add new topic?</h5>
+            <h4 class="text-md-right text-center">Do you want to add new Course?</h5>
         </div>
         <div class="col-md-2 text-center">
-            <a href="{{ url('admin/learn/topic/add') }}" class="btn btn-success">Add Topic</a>
+            <a href="{{ url('admin/learn/course/add') }}" class="btn btn-success">Add Course</a>
         </div>
     </div>
 </div>
+
     <table class="table" id="myTable">
         <thead>
             <tr>
                 <th scope="col" class="text-center">#</th>
-                <th scope="col">Short</th>
-                <th>Topic Name</th>
-                <th>Description</th>
-                <th>Duration</th>
+                {{-- <th scope="col">Short</th> --}}
+                <th>Course Name</th>
+                {{-- <th>Description</th> --}}
+                {{-- <th>Duration</th> --}}
                 <th>Status</th>
-                <th>Action</th>
+                <th class="text-center">Action</th>
             </tr>
         </thead>
         <tbody>
-        @foreach($course->topics()->orderBy('short','ASC')->get() as $topic)
+        @foreach($catagory->courses()->orderBy('short','ASC')->get() as $course)
             <tr>
-                <td class="index">{{$topic->short ?? '#'}}</td>
-                <td class="indexInput">
-                    <input type="hidden" name="tid" id="tid" value="{{ $topic->id }}">
-                    <input size="2" readonly type="text" name="short" id="index" value="{{ $topic->short }}">
+                <td class="index">{{$course->short ?? '#'}}
+                    <input type="hidden" name="tid" id="tid" value="{{ $course->id }}">
                 </td>
-                <td>{{$topic->title}}</td>
-                <td>{{ substr($topic->details, 0, 60) }}</td>
+                {{-- <td class="indexInput">
+                    <input type="hidden" name="tid" id="tid" value="{{ $course->id }}">
+                    <input size="2" readonly type="text" name="short" id="index" value="{{ $course->short }}">
+                </td> --}}
+                <td style="width:50%">{{$course->title}}</td>
+                {{-- <td>{{ substr($course->details, 0, 60) }}</td>
                 <td>
                     @php
-                        $dur = json_decode($topic->duration, true);
+                        $dur = json_decode($course->duration, true);
                     @endphp
                     {{ $dur['totsec'] }}
-                </td>
-                <td>{{$topic->status}}</td>
-                <td>
-                    <a href="{{url('/')}}/admin/learn/topic/view/{{$topic->id}}" class="btn btn-info">View</a>
-                    <a href="{{url('/')}}/admin/learn/topic/edit/{{$topic->id}}" class="btn btn-warning">Edit</a>
-                    <button class="btn btn-danger" onclick="remove('{{ $topic->id }}')">Delete</button>
+                </td> --}}
+                <td>{{$course->status}}</td>
+                <td class="text-center">
+                    <div class="btn-group">
+                        <a href="{{url('/')}}/admin/learn/course/view/{{$course->id}}" class="btn btn-info">View</a>
+                        <a href="{{url('/')}}/admin/learn/course/edit/{{$course->id}}" class="btn btn-warning">Edit</a>
+                        @utype('admin')
+                        <button class="btn btn-danger" onclick="remove('{{ $course->id }}')">Delete</button>
+                        @endutype
+                    </div>
                 </td>
             </tr>
         @endforeach

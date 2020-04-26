@@ -5,7 +5,13 @@
         style="height:300px"
         :datasets=getDataSet()
         :labels="labels"
-        :options="{ maintainAspectRatio: false }"
+        :options="{ maintainAspectRatio: false, scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        } }"
     />
 </div>
 </template>
@@ -29,6 +35,7 @@ export default {
         this.design = mdata.design;
         this.develop = mdata.develop;
         this.debug = mdata.debug;
+        this.tasks = mdata.taskName;
         
         this.labels = [];
         for(let i=1; i<(this.length+1); i++){

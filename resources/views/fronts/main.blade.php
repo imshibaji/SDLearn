@@ -3,8 +3,8 @@
 @section('content')
 <div class="bg-dark">
 <div class="contents container page-height">
-    <div class="row justify-content-center align-items-center">
-        <div class="col-md-7 text-center d-none d-md-block">
+    <div class="row justify-content-center align-items-md-center">
+        <div class="col-md-7 text-center d-n-none d-md-block">
             <div class="embed-responsive embed-responsive-4by3 mb-3">
                 <iframe class="embed-responsive-item"
                 src="https://www.youtube.com/embed/BPn9WD4ti_0?controls=0" 

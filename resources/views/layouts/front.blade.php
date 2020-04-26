@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $title ?? 'Shibaji Debnath'}} | Jobs Center</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
+    <title>{{ $title ?? 'Shibaji Debnath'}} | Technology Learning Center</title>
     <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16">
     {{-- <link href="{{ url('/') }}/css/bootstrap.min.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{ url('/') }}/css/font-awesome.min.css">
@@ -69,14 +71,14 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link hover-nav dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <img src="{{ url('/') }}/imgs/shibaji.png" class="img-thumbnail-icon">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{-- <img src="{{ url('/') }}/imgs/shibaji.png" class="img-thumbnail-icon"> --}}
+                                    {{ Auth::user()->fname }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
+                                            document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -139,10 +141,8 @@
 @section('footers')
 @show
 
-    {{-- <script src="{{url('/')}}/js/jquery.min.js"></script>
-    <script src="{{url('/')}}/js/bootstrap.min.js"></script> --}}
-
     <script src="{{url('/')}}/js/app.js"></script>
+    <script src="{{url('/')}}/js/script.js"></script>
 
     @error('email')
         <div class="alert alert-danger alert-dismissible fade show" 

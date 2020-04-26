@@ -14,14 +14,27 @@
                         </div>
                     @endif
                     
-                    <x-alert :message="$inspaire" />
+                    <x-alert :message="$inspaire" type="info" />
 
-                  
-
-                    <user-main-dashboard />
+                    {{-- <user-main-dashboard></user-main-dashboard> --}}
+                    
+                    <x-course-list :courses="$courses" />
+                    
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+{{-- @include('layouts.modal') --}}
+@endsection
+
+
+@section('headers')
+<style>
+.block{
+    margin: 0px;
+}
+</style>
 @endsection

@@ -25,7 +25,6 @@ class CreateLearningTable extends Migration
             $table->integer('design_points')->nullable();
             $table->integer('developing_points')->nullable();
             $table->integer('debugging_points')->nullable();
-            $table->json('reports_chart')->nullable();
             $table->timestamps();
         });
     }

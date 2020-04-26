@@ -9,6 +9,15 @@
                         <h2>{{ __('Login') }}</h2>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                    </div>
+                </div>
                 <form method="POST" action="{{ route('login') }}">
                         @csrf
                 <div class="row p-2">

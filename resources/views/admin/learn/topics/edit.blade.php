@@ -30,7 +30,7 @@
                     </tr>
                     <tr>
                         <td>Embed Code</td>
-                        <td><textarea name="embed_code" class="form-control">{{ $topic->embed_code }}</textarea></td>
+                        <td><textarea name="embed_code" id="embed_code" class="form-control">{{ $topic->embed_code }}</textarea></td>
                     </tr>
                     <tr>
                         <td>Description</td>
@@ -88,7 +88,26 @@
 @section('scripts')
 <script>
 window.onload = function(){
-    CKEDITOR.replace('editor');
+    CKEDITOR.replace('embed_code', {
+      height: 80,
+      // Define the toolbar groups as it is a more accessible solution.
+      toolbarGroups: [
+        {
+          "name": "insert",
+          "groups": ["insert"]
+        },
+        {
+          "name": "document",
+          "groups": ["mode"]
+        }
+      ],
+    });
+    CKEDITOR.replace('editor', {
+      height: 400,
+      baseFloatZIndex: 10005,
+      // Remove the redundant buttons from toolbar groups defined above.
+      removeButtons: 'Cut,Copy,Paste,PasteText,PasteFromWord'
+    });
 }
 $('#hours, #minutes, #seconds').keyup(()=>{
     var hours = $('#hours').val();

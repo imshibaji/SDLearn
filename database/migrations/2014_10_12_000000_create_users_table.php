@@ -33,6 +33,7 @@ class CreateUsersTable extends Migration
             $table->string('country')->nullable();
             $table->string('user_type',10);
             $table->boolean('active');
+            $table->string('premium_status')->nullable();
             $table->bigInteger('reffer_by_user_id')->nullable();
             $table->bigInteger('manage_by_user_id')->nullable();
             $table->rememberToken();

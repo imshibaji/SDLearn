@@ -6,8 +6,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Cache;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
     use SoftDeletes;
@@ -50,6 +51,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function scopeIsActive($q){
+        return $q->where('active', 1);
+    }
+
+    public function scopeIsAdmin($query){
+        return $query->where('user_type', 'admin');
+    }
+
+    public function scopeIsStuff($query){
+        return $query->where('user_type', 'stuff');
+    }
+
+    public function scopeIsUser($query){
+        return $query->where('user_type', 'user');
+    }
 
     public function reffered(){
         return $this->belongsTo('App\User', 'reffer_by_user_id');
@@ -97,5 +114,21 @@ class User extends Authenticatable
 
     public function money(){
         return $this->hasMany('App\Models\Money');
+    }
+
+    public function userChart(){
+        return $this->hasMany('App\Models\UserChart');
+    }
+
+    public function instaMojoPayments(){
+        return $this->hasMany('App\Models\InstaMojoPayment');
+    }
+
+    public function activities(){
+        return $this->hasMany('App\Models\Activity');
+    }
+
+    public function isOnline(){
+        return Cache::has('user-is-online-' . $this->id);
     }
 }

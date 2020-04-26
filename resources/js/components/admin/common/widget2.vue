@@ -1,25 +1,43 @@
 <template>
 <div>
-<CChartBar
+<!-- <CChartBar
     style="height:200px"
     :datasets="[
       {
-        data: [20, 22, 34, 46, 58, 70, 46, 23, 45, 78, 34, 12],
+        data: this.new_users,
         backgroundColor: '#3490dc',
         label: 'New Users',
       },
       {
-        data: [14, 20, 3, 56, 56, 7, 6, 27, 40, 70, 14, 19],
-        backgroundColor: '#f6993f',
+        data: this.active_users,
+        backgroundColor: '#38c172',
         label: 'Active Users',
       },
       {
-        data: [6, 2, 33, 10, 2, 69, 40, 5, 5, 8, 20, 7],
-        backgroundColor: '#38c172',
-        label: 'Paid Users',
+        data: this.page_views,
+        backgroundColor: '#f6993f',
+        label: 'Page Views',
       }
     ]"
-    labels="months"
+    :labels="this.labels"
+    :options="{ maintainAspectRatio: false  }"
+  /> -->
+
+  <CChartBar
+    style="height:200px"
+    :datasets="[
+      {
+        data: this.new_users,
+        backgroundColor: '#3490dc',
+        label: 'New Users',
+      },
+      {
+        data: this.active_users,
+        backgroundColor: '#38c172',
+        label: 'Active Users',
+      }
+    ]"
+    :labels="this.labels"
     :options="{ maintainAspectRatio: false  }"
   />
 </div>
@@ -27,6 +45,28 @@
 
 <script>
 export default {
-    name: 'ChartWidget'
+    name: 'ChartWidget',
+    data(){
+      return{
+        labels: [],
+        new_users: [],
+        // page_views: [],
+        active_users: []
+      }
+    },
+    async mounted(){
+      
+      this.chartData();
+    },
+    methods:{
+      async chartData(){
+        const chartDatas = await axios.get('/admin/api/chart');
+        const datas = chartDatas.data;
+        this.labels = datas.labels;
+        this.new_users = datas.new_users;
+        // this.page_views = datas.page_views;
+        this.active_users = datas.active_users;
+      }
+    }
 }
 </script>
