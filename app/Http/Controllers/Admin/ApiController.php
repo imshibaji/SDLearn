@@ -39,6 +39,7 @@ class ApiController extends Controller
     }
 
     public function expanse(){
+
         return 0;
     }
 

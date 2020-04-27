@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -10,7 +11,8 @@ use Illuminate\Support\Facades\Route;
 class NotificationController extends Controller
 {
     public function list(){
-        return view('admin.notify.list');
+        $notifies = Notification::all();
+        return view('admin.notify.list', compact('notifies'));
     }
 
     public function add(){
@@ -18,42 +20,60 @@ class NotificationController extends Controller
     }
 
     public function create(Request $req){
-        $data = [
-            "user_id" => $req->uid,
-            "title" => $this->short_code($req->title, Auth::user()),
-            "details" => $this->short_code($req->details, Auth::user()),
-            "sending_time" => $req->sending_date.' '.$req->sending_time,
-            "expaire_at" => $req->expaire_date.' '.$req->expaire_time,
-            "notify_type" => $req->notify_type,
-            "premium_type" => $req->premium_type,
-            "user_type" => $req->user_type
-        ];
-        return $data;
+        $notify = new Notification();
+
+        $notify->user_id = $req->uid;
+        $notify->title = $req->title;
+        $notify->details = $req->details;
+        $notify->sending_time = $req->sending_date.' '.$req->sending_time;
+        $notify->expaire_at = $req->expaire_date.' '.$req->expaire_time;
+        $notify->notify_type = $req->notify_type;
+        $notify->premium_type = $req->premium_type;
+        $notify->user_type = $req->user_type;
+        $notify->save();
+
+        session()->flash('status', 'Notification sended Successfull.');
+        
+        return back();
     }
 
-    public function edit(){
-        return view('admin.notify.edit');
+    public function edit($id){
+        $notify = Notification::find($id);
+        return view('admin.notify.edit', compact('notify'));
     }
 
     public function update(Request $req){
-        return $req;
+        $notify = Notification::find($req->nid);
+
+        $notify->user_id = $req->uid;
+        $notify->title = $req->title;
+        $notify->details = $req->details;
+        $notify->sending_status = $req->sending_status;
+        $notify->sending_time = $req->sending_date.' '.$req->sending_time;
+        $notify->expaire_at = $req->expaire_date.' '.$req->expaire_time;
+        $notify->notify_type = $req->notify_type;
+        $notify->premium_type = $req->premium_type;
+        $notify->user_type = $req->user_type;
+        $notify->save();
+
+        return back();
     }
 
     public function delete(){
 
     }
 
-    public function view(){
-
+    public function view($id){
+        return view('admin.notify.view', ['title'=> 'Notification View']);
     }
 
     public static function routes(){
         Route::get('admin/notify/list', 'Admin\NotificationController@list')->name('adminnotifylist');
         Route::get('admin/notify/add', 'Admin\NotificationController@add')->name('adminnotifyadd');
         Route::post('admin/notify/create', 'Admin\NotificationController@create')->name('adminnotifycreate');
-        Route::get('admin/notify/edit', 'Admin\NotificationController@edit')->name('adminnotifyedit');
+        Route::get('admin/notify/edit/{id}', 'Admin\NotificationController@edit')->name('adminnotifyedit');
         Route::post('admin/notify/update', 'Admin\NotificationController@update')->name('adminnotifyupdate');
-        Route::get('admin/notify/view', 'Admin\NotificationController@view')->name('adminnotifyview');
+        Route::get('admin/notify/view/{id}', 'Admin\NotificationController@view')->name('adminnotifyview');
         Route::post('admin/notify/delete', 'Admin\NotificationController@delete')->name('adminnotifydelete');
     }
 

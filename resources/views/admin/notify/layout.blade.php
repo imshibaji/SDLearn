@@ -12,7 +12,7 @@
                         </div>
                         @section('quickbtn')
                             <div class="col text-right">
-                                <a href="{{url('/')}}/admin/notify/add" class="btn btn-primary">Create New Notification</a>
+                                <a href="{{url('/')}}/admin/notify/add" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Create Notification</a>
                             </div>
                         @show
                     </div>

@@ -2,7 +2,7 @@
 
 @section('quickbtn')
     <div class="col text-right">
-        <a href="{{url('/')}}/admin/notify/list" class="btn btn-primary">Notifications</a>
+        <a href="{{url('/')}}/admin/notify/list" class="btn btn-primary"><i class="fa fa-bell" aria-hidden="true"></i> Notifications</a>
     </div>
 @endsection
 
@@ -59,7 +59,7 @@
         <div class="form-group">
             <label for="premium_type">Premium Type</label>
             <select name="premium_type" class="form-control" id="premium_type">
-                <option value="">None</option>
+                <option value="none">None</option>
                 <option value="silver">Silver</option>
                 <option value="gold">Gold</option>
                 <option value="platinum">Platinum</option>
@@ -70,7 +70,7 @@
             <select name="user_type" class="form-control" id="user_type">
                 <option value="all">All</option>
                 <option value="user">User</option>
-                <option value="Stuff">Stuff</option>
+                <option value="stuff">Stuff</option>
                 <option value="Admin">Admin</option>
             </select>
         </div>

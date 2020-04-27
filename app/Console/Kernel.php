@@ -26,6 +26,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->everyMinute();
         $schedule->command('mail:send')->everyFiveMinutes()->unlessBetween('21:00', '9:00');
+        
+        // $schedule->command('mail:send')->everyMinute();
     }
 
     /**

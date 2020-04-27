@@ -12,9 +12,7 @@
 */
 
 use App\Http\Controllers\Admin\NotificationController;
-use App\Models\Activity;
 use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -71,7 +69,6 @@ Route::get('/add', function(){
 
 
 Route::get('/get', function () {
-    // $business = Business::all();
     $users = User::all();
     return $users;
 });
@@ -90,6 +87,11 @@ NotificationController::routes();
 Route::prefix('api')->group(function(){
     Route::get('info', 'HomeController@userActivityInfo');
     Route::get('admininfo','HomeController@adminActivityInfo');
+});
+
+Route::get('/api_gen/{id}', function($id){
+    $user = User::find($id);
+    return $user->generateToken();
 });
 
 // Admin Routes

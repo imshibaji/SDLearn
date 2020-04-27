@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('api_token', 80)->nullable();
             $table->string('fname');
             $table->string('lname');
             $table->string('mobile');
@@ -33,7 +34,7 @@ class CreateUsersTable extends Migration
             $table->string('country')->nullable();
             $table->string('user_type',10);
             $table->boolean('active');
-            $table->string('premium_status')->nullable();
+            $table->string('premium_status', 10)->nullable();
             $table->bigInteger('reffer_by_user_id')->nullable();
             $table->bigInteger('manage_by_user_id')->nullable();
             $table->rememberToken();

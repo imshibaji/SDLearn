@@ -100,8 +100,8 @@
         </div>
         <div class="row">
           <div class="col form-group">
-            <label for="utype">Reffer By</label>
-            <select name="reffer_by_user_id" class="form-control" id="utype">
+            <label for="reffer_by_user_id">Reffer By</label>
+            <select name="reffer_by_user_id" class="form-control" id="reffer_by_user_id">
               <option value="0">None</option>
               @foreach ($users as $u)
                 <option value="{{$u->id}}">{{$u->fname}} {{$u->lname}}</option>
@@ -109,8 +109,8 @@
             </select>
           </div>
           <div class="col form-group">
-            <label for="status">Managed By</label>
-            <select name="manage_by_user_id" class="form-control" id="active">
+            <label for="manage_by_user_id">Managed By</label>
+            <select name="manage_by_user_id" class="form-control" id="manage_by_user_id">
               <option value="0">None</option>
               @foreach ($users as $u)
                 @if($u->user_type == 'stuff')
