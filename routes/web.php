@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 // Front Parts
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/signup', 'HomeController@register_page')->name('register_page');
 Route::post('/signup', 'HomeController@signup')->name('signup');
+Route::post('/signin', 'HomeController@signin')->name('signin');
 
 Route::post('/profile', 'HomeController@profile')->name('profilePost');
 Route::post('/change', 'HomeController@changePassword')->name('changePassword');

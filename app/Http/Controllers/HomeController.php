@@ -38,6 +38,39 @@ class HomeController extends Controller
         ]);
     }
 
+    public function signin(Request $req){
+        request()->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+     
+        $credentials = $req->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+            return redirect()->intended('user');
+        }
+        session()->flash('status', 'Oppes! You have entered invalid credentials');
+        return redirect("login");
+    }
+
+    public function register_page(){
+        $uid = Auth::id();
+        if($uid){
+            return redirect('user');
+        }
+
+        $states = $this->getStates();
+        $countries = $this->getCountry();
+        $cities = $this->getCities();
+        
+        return view('fronts.signup', 
+        [
+            'states' => $states, 
+            'countries' => $countries,
+            'cities' => $cities
+        ]);
+    }
+
     public function signup(Request $req){
         $ref = 1;
         if($req->ref){
@@ -65,10 +98,21 @@ class HomeController extends Controller
 
         $id = $user->id;
         if($id>0){
-            session()->flash('status', 'You are succesefully register with us. login now.');
-            return redirect('login');
+            // session()->flash('status', 'You are succesefully register with us. login now.');
+            // return redirect('login');
+            request()->validate([
+                'email' => 'required',
+                'password' => 'required',
+            ]);
+         
+            $credentials = $req->only('email', 'password');
+            if (Auth::attempt($credentials)) {
+                // Authentication passed...
+                return redirect()->intended('user');
+            }
         }
-        return redirect('home');
+        session()->flash('status', 'You got registeration problem. Contact with us.');
+        return redirect('login');
     }
 
     public function about()

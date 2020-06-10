@@ -7,82 +7,69 @@
 @endsection
 
 @section('contentarea')
+<form action="{{route('admintopicupdate')}}" method="POST">
+    @csrf
+    <input type="hidden" name="tid" class="form-control" value="{{ $topic->id }}">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md">
-                <form action="{{route('admintopicupdate')}}" method="POST">
-                    @csrf
-                    <input type="hidden" name="tid" class="form-control" value="{{ $topic->id }}">
-                <table class="table">
-                    <tr>
-                        <td>Course Name</td>
-                        <td>
-                            <select name="course_id" class="form-control">
-                                @foreach ($courses as $course)
-                                    <option value="{{$course->id}}" @if($course->id === $topic->course->id) selected @endif>{{$course->title}}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Title</td>
-                    <td><input type="text" name="title" class="form-control" value="{{ $topic->title }}"></td>
-                    </tr>
-                    <tr>
-                        <td>Embed Code</td>
-                        <td><textarea name="embed_code" id="embed_code" class="form-control">{{ $topic->embed_code }}</textarea></td>
-                    </tr>
-                    <tr>
-                        <td>Description</td>
-                        <td><textarea name="details" id="editor" class="form-control">{{ $topic->details }}</textarea></td>
-                    </tr>
-                    <tr>
-                        <td>Duration</td>
-                        @php
-                            $dur = json_decode($topic->duration, true);
-                        @endphp
-                        <td class="row">
-                            <div class="col">
-                                <input type="number" id="hours" name="duration[hours]" class="form-control" placeholder="hours" value="{{ $dur['hours'] }}">
-                            </div>
-                            <div class="col">
-                                <input type="number" id="minutes" name="duration[minutes]" class="form-control" placeholder="minutes" value="{{ $dur['minutes'] }}">
-                            </div>
-                            <div class="col">
-                                <input type="number" id="seconds" name="duration[seconds]" class="form-control" placeholder="seconds" value="{{ $dur['seconds'] }}">
-                            </div>
-                            <div class="col">
-                                <input type="number" id="totsec" name="duration[totsec]" readonly class="form-control" placeholder="total seconds" value="{{ $dur['totsec'] }}">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Status</td>
-                        <td>
-                            <select name="status" class="form-control">
-                                <option value="active" @if($topic->status == 'active') selected @endIf>Active</option>
-                                <option value="inactive" @if($topic->status == 'inactive') selected @endIf>InActive</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Premium Status</td>
-                        <td>
-                            <select name="premium_status" class="form-control">
-                                <option value="free" @if($topic->premium_status == 'free') selected @endIf>Free</option>
-                                <option value="premium" @if($topic->premium_status == 'premium') selected @endIf>Premium</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td><input type="submit" class="btn btn-success" value="Submit"></td>
-                    </tr>
-                </table>
-                </form>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <input type="text" name="title" class="form-control" placeholder="Input Topic Title" value="{{ $topic->title }}">
+                </div>
+                <div class="form-group">
+                    <textarea name="details" id="editor" class="form-control">{{ $topic->details }}</textarea>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="cat_id">Select Catagory</label>
+                    <select name="course_id" id="cat_id" class="form-control">
+                        @foreach ($courses as $course)
+                            <option value="{{$course->id}}" @if($course->id === $topic->course->id) selected @endif>{{$course->title}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="embed_code">Embed Video</label>
+                    <textarea name="embed_code" id="embed_code" class="form-control">{{ $topic->embed_code }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="duration">Duration</label>
+                    @php
+                        $dur = json_decode($topic->duration, true);
+                    @endphp
+                    <div class="input-group">
+                        <input type="number" id="hours" name="duration[hours]" class="form-control" placeholder="hours" value="{{ $dur['hours'] }}">
+                        <input type="number" id="minutes" name="duration[minutes]" class="form-control" placeholder="minutes" value="{{ $dur['minutes'] }}">
+                        <input type="number" id="seconds" name="duration[seconds]" class="form-control" placeholder="seconds" value="{{ $dur['seconds'] }}">
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="number" id="totsec" name="duration[totsec]" readonly class="form-control" placeholder="Total Seconds" value="{{ $dur['totsec'] }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="status">Select Status</label>
+                    <select name="status" id="status" class="form-control">
+                        <option value="active" @if($topic->status == 'active') selected @endIf>Active</option>
+                        <option value="inactive" @if($topic->status == 'inactive') selected @endIf>InActive</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pstatus">Premium Status</label>
+                    <select name="premium_status" id="pstatus" class="form-control">
+                        <option value="free" @if($topic->premium_status == 'free') selected @endIf>Free</option>
+                        <option value="premium" @if($topic->premium_status == 'premium') selected @endIf>Premium</option>
+                    </select>
+                </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col"><input type="submit" class="btn btn-success btn-block" value="Submit"></div>
+        </div>
     </div>
+</form>
 @endsection
 
 @section('scripts')
@@ -103,7 +90,7 @@ window.onload = function(){
       ],
     });
     CKEDITOR.replace('editor', {
-      height: 400,
+      height: 365,
       baseFloatZIndex: 10005,
       // Remove the redundant buttons from toolbar groups defined above.
       removeButtons: 'Cut,Copy,Paste,PasteText,PasteFromWord'

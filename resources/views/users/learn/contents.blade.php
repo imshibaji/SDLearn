@@ -1,7 +1,7 @@
 {{-- Course / Topics Details --}}
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="topic-tab" data-toggle="tab" href="#topic" role="tab" aria-controls="topic" aria-selected="true">Details</a>
+      <a class="nav-link active" id="topic-tab" data-toggle="tab" href="#topic" role="tab" aria-controls="topic" aria-selected="true">Course Contents</a>
     </li>
     @if(count($assesments ?? []) == 0)
       <li class="nav-item">

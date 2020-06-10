@@ -29,7 +29,7 @@
                 <td>{{ $question->topic->title }}</td>
                 <td>{{ $dur['hours'] }}:{{ $dur['minutes'] }}:{{ $dur['seconds'] }} = {{ $dur['totsec'] }}</td>
                 <td>{{ $question->status }}</td>
-                <td>
+                <td class="btn-group">
                     <a href="{{url('/')}}/admin/learn/question/view/{{ $question->id }}" class="btn btn-info">View</a>
                     <a href="{{url('/')}}/admin/learn/question/edit/{{ $question->id }}" class="btn btn-warning">Edit</a>
                     <button class="btn btn-danger" onclick="remove('{{ $question->id }}')">Delete</button>

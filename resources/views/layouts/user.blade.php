@@ -67,9 +67,9 @@
                     <li class="nav-item {{ Request::is('login') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
-                    @if (Route::has('register'))
-                        <li class="nav-item {{ Request::is('register') ? 'active' : '' }}">
-                            <a class="nav-link hover-nav" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    @if (Route::has('signup'))
+                        <li class="nav-item {{ Request::is('signup') ? 'active' : '' }}">
+                            <a class="nav-link hover-nav" href="{{ route('signup') }}">{{ __('Register') }}</a>
                         </li>
                     @endif
                 @else
@@ -122,19 +122,18 @@
     <!-- Navbar End -->
     <div class="contents page-height">
         @section('content')
-
         @show
 
           <!-- Copyright By -->
         <div class="container">
             <div class="row p-3 m-0">
                 <div class="col-md text-center text-md-left">
-                    <p class="text-light">SDJobs v0.0.1</p>
+                    <p class="text-light">{{env('APP_NAME')}} v{{env('APP_VERSION')}}</p>
                 </div>
                 <div class="col-md text-center">
                     <p class="text-light">
                         &copy; Copyright By <a class="text-light" href="https://www.shibajidebnath.com">Shibaji Debnath</a>.
-                        <br /> Since 2014 - {{ date('Y') }}
+                        {{ date('Y') }}
                     </p>
                 </div>
                 <div class="col-md text-center text-md-right">

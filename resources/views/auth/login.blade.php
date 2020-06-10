@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col">
                         @if (session('status'))
-                            <div class="alert alert-success" role="alert">
+                            <div class="alert alert-danger" role="alert">
                                 {{ session('status') }}
                             </div>
                         @endif
@@ -81,7 +81,7 @@
                 </div>
                 <div class="row p-2">
                     <div class="col text-center">
-                        <a href="{{ url('/register')}}" class="btn btn-primary btn-block">
+                        <a href="{{ route('signup')}}" class="btn btn-primary btn-block">
                            <i class="fa fa-id-card-o"></i>
                            {{__('Register In ').config('app.name') }}
                        </a>

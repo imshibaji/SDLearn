@@ -32,13 +32,13 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
                     <a class="nav-link hover-nav" href="/">Finder <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ Request::is('about') ? 'active' : '' }}">
                     <a class="nav-link hover-nav" href="/about">About</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ Request::is('plans') ? 'active' : '' }}">
                     <a class="nav-link hover-nav" href="/plans">Plans</a>
                 </li>
                 {{-- <li class="nav-item">
@@ -58,7 +58,7 @@
                                 </li>
                             @endif --}}
                             <li class="nav-item">
-                                <form method="POST" action="{{ route('login') }}" class="form-inline my-2 my-lg-0">
+                                <form method="POST" action="{{ route('signin') }}" class="form-inline my-2 my-lg-0">
                                     @csrf
                                     <input class="form-control mr-sm-2 @error('email') is-invalid @enderror" type="email" name="email" placeholder="Email" value="{{ old('email') }}" aria-label="Email">
                                     <input class="form-control mr-sm-2 @error('password') is-invalid @enderror" type="password" name="password" placeholder="Password" value="{{ old('ppassword') }}" aria-label="Password">
@@ -126,7 +126,7 @@
     <!-- Copyright -->
     <div class="copyright">
         <p class="text-center">
-            &copy; Copyright By Shibaji Debnath, Since 2014-{{ date('Y') }}.
+            &copy; Developed By Medust Technology Pvt. Ltd. {{ date('Y') }}.
         </p>
     </div>
     <!-- Copyright -->

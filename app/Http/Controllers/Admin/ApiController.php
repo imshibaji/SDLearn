@@ -35,7 +35,7 @@ class ApiController extends Controller
     }
 
     public function income(){
-        return Money::all()->sum('addition_amt');
+        return Money::all()->sum('withdraw_amt'); // User Consume It
     }
 
     public function expanse(){

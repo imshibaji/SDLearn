@@ -62,10 +62,10 @@
                 <td>{{ $question->status }}</td>
                 <td class="text-center">
                     <div class="btn-group">
-                        <a href="{{url('/')}}/admin/learn/question/view/{{$question->id}}" class="btn btn-info">View</a>
-                        <a href="{{url('/')}}/admin/learn/question/edit/{{$question->id}}" class="btn btn-warning">Edit</a>
+                        <a href="{{url('/')}}/admin/learn/question/view/{{$question->id}}" class="btn btn-primary" title="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        <a href="{{url('/')}}/admin/learn/question/edit/{{$question->id}}" class="btn btn-warning" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                         @utype('admin')
-                        <button class="btn btn-danger" onclick="remove('{{ $question->id }}')">Delete</button>
+                        <button class="btn btn-danger" onclick="remove('{{ $question->id }}')" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                         @endutype
                     </div>
                 </td>

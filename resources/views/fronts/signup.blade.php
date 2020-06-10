@@ -1,16 +1,16 @@
-@extends('layouts.front')
+@extends('layouts.user')
 
 @section('content')
 <div class="bg-dark">
 <div class="contents container page-height">
     <div class="row justify-content-center align-items-md-center">
         <div class="col-md-7 text-center d-n-none d-md-block">
-            <div class="embed-responsive embed-responsive-4by3 mb-3">
+            {{-- <div class="embed-responsive embed-responsive-4by3 mb-3">
                 <iframe class="embed-responsive-item"
                 src="https://www.youtube.com/embed/BPn9WD4ti_0?controls=0" 
                 frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                 allowfullscreen></iframe>
-            </div>
+            </div> --}}
 
             <h5 class="text-warning">Do you finding a good opportunity?</h5>
             <h2 class="text-light">Quick Join Now.</h2>
@@ -118,17 +118,10 @@
 </div>
 @endsection
 
-@section('scripts')
-<script>    
-redirectLogin();
-window.addEventListener('resize', redirectLogin);
-function redirectLogin(){
-    const width = window.innerWidth;
-    // console.log(width);
-    if(width<=500){
-        // console.log(width);
-        window.location.replace('{{url("/")}}/login');
-    }
+@section('headers')
+<style>
+.contents{
+    padding-top: 30px;
 }
-</script>
+</style>
 @endsection

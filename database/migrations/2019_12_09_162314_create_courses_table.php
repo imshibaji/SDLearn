@@ -27,7 +27,7 @@ class CreateCoursesTable extends Migration
             $table->string('accessible', 10);
             $table->float('actual_price')->nullable();
             $table->float('offer_price')->nullable();
-            $table->integer('user_id');
+            $table->integer('user_id')->nullable();
             $table->integer('manager_user_id')->nullable();
             $table->timestamps();
         });

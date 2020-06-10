@@ -129,12 +129,12 @@
         <div class="container">
             <div class="row p-3 m-0">
                 <div class="col-md">
-                    <p class="text-light">SDJobs v0.0.1</p>
+                    <p class="text-light">{{env('APP_NAME')}} v{{env('APP_VERSION')}}</p>
                 </div>
                 <div class="col-md text-center">
                     <p class="text-light">
                         &copy; Copyright By <a class="text-light" href="https://www.shibajidebnath.com">Shibaji Debnath</a>.
-                        <br /> Since 2014 - {{ date('Y') }}
+                        {{ date('Y') }}
                     </p>
                 </div>
                 <div class="col-md text-right">

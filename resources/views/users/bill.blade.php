@@ -36,15 +36,15 @@
                             <input type="hidden" name="amt" value="{{$price}}">
                         <tr>
                             <td>Biller Name</td>
-                            <td><input class="form-control" type="text" name="name" placeholder="Input Biller Name" required></td>
+                            <td><input class="form-control" type="text" name="name" placeholder="Input Biller Name" required value="{{$user->fname ?? ''}} {{$user->lname ?? ''}}"></td>
                         </tr>
                         <tr>
                             <td>Biller Email</td>
-                            <td><input class="form-control" type="email" name="email" placeholder="Input Biller Email" required></td>
+                            <td><input class="form-control" type="email" name="email" placeholder="Input Biller Email" required value="{{$user->email ?? ''}}"></td>
                         </tr>
                         <tr>
                             <td>Biller Mobile</td>
-                            <td><input class="form-control" type="number" name="mobile" placeholder="Input Biller Mobile No" required></td>
+                            <td><input class="form-control" type="number" name="mobile" placeholder="Input Biller Mobile No" required value="{{$user->mobile ?? ''}}"></td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>

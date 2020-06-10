@@ -1,5 +1,11 @@
 @extends('admin.learn.course.layout')
 
+@section('quickbtn')
+    <div class="col text-right">
+        <a href="{{ url('admin/learn/course/list') }}" class="btn btn-primary">Course List</a>
+    </div>
+@endsection
+
 @section('contentarea')
     <table class="table table-hover" id="myTable">
         <thead>
@@ -11,7 +17,7 @@
                 <th>Duration</th>
                 <th>Status</th>
                 <th>Accessible</th>
-                <th class="text-center">Action</th>
+                {{-- <th class="text-center">Action</th> --}}
             </tr>
         </thead>
         <tbody>
@@ -29,25 +35,25 @@
                     </td>
                     <td>{{ $course->status }}</td>
                     <td>{{ $course->accessible }}</td>
-                    <td class="text-center">
+                    {{-- <td class="text-center">
                         <div class="btn-group">
-                            <a href="{{url('/')}}/admin/learn/course/view/{{ $course->id }}" class="btn btn-primary" title="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                            <a href="{{url('/')}}/admin/learn/course/edit/{{ $course->id }}" class="btn btn-warning" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                            <a href="{{url('/')}}/admin/learn/course/view/{{ $course->id }}" class="btn btn-info">View</a>
+                            <a href="{{url('/')}}/admin/learn/course/edit/{{ $course->id }}" class="btn btn-warning">Edit</a>
                             @utype('admin')
-                            <button class="btn btn-danger" onclick="remove('{{ $course->id }}')" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                            <button class="btn btn-danger" onclick="remove('{{ $course->id }}')">Delete</button>
                             @endutype
                         </div>
-                    </td>
+                    </td> --}}
                 </tr>
             @endforeach
         </tbody>
     </table>
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-12 d-flex justify-content-center pt-4">
             {{ $courses->links() }}
         </div>
-    </div>
+    </div> --}}
 @endsection
 
 @section('header')
@@ -61,46 +67,46 @@ td:hover{
 @section('scripts')
 <script src="{{url('/')}}/js/jqueryui/jquery-ui.min.js"></script>
 <script>
-	// var fixHelperModified = function(e, tr) {
-	// 	var $originals = tr.children();
-	// 	var $helper = tr.clone();
-	// 	$helper.children().each(function(index) {
-	// 		$(this).width($originals.eq(index).width())
-	// 	});
-	// 	return $helper;
-	// };
-    // var updateIndex = function(e, ui) {
-    //     // $('td.index', ui.item.parent()).each(function (i) {
-    //     //     $(this).html(i+1);
-    //     // });
-    //     // $('input[type=text]', ui.item.parent()).each(function (i) {
-    //     //     $(this).val(i + 1);
-    //     // });
-    //     $('input[type=hidden]', ui.item.parent()).each(function (i) {
-    //         var index = i+1;
+	var fixHelperModified = function(e, tr) {
+		var $originals = tr.children();
+		var $helper = tr.clone();
+		$helper.children().each(function(index) {
+			$(this).width($originals.eq(index).width())
+		});
+		return $helper;
+	};
+    var updateIndex = function(e, ui) {
+        // $('td.index', ui.item.parent()).each(function (i) {
+        //     $(this).html(i+1);
+        // });
+        // $('input[type=text]', ui.item.parent()).each(function (i) {
+        //     $(this).val(i + 1);
+        // });
+        $('input[type=hidden]', ui.item.parent()).each(function (i) {
+            var index = i+1;
 
-    //         var cid = $(this).val(); // Set Key
-    //         // console.log(cid,index); // Get Value
+            var cid = $(this).val(); // Set Key
+            // console.log(cid,index); // Get Value
 
-    //         $.post("{{url('/')}}/admin/learn/course/short", {_token: '<?php echo csrf_token() ?>',id: cid, short: index}, function(res){
-    //             // console.log('data shorted', res);
-    //             location.reload();
-    //         });
-    //     });
-    // };
+            $.post("{{url('/')}}/admin/learn/course/short", {_token: '<?php echo csrf_token() ?>',id: cid, short: index}, function(res){
+                // console.log('data shorted', res);
+                location.reload();
+            });
+        });
+    };
 
-	// $("#myTable tbody").sortable({
-	// 	helper: fixHelperModified,
-	// 	stop: updateIndex
-	// }).disableSelection();
+	$("#myTable tbody").sortable({
+		helper: fixHelperModified,
+		stop: updateIndex
+	}).disableSelection();
 	
-    // $("tbody").sortable({
-    //     distance: 5,
-    //     delay: 100,
-    //     opacity: 0.6,
-    //     cursor: 'move',
-    //     update: function() {}
-    // });
+    $("tbody").sortable({
+        distance: 5,
+        delay: 100,
+        opacity: 0.6,
+        cursor: 'move',
+        update: function() {}
+    });
 
 
     function remove(id){

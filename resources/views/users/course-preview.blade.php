@@ -67,9 +67,11 @@
 
 
 @section('headers')
-<link rel="stylesheet" href="{{url('/')}}/css/prism_patched.min.css">
+{{-- <link rel="stylesheet" href="{{url('/')}}/css/prism_patched.min.css"> --}}
+<link rel="stylesheet" href="{{url('/')}}/css/prism_coy.css">
 @endsection
 
 @section('scripts')
 <script src="{{url('/')}}/js/prism_patched.min.js"></script>
+{{-- <script src="{{url('/')}}/js/prism.js"></script> --}}
 @endsection

@@ -51,60 +51,64 @@
                             <p class="muted">Total Amount Uses: ₹{{$totalPaid}}/-</p>
 
                             <x-data-table :fields="$fields" :items="$items" />
+                            {{ $items->links() }}
                         </div>
                         <div class="col-md-4 col-12 shadow p-3 mb-5 bg-white rounded">
-                            <h3 class="text-center">Transaction Information</h3>
-                            <form>
-                                <div class="form-group">
-                                    <label for="inputName">Name</label>
-                                    <input type="text" name="name" class="form-control" placeholder="Input Name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputName">Email</label>
-                                    <input type="email" name="email" class="form-control" placeholder="Input Email" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputName">Mobile</label>
-                                    <input type="text" name="mobile" class="form-control" placeholder="Input Mobile" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputName">Purpose</label>
-                                    <input type="text" name="purpose" class="form-control" placeholder="Input Purpose" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputName">Amount</label>
-                                    <input type="text" name="amount" class="form-control" placeholder="Input Amount" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputNumber">Transaction By</label>
-                                    <select name="transaction_method" class="form-control">
-                                        <option>Netbanking</option>
-                                        <option>PayTM</option>
-                                        <option>PhonePay</option>
-                                        <option>GooglePay</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputNumber">Transaction Number</label>
-                                    <input type="text" name="transaction_number"  class="form-control" placeholder="Input Transaction Number" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputBank">Message</label>
-                                    <textarea name="message" class="form-control" id="inputMessage" placeholder="Input Message"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-block">Submit</button>
-                              </form>
+                            <h3 class="text-center">Subscription Plan</h3>
+                            <div class="p-4 silver-box">
+                                <h4>Silver Plan</h4>
+                                <p>You will be getting 10 Live class. Where you can give Live Question and Answer in the session</p>
+                                <p>Fees: 5000/-</p>
+                                <button class="btn btn-block btn-silver btn-lg">Buy Plan</button>
+                            </div>
+                            <div class="p-4 gold-box">
+                                <h4>Gold Plan</h4>
+                                <p>Silver plan with Coaching Support for 3month</p>
+                                <p>Fees: 10,000/-</p>
+                                <button class="btn btn-block btn-warning btn-lg">Buy Plan</button>
+                            </div>
+                            <div class="p-4 platinum-box">
+                                <h4>Platinum Plan</h4>
+                                <p>Gold plan with Coaching Support for 6month</p>
+                                <p>Fees: 20,000/-</p>
+                                <button class="btn btn-block btn-primary btn-lg">Buy Plan</button>
+                            </div>
                         </div>
                     </div>
                     {{-- Page End Here --}}
-
-
-
-                    
-
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('headers')
+<style>
+.btn-silver{
+    background-color: lightslategray;
+    color: whitesmoke;
+}
+.silver-box{
+    border: 1px solid lightslategray;
+}
+.silver-box h4{
+    color: lightslategray;
+    text-align: center;
+}
+.gold-box{
+    border: 2px solid #e8d101;
+}
+.gold-box h4{
+    color: #e8d101;
+    text-align: center;
+}
+.platinum-box{
+    border: 3px solid #3490dc;
+}
+.platinum-box h4{
+    color: #3490dc;
+    text-align: center;
+}
+</style>
 @endsection

@@ -15,6 +15,14 @@ class Course extends Model
     //     'user_id'
     // ];
 
+    public function createdBy(){
+        return $this->belongsTo('App\User');
+    }
+
+    public function managedBy(){
+        return $this->belongsTo('App\User', 'manager_user_id');
+    }
+
     public function topics(){
         return $this->hasMany('App\Models\Topic');
     }

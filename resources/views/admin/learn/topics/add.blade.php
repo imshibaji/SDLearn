@@ -7,78 +7,65 @@
 @endsection
 
 @section('contentarea')
+<form action="{{route('admintopiccreate')}}" method="POST">
+    @csrf
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md">
-                <form action="{{route('admintopiccreate')}}" method="POST">
-                    @csrf
-                <table class="table">
-                    <tr>
-                        <td>Course Name</td>
-                        <td>
-                            <select name="course_id" class="form-control">
-                                @foreach ($courses as $course)
-                                <option value="{{$course->id}}">{{$course->title}}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Title</td>
-                        <td><input type="text" name="title" class="form-control"></td>
-                    </tr>
-                    <tr>
-                        <td>Embed Code</td>
-                        <td><textarea name="embed_code" id="embed_code" class="form-control"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td>Description</td>
-                        <td><textarea name="details" id="editor" class="form-control"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td>Duration</td>
-                        <td class="row">
-                            <div class="col">
-                                <input type="number" id="hours" name="duration[hours]" class="form-control" placeholder="hours">
-                            </div>
-                            <div class="col">
-                                <input type="number" id="minutes" name="duration[minutes]" class="form-control" placeholder="minutes">
-                            </div>
-                            <div class="col">
-                                <input type="number" id="seconds" name="duration[seconds]" class="form-control" placeholder="seconds">
-                            </div>
-                            <div class="col">
-                                <input type="number" id="totsec" name="duration[totsec]" readonly class="form-control" placeholder="total seconds">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Status</td>
-                        <td>
-                            <select name="status" class="form-control">
-                                <option value="active">Active</option>
-                                <option value="inactive">InActive</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Premium Status</td>
-                        <td>
-                            <select name="premium_status" class="form-control">
-                                <option value="free">Free</option>
-                                <option value="premium">Premium</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td><input type="submit" class="btn btn-success" value="Submit"></td>
-                    </tr>
-                </table>
-                </form>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <input type="text" name="title" class="form-control" placeholder="Input Topic Title">
+                </div>
+                <div class="form-group">
+                    <textarea name="details" id="editor" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="cat_id">Select Catagory</label>
+                    <select name="course_id" id="cat_id" class="form-control">
+                        @foreach ($courses as $course)
+                        <option value="{{$course->id}}">{{$course->title}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="embed_code">Embed Video</label>
+                    <textarea name="embed_code" id="embed_code" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="duration">Duration</label>
+                    <div class="input-group">
+                        <input type="number" id="hours" name="duration[hours]" class="form-control" placeholder="hours">
+                        <input type="number" id="minutes" name="duration[minutes]" class="form-control" placeholder="minutes">
+                        <input type="number" id="seconds" name="duration[seconds]" class="form-control" placeholder="seconds">
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="number" id="totsec" name="duration[totsec]" readonly class="form-control" placeholder="Total Seconds">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="status">Select Status</label>
+                    <select name="status" id="status" class="form-control">
+                        <option value="active">Active</option>
+                        <option value="inactive">InActive</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pstatus">Premium Status</label>
+                    <select name="premium_status" id="pstatus" class="form-control">
+                        <option value="free">Free</option>
+                        <option value="premium">Premium</option>
+                    </select>
+                </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col"><input type="submit" class="btn btn-success btn-block" value="Submit"></div>
+        </div>
     </div>
+</form>
 @endsection
 
 @section('scripts')
@@ -99,7 +86,7 @@ window.onload = function(){
       ],
     });
     CKEDITOR.replace('editor', {
-      height: 400,
+      height: 365,
       baseFloatZIndex: 10005,
       // Remove the redundant buttons from toolbar groups defined above.
       removeButtons: 'Cut,Copy,Paste,PasteText,PasteFromWord'

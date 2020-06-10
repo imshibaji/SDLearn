@@ -11,8 +11,14 @@ use Illuminate\Support\Facades\Auth;
 class CourseController extends Controller
 {
     public function list(){
-        $courses = Course::orderBy('short')->get();
+        // $courses = Course::orderBy('short')->get();
+        $courses = Course::orderBy('short')->paginate(5);
         return view('admin.learn.course.list', ['title' => 'Course List', 'courses' => $courses]);
+    }
+
+    public function rearrange(){
+        $courses = Course::orderBy('short')->get();
+        return view('admin.learn.course.rearrange', ['title' => 'Course Rearrange', 'courses' => $courses]);
     }
 
     public function add(){

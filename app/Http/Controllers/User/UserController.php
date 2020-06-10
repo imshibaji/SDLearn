@@ -76,6 +76,9 @@ class UserController extends Controller
             $course = Course::find($req->id);
             $topics = $course->topics()->orderBy('short')->get();
             $topic = Topic::find($req->tid);
+            
+            // $topic = $course->topics()->orderBy('short')->paginate(1);
+            // dd($topic);
 
             $utopics = Auth::user()->topicAssignments;
             $assesments = Auth::user()->userAssesments()->where('topic_id', $req->tid)->get();

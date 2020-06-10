@@ -141,4 +141,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function isOnline(){
         return Cache::has('user-is-online-' . $this->id);
     }
+
+    public function courseCreator(){
+        return $this->hasMany('App\Models\Course');
+    }
+
+    public function courseManager(){
+        return $this->hasMany('App\Models\Course', 'manager_user_id');
+    }
 }

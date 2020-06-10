@@ -38,6 +38,7 @@ Route::prefix('learn')->group(function(){
     // Course Section
     Route::prefix('course')->group(function(){
         Route::get('list', 'Learn\CourseController@list')->name('admincourselist');
+        Route::get('rearrange', 'Learn\CourseController@rearrange')->name('admincourserearrange');
         Route::get('add', 'Learn\CourseController@add')->name('admincourseadd');
         Route::post('create', 'Learn\CourseController@create')->name('admincoursecreate');
         Route::get('edit/{id}', 'Learn\CourseController@edit')->name('admincourseedit');

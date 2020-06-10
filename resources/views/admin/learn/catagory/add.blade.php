@@ -19,7 +19,9 @@
                     </tr>
                     <tr>
                         <td>Details</td>
-                        <td colspan="3"><input type="text" id="details" name="details" class="form-control"></td>
+                        <td colspan="3">
+                            <input type="text" id="details" name="details" class="form-control">
+                        </td>
                     </tr>
                     <tr>
                         <td>Status</td>

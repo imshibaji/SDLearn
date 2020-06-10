@@ -43,7 +43,14 @@ class PaymentController extends Controller
                 $check = true;
             }
         }
-        return view('users.bill', compact('course', 'user', 'check'));
+
+        if($course->accessible =='free'){
+            $this->free_course_assign($user->id, $course->id);
+            session()->flash('status', 'You are succesefully enroll the <strong>'.$course->title.'</strong> course. Let\'s learn the course');
+            return redirect('user/my-courses');
+        }else{
+            return view('users.bill', compact('course', 'user', 'check'));
+        }
     }
 
     // 
@@ -140,6 +147,15 @@ class PaymentController extends Controller
         catch (Exception $e) {
             print('List Error: ' . $e->getMessage());
         }
+    }
+
+    private function free_course_assign($user_id, $course_id){
+        $ca = CourseAssignment::firstOrCreate([
+            'user_id'=> $user_id, 
+            'course_id' => $course_id
+        ]);
+        $ca->save();
+        return $ca->id;
     }
 
     private function course_assign($pay_request_id){

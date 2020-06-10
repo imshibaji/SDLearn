@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                         </div>
-                        <h3 class="text-center p-5">FREE PREMIUM ACCESS</h3>
+                        <h3 class="text-center p-5">FREEMIUM ACCESS</h3>
                     </div>
                 </div>
             </div>

@@ -12,7 +12,8 @@ class TransactionController extends Controller
     public function index(){
         $balance = Money::where('user_id', Auth::id())->get()->last()->balance_amt ?? 0;
         $totalPaid = Money::where('user_id', Auth::id())->get()->sum('addition_amt');
-        $money = Money::where('user_id', Auth::id())->orderBy('id', 'DESC')->get();
+        // $money = Money::where('user_id', Auth::id())->orderBy('id', 'DESC')->get();
+        $money = Money::where('user_id', Auth::id())->orderBy('id', 'DESC')->paginate(12);
 
         $fields = [
             'details', 
